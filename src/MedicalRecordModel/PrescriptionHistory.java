@@ -15,10 +15,22 @@ public class PrescriptionHistory {
     String physicianName;
     int rXID;
     String rXName;
+    //Need to include Refill data!!!!
     //int preferredPharmacyID;
     //String preferredPharmacyName;
     //String preferredPharmacyAddress;
     
+    /**
+     * 
+     * @param linkPatientID
+     * @param rxDate
+     * @param rxTime
+     * @param docName
+     * @param rxID
+     * @param rxName 
+     * 
+     * This is the constructor for the PrescriptionHistory Class.
+     */
     public PrescriptionHistory(PatientProfile linkPatientID, Date rxDate, Time rxTime, String docName,
             int rxID, String rxName){
         patientID = linkPatientID;
@@ -28,4 +40,44 @@ public class PrescriptionHistory {
         rXID = rxID;
         rXName = rxName;
     }
+    
+    /**
+     * Returns the RX order submission date.
+     * @return A RX order date.
+     */
+    public Date getRXOrderDate(){
+        return rXorderDate;
+    }
+    
+    /**
+     * Returns the RX order submission time.
+     * @return A RX order time.
+     */
+    public Time getRXOrderTime(){
+        return rXorderTime;
+    }
+    
+    /**
+     * Returns the RX ordering physician's name.
+     * @return A physician's name.
+     */
+    public String getPhysicianName(){
+        return physicianName;
+    }
+    
+    /**
+     * Returns the prescription ID for the RX.
+     * @return A prescription ID.
+     */
+    public int getRXID(){
+        return rXID;
+    }
+    
+    /**
+     * Returns the prescription Name tied to the RX ID.
+     * @return A prescription name.
+     */
+    public String getRXName(){
+        return rXName;
+    }    
 }

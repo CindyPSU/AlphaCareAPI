@@ -9,7 +9,7 @@ import java.util.Date;
  */
 
 public class PatientProfile {
-    long patientID;
+    String patientID;
     String patientFirstName;
     String patientLastName;
     String patientMiddleInitial;
@@ -35,7 +35,7 @@ public class PatientProfile {
      * 
      * This is the constructor for the PatientProfile Class.
      */
-    public PatientProfile(long initPatientID, String pFirstName, String pLastName, String pMiddleInitial, 
+    public PatientProfile(String initPatientID, String pFirstName, String pLastName, String pMiddleInitial, 
             String pPreferredName, int pSSN, Date pDOB, int pPhoneNumber, String pAddress, String pEmail){
         patientID = initPatientID;
         patientFirstName = pFirstName;
@@ -52,7 +52,7 @@ public class PatientProfile {
      * Returns the Patient ID that will be linked to the patient profile.
      * @return A long representing the patient ID.
      */
-    public long setPatientID(){
+    public String setPatientID(){
         return patientID;
     }
     /**
@@ -117,5 +117,15 @@ public class PatientProfile {
      */
     public String getPatientEmailAddress(){
         return patientEmailAddress;
+    }
+    
+    /**
+     * Returns the patient complete medical record when the patient ID is provided.
+     * The patient ID is the same as the patient SSN.
+     * @param patientID
+     * @return A patient complete medical record.
+     */
+    public PatientProfile getCompleteMedicalRecord(String patientID){
+        return 
     }
 }
