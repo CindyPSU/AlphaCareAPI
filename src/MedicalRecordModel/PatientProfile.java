@@ -8,7 +8,6 @@ import java.util.Date;
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
 
-
 public class PatientProfile {
     long patientID;
     String patientFirstName;
@@ -54,53 +53,69 @@ public class PatientProfile {
      * @return A long representing the patient ID.
      */
     public long setPatientID(){
-        return 12345678;
+        return patientID;
     }
     /**
-     * Returns the patient name in a preferred format.
-     * @return A formatted patient name.
+     * Returns the patient's last name.
+     * @return A patient last name.
      */
-    public String getPatientName(){
-        return "Patient Last Name: "+patientLastName+", Patient First Name: "+patientFirstName+", Patient Middle Initial: "+patientMiddleInitial;  
+    public String getPatientLastName(){
+        return patientLastName;  
     }
     
     /**
-     * Returns the patient social security in a preferred format.
-     * @return A formatted patient social security number.
+     * Returns the patient's first name.
+     * @return A patient first name.
      */
-    public String getPatientSSN(){
-        return "Patient SSN: "+patientSSN;
+    public String getPatientFirstName(){
+        return patientFirstName;  
     }
     
     /**
-     * Returns the patient date of birth in a preferred format.
-     * @return A formatted patient date of birth.
+     * Returns the patient's middle initial.
+     * @return A patient middle initial.
      */
-    public String getPatientDOB(){
-        return "Patient Date of Birth (DOB): "+patientDOB;
+    public String getPatientMiddleInitial(){
+        return patientMiddleInitial;  
     }
     
     /**
-     * Returns the patient phone number in a preferred format.
-     * @return A formatted patient phone number.
+     * Returns the patient social security number.
+     * @return A patient social security number.
      */
-    public String getPatientPhoneNumber(){
-        return "Phone: "+patientPhoneNumber;
+    public int getPatientSSN(){
+        return patientSSN;
     }
     
     /**
-     * Returns the patient home address in a preferred format.
-     * @return A formatted patient home address.
+     * Returns the patient date of birth.
+     * @return A patient date of birth.
+     */
+    public Date getPatientDOB(){
+        return patientDOB;
+    }
+    
+    /**
+     * Returns the patient phone number.
+     * @return A patient phone number.
+     */
+    public int getPatientPhoneNumber(){
+        return patientPhoneNumber;
+    }
+    
+    /**
+     * Returns the patient home address.
+     * @return A patient home address.
      */
     public String getPatientAddress(){
-        return "Address: "+patientAddress;
+        return patientAddress;
     }
     
     /**
-     * Returns the patient email address in a preferred format.
-     * @return A formatted patient email address.
+     * Returns the patient email address.
+     * @return A patient email address.
      */
     public String getPatientEmailAddress(){
-        return "Email: "+patientEmailAddress;
+        return patientEmailAddress;
     }
 }
