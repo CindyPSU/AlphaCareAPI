@@ -125,7 +125,7 @@ public class PatientProfile {
      * @param patientID
      * @return A patient complete medical record.
      */
-    public PatientProfile getCompleteMedicalRecord(String patientID){
+    public static PatientProfile getCompleteMedicalRecord(String patientID){
         return 
     }
 }
