@@ -6,9 +6,9 @@
 package UserModel;
 
 /**
- * A Medical Administrator manages the input of patient records.
- * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
+ * The types of insurance available by insurance companies.
+ * @author chrismorris
  */
-public class MedicalAdministrator extends User {
-    
+public enum InsuranceType {
+    PPO, HMO 
 }

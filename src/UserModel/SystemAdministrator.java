@@ -6,9 +6,9 @@
 package UserModel;
 
 /**
- *
+ * The person that manages the medical system for a practice 
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
-public class SystemAdministrator {
+public class SystemAdministrator extends User {
     
 }

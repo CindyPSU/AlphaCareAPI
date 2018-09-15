@@ -6,9 +6,9 @@
 package UserModel;
 
 /**
- *
+ * A physician that practices medicine at a practice with patients
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
-public class Physician {
+public class Physician extends User {
     
 }
