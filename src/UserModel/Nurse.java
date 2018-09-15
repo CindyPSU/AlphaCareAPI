@@ -6,9 +6,10 @@
 package UserModel;
 
 /**
- *
+ * A nurse practices medicine with patients and prepare them for visits with 
+ * their physician.
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
-public class Nurse {
+public class Nurse extends User {
     
 }
