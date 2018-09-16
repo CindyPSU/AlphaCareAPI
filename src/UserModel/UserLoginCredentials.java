@@ -6,7 +6,7 @@
 package UserModel;
 
 /**
- *
+ * The credentials used to authenticate a user.
  * @author chrismorris
  */
 public class UserLoginCredentials {
