@@ -18,6 +18,19 @@ public class VitalSigns {
     private String oxygenSat;
     private String breathsPerMinute;
     
+    /**
+     * 
+     * @param linkPatientID
+     * @param vsID
+     * @param vsDate
+     * @param vsTime
+     * @param hRate
+     * @param bPressure
+     * @param oSat
+     * @param bpm 
+     * 
+     * This is the constructor for the VitalSigns Class.
+     */
     public VitalSigns(PatientProfile linkPatientID, int vsID, Date vsDate, Time vsTime, 
             String hRate, String bPressure, String oSat, String bpm){
         patientID = linkPatientID;
