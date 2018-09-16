@@ -9,13 +9,13 @@ import java.util.Date;
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
 public class PrescriptionHistory {
-    PatientProfile patientID;
-    Date rXorderDate;
-    Time rXorderTime;
-    String physicianName;
-    int rXID;
-    String rXName;
-    int refillCount;
+    private PatientProfile patientID;
+    private Date rXorderDate;
+    private Time rXorderTime;
+    private String physicianName;
+    private int rXID;
+    private String rXName;
+    private int refillCount;
     
     /**
      * 
@@ -45,7 +45,7 @@ public class PrescriptionHistory {
      * @return A RX order date.
      */
     public Date getRXOrderDate(){
-        return rXorderDate;
+        return getrXorderDate();
     }
     
     /**
@@ -53,7 +53,7 @@ public class PrescriptionHistory {
      * @return A RX order time.
      */
     public Time getRXOrderTime(){
-        return rXorderTime;
+        return getrXorderTime();
     }
     
     /**
@@ -69,7 +69,7 @@ public class PrescriptionHistory {
      * @return A prescription ID.
      */
     public int getRXID(){
-        return rXID;
+        return getrXID();
     }
     
     /**
@@ -77,7 +77,7 @@ public class PrescriptionHistory {
      * @return A prescription name.
      */
     public String getRXName(){
-        return rXName;
+        return getrXName();
     }  
     
     /**
@@ -86,5 +86,88 @@ public class PrescriptionHistory {
      */
     public int getRefillCount(){
         return refillCount;
+    }
+    /**
+     * @return the patientID
+     */
+    public PatientProfile getPatientID() {
+        return patientID;
+    }
+
+    /**
+     * @param patientID the patientID to set
+     */
+    public void setPatientID(PatientProfile patientID) {
+        this.patientID = patientID;
+    }
+
+    /**
+     * @return the rXorderDate
+     */
+    public Date getrXorderDate() {
+        return rXorderDate;
+    }
+
+    /**
+     * @param rXorderDate the rXorderDate to set
+     */
+    public void setrXorderDate(Date rXorderDate) {
+        this.rXorderDate = rXorderDate;
+    }
+
+    /**
+     * @return the rXorderTime
+     */
+    public Time getrXorderTime() {
+        return rXorderTime;
+    }
+
+    /**
+     * @param rXorderTime the rXorderTime to set
+     */
+    public void setrXorderTime(Time rXorderTime) {
+        this.rXorderTime = rXorderTime;
+    }
+
+    /**
+     * @param physicianName the physicianName to set
+     */
+    public void setPhysicianName(String physicianName) {
+        this.physicianName = physicianName;
+    }
+
+    /**
+     * @return the rXID
+     */
+    public int getrXID() {
+        return rXID;
+    }
+
+    /**
+     * @param rXID the rXID to set
+     */
+    public void setrXID(int rXID) {
+        this.rXID = rXID;
+    }
+
+    /**
+     * @return the rXName
+     */
+    public String getrXName() {
+        return rXName;
+    }
+
+    /**
+     * @param rXName the rXName to set
+     */
+    public void setrXName(String rXName) {
+        this.rXName = rXName;
+    }
+
+    /**
+     * @param refillCount the refillCount to set
+     */
+    public void setRefillCount(int refillCount) {
+        this.refillCount = refillCount;
     }
 }

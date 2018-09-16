@@ -7,15 +7,15 @@ import java.util.Date;
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
 public class PatientProfile {
-    String patientID;
-    String patientFirstName;
-    String patientLastName;
-    String patientMiddleInitial;
-    String patientPreferredName;
-    Date patientDOB;
-    int patientPhoneNumber;
-    String patientAddress;
-    String patientEmailAddress;
+    private String patientID;
+    private String patientFirstName;
+    private String patientLastName;
+    private String patientMiddleInitial;
+    private String patientPreferredName;
+    private Date patientDOB;
+    private int patientPhoneNumber;
+    private String patientAddress;
+    private String patientEmailAddress;
     
     /**
      * 
@@ -48,7 +48,7 @@ public class PatientProfile {
      * @return A long representing the patient ID.
      */
     public String setPatientID(){
-        return patientID;
+        return getPatientID();
     }
     /**
      * Returns the patient's last name.
@@ -114,5 +114,82 @@ public class PatientProfile {
      */
     public static PatientProfile getCompleteMedicalRecord(String patientID){
         return null;
+    }
+
+    /**
+     * @return the patientID
+     */
+    public String getPatientID() {
+        return patientID;
+    }
+
+    /**
+     * @param patientID the patientID to set
+     */
+    public void setPatientID(String patientID) {
+        this.patientID = patientID;
+    }
+
+    /**
+     * @param patientFirstName the patientFirstName to set
+     */
+    public void setPatientFirstName(String patientFirstName) {
+        this.patientFirstName = patientFirstName;
+    }
+
+    /**
+     * @param patientLastName the patientLastName to set
+     */
+    public void setPatientLastName(String patientLastName) {
+        this.patientLastName = patientLastName;
+    }
+
+    /**
+     * @param patientMiddleInitial the patientMiddleInitial to set
+     */
+    public void setPatientMiddleInitial(String patientMiddleInitial) {
+        this.patientMiddleInitial = patientMiddleInitial;
+    }
+
+    /**
+     * @return the patientPreferredName
+     */
+    public String getPatientPreferredName() {
+        return patientPreferredName;
+    }
+
+    /**
+     * @param patientPreferredName the patientPreferredName to set
+     */
+    public void setPatientPreferredName(String patientPreferredName) {
+        this.patientPreferredName = patientPreferredName;
+    }
+
+    /**
+     * @param patientDOB the patientDOB to set
+     */
+    public void setPatientDOB(Date patientDOB) {
+        this.patientDOB = patientDOB;
+    }
+
+    /**
+     * @param patientPhoneNumber the patientPhoneNumber to set
+     */
+    public void setPatientPhoneNumber(int patientPhoneNumber) {
+        this.patientPhoneNumber = patientPhoneNumber;
+    }
+
+    /**
+     * @param patientAddress the patientAddress to set
+     */
+    public void setPatientAddress(String patientAddress) {
+        this.patientAddress = patientAddress;
+    }
+
+    /**
+     * @param patientEmailAddress the patientEmailAddress to set
+     */
+    public void setPatientEmailAddress(String patientEmailAddress) {
+        this.patientEmailAddress = patientEmailAddress;
     }
 }

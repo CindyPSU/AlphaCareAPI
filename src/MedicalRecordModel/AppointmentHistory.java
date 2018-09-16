@@ -9,13 +9,13 @@ import java.util.Date;
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
 public class AppointmentHistory {
-    PatientProfile patientID;
-    int appointmentID;
-    Date appointmentDate;
-    Time appointmentTime;
-    String physicianName;
-    String appointmentCode;
-    String appCodeDescription;
+    private PatientProfile patientID;
+    private int appointmentID;
+    private Date appointmentDate;
+    private Time appointmentTime;
+    private String physicianName;
+    private String appointmentCode;
+    private String appCodeDescription;
     
     /**
      * 
@@ -88,4 +88,59 @@ public class AppointmentHistory {
     public String getAppCodeDescription(){
         return appCodeDescription;
     }     
+    /**
+     * @return the patientID
+     */
+    public PatientProfile getPatientID() {
+        return patientID;
+    }
+
+    /**
+     * @param patientID the patientID to set
+     */
+    public void setPatientID(PatientProfile patientID) {
+        this.patientID = patientID;
+    }
+
+    /**
+     * @param appointmentID the appointmentID to set
+     */
+    public void setAppointmentID(int appointmentID) {
+        this.appointmentID = appointmentID;
+    }
+
+    /**
+     * @param appointmentDate the appointmentDate to set
+     */
+    public void setAppointmentDate(Date appointmentDate) {
+        this.appointmentDate = appointmentDate;
+    }
+
+    /**
+     * @param appointmentTime the appointmentTime to set
+     */
+    public void setAppointmentTime(Time appointmentTime) {
+        this.appointmentTime = appointmentTime;
+    }
+
+    /**
+     * @param physicianName the physicianName to set
+     */
+    public void setPhysicianName(String physicianName) {
+        this.physicianName = physicianName;
+    }
+
+    /**
+     * @param appointmentCode the appointmentCode to set
+     */
+    public void setAppointmentCode(String appointmentCode) {
+        this.appointmentCode = appointmentCode;
+    }
+
+    /**
+     * @param appCodeDescription the appCodeDescription to set
+     */
+    public void setAppCodeDescription(String appCodeDescription) {
+        this.appCodeDescription = appCodeDescription;
+    }
 }

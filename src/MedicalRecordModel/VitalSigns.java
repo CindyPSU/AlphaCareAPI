@@ -9,15 +9,28 @@ import java.util.Date;
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
 public class VitalSigns {
-    PatientProfile patientID;
-    int vitalSignsID;
-    Date vitalSignsDate;
-    Time vitalSignsTime;
-    String heartRate;
-    String bloodPressure;
-    String oxygenSat;
-    String breathsPerMinute;
+    private PatientProfile patientID;
+    private int vitalSignsID;
+    private Date vitalSignsDate;
+    private Time vitalSignsTime;
+    private String heartRate;
+    private String bloodPressure;
+    private String oxygenSat;
+    private String breathsPerMinute;
     
+    /**
+     * 
+     * @param linkPatientID
+     * @param vsID
+     * @param vsDate
+     * @param vsTime
+     * @param hRate
+     * @param bPressure
+     * @param oSat
+     * @param bpm 
+     * 
+     * This is the constructor for the VitalSigns Class.
+     */
     public VitalSigns(PatientProfile linkPatientID, int vsID, Date vsDate, Time vsTime, 
             String hRate, String bPressure, String oSat, String bpm){
         patientID = linkPatientID;
@@ -83,5 +96,68 @@ public class VitalSigns {
      */
     public String getBreathsPerMinute(){
         return breathsPerMinute;
+    }
+
+    /**
+     * @return the patientID
+     */
+    public PatientProfile getPatientID() {
+        return patientID;
+    }
+
+    /**
+     * @param patientID the patientID to set
+     */
+    public void setPatientID(PatientProfile patientID) {
+        this.patientID = patientID;
+    }
+
+    /**
+     * @param vitalSignsID the vitalSignsID to set
+     */
+    public void setVitalSignsID(int vitalSignsID) {
+        this.vitalSignsID = vitalSignsID;
+    }
+
+    /**
+     * @param vitalSignsDate the vitalSignsDate to set
+     */
+    public void setVitalSignsDate(Date vitalSignsDate) {
+        this.vitalSignsDate = vitalSignsDate;
+    }
+
+    /**
+     * @param vitalSignsTime the vitalSignsTime to set
+     */
+    public void setVitalSignsTime(Time vitalSignsTime) {
+        this.vitalSignsTime = vitalSignsTime;
+    }
+
+    /**
+     * @param heartRate the heartRate to set
+     */
+    public void setHeartRate(String heartRate) {
+        this.heartRate = heartRate;
+    }
+
+    /**
+     * @param bloodPressure the bloodPressure to set
+     */
+    public void setBloodPressure(String bloodPressure) {
+        this.bloodPressure = bloodPressure;
+    }
+
+    /**
+     * @param oxygenSat the oxygenSat to set
+     */
+    public void setOxygenSat(String oxygenSat) {
+        this.oxygenSat = oxygenSat;
+    }
+
+    /**
+     * @param breathsPerMinute the breathsPerMinute to set
+     */
+    public void setBreathsPerMinute(String breathsPerMinute) {
+        this.breathsPerMinute = breathsPerMinute;
     }
 }

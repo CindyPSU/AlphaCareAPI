@@ -8,15 +8,15 @@ import java.util.Date;
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
 public class MedicalHistory {
-    PatientProfile patientID;
-    int medicalHistoryID;
-    Date procedureDate;
-    String procedureName;
-    int procedureAge;
-    String allergyName;
-    String allergyDescription;
-    String currentMedicalCondition;
-    String pastMedicalCondition;
+    private PatientProfile patientID;
+    private int medicalHistoryID;
+    private Date procedureDate;
+    private String procedureName;
+    private int procedureAge;
+    private String allergyName;
+    private String allergyDescription;
+    private String currentMedicalCondition;
+    private String pastMedicalCondition;
     
     /**
      * 
@@ -107,4 +107,74 @@ public class MedicalHistory {
     public String getPastMedicalCondition(){
         return pastMedicalCondition;
     }  
+
+    /**
+     * @return the patientID
+     */
+    public PatientProfile getPatientID() {
+        return patientID;
+    }
+
+    /**
+     * @param patientID the patientID to set
+     */
+    public void setPatientID(PatientProfile patientID) {
+        this.patientID = patientID;
+    }
+
+    /**
+     * @param medicalHistoryID the medicalHistoryID to set
+     */
+    public void setMedicalHistoryID(int medicalHistoryID) {
+        this.medicalHistoryID = medicalHistoryID;
+    }
+
+    /**
+     * @param procedureDate the procedureDate to set
+     */
+    public void setProcedureDate(Date procedureDate) {
+        this.procedureDate = procedureDate;
+    }
+
+    /**
+     * @param procedureName the procedureName to set
+     */
+    public void setProcedureName(String procedureName) {
+        this.procedureName = procedureName;
+    }
+
+    /**
+     * @param procedureAge the procedureAge to set
+     */
+    public void setProcedureAge(int procedureAge) {
+        this.procedureAge = procedureAge;
+    }
+
+    /**
+     * @param allergyName the allergyName to set
+     */
+    public void setAllergyName(String allergyName) {
+        this.allergyName = allergyName;
+    }
+
+    /**
+     * @param allergyDescription the allergyDescription to set
+     */
+    public void setAllergyDescription(String allergyDescription) {
+        this.allergyDescription = allergyDescription;
+    }
+
+    /**
+     * @param currentMedicalCondition the currentMedicalCondition to set
+     */
+    public void setCurrentMedicalCondition(String currentMedicalCondition) {
+        this.currentMedicalCondition = currentMedicalCondition;
+    }
+
+    /**
+     * @param pastMedicalCondition the pastMedicalCondition to set
+     */
+    public void setPastMedicalCondition(String pastMedicalCondition) {
+        this.pastMedicalCondition = pastMedicalCondition;
+    }
 }
