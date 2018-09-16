@@ -15,7 +15,7 @@ public class PrescriptionHistory {
     String physicianName;
     int rXID;
     String rXName;
-    //Need to include Refill data!!!!
+    int refillCount;
     //int preferredPharmacyID;
     //String preferredPharmacyName;
     //String preferredPharmacyAddress;
@@ -28,17 +28,19 @@ public class PrescriptionHistory {
      * @param docName
      * @param rxID
      * @param rxName 
+     * @param rxCount
      * 
      * This is the constructor for the PrescriptionHistory Class.
      */
     public PrescriptionHistory(PatientProfile linkPatientID, Date rxDate, Time rxTime, String docName,
-            int rxID, String rxName){
+            int rxID, String rxName, int rxCount){
         patientID = linkPatientID;
         rXorderDate = rxDate;
         rXorderTime = rxTime;
         physicianName = docName;
         rXID = rxID;
         rXName = rxName;
+        refillCount = rxCount;
     }
     
     /**
@@ -79,5 +81,13 @@ public class PrescriptionHistory {
      */
     public String getRXName(){
         return rXName;
-    }    
+    }  
+    
+    /**
+     * Returns the number of refills remaining on a RX.
+     * @return A refill count (how many are left on the RX)
+     */
+    public int getRefillCount(){
+        return refillCount;
+    }
 }
