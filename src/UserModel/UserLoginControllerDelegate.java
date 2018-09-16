@@ -6,7 +6,7 @@
 package UserModel;
 
 /**
- * The delegate that communicates the results of login attempts make on an 
+ * The delegate that communicates the results of login attempts made on an 
  * instance of UserLoginController.
  * @author chrismorris
  */
