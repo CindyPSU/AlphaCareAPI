@@ -9,13 +9,13 @@ import java.util.Date;
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
 public class TestLabResults {
-    PatientProfile patientID;
-    Date testOrderDate;
-    Time testOrderTime;
-    String physicianName;
-    int testID;
-    String testName;
-    String testResult;
+    private PatientProfile patientID;
+    private Date testOrderDate;
+    private Time testOrderTime;
+    private String physicianName;
+    private int testID;
+    private String testName;
+    private String testResult;
     
     /**
      * 
@@ -87,4 +87,60 @@ public class TestLabResults {
     public String getTestResult(){
         return testResult;
     }       
+
+    /**
+     * @return the patientID
+     */
+    public PatientProfile getPatientID() {
+        return patientID;
+    }
+
+    /**
+     * @param patientID the patientID to set
+     */
+    public void setPatientID(PatientProfile patientID) {
+        this.patientID = patientID;
+    }
+
+    /**
+     * @param testOrderDate the testOrderDate to set
+     */
+    public void setTestOrderDate(Date testOrderDate) {
+        this.testOrderDate = testOrderDate;
+    }
+
+    /**
+     * @param testOrderTime the testOrderTime to set
+     */
+    public void setTestOrderTime(Time testOrderTime) {
+        this.testOrderTime = testOrderTime;
+    }
+
+    /**
+     * @param physicianName the physicianName to set
+     */
+    public void setPhysicianName(String physicianName) {
+        this.physicianName = physicianName;
+    }
+
+    /**
+     * @param testID the testID to set
+     */
+    public void setTestID(int testID) {
+        this.testID = testID;
+    }
+
+    /**
+     * @param testName the testName to set
+     */
+    public void setTestName(String testName) {
+        this.testName = testName;
+    }
+
+    /**
+     * @param testResult the testResult to set
+     */
+    public void setTestResult(String testResult) {
+        this.testResult = testResult;
+    }
 }

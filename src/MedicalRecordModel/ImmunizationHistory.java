@@ -9,13 +9,13 @@ import java.util.Date;
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
 public class ImmunizationHistory {
-    PatientProfile patientID;
-    Date immunizeDate;
-    Time immunizeTime;
-    String givenByName;
-    String givenByTitle;
-    int immunizeID;
-    String immunizeName;
+    private PatientProfile patientID;
+    private Date immunizeDate;
+    private Time immunizeTime;
+    private String givenByName;
+    private String givenByTitle;
+    private int immunizeID;
+    private String immunizeName;
  
     /**
      * 
@@ -45,7 +45,7 @@ public class ImmunizationHistory {
      * @return An immunization date.
      */
     public Date getImmunizationDate(){
-        return immunizeDate;
+        return getImmunizeDate();
     }
     
     /**
@@ -53,7 +53,7 @@ public class ImmunizationHistory {
      * @return An immunization time.
      */
     public Date getImmunizationTime(){
-        return immunizeTime;
+        return getImmunizeTime();
     }
     
     /**
@@ -77,7 +77,7 @@ public class ImmunizationHistory {
      * @return An immunization ID.
      */
     public int getImmunizationID(){
-        return immunizeID;
+        return getImmunizeID();
     }
     
     /**
@@ -85,6 +85,90 @@ public class ImmunizationHistory {
      * @return An immunization name.
      */
     public String getImmunizationName(){
-        return immunizeName;
+        return getImmunizeName();
     }      
+
+    /**
+     * @return the patientID
+     */
+    public PatientProfile getPatientID() {
+        return patientID;
+    }
+
+    /**
+     * @param patientID the patientID to set
+     */
+    public void setPatientID(PatientProfile patientID) {
+        this.patientID = patientID;
+    }
+
+    /**
+     * @return the immunizeDate
+     */
+    public Date getImmunizeDate() {
+        return immunizeDate;
+    }
+
+    /**
+     * @param immunizeDate the immunizeDate to set
+     */
+    public void setImmunizeDate(Date immunizeDate) {
+        this.immunizeDate = immunizeDate;
+    }
+
+    /**
+     * @return the immunizeTime
+     */
+    public Time getImmunizeTime() {
+        return immunizeTime;
+    }
+
+    /**
+     * @param immunizeTime the immunizeTime to set
+     */
+    public void setImmunizeTime(Time immunizeTime) {
+        this.immunizeTime = immunizeTime;
+    }
+
+    /**
+     * @param givenByName the givenByName to set
+     */
+    public void setGivenByName(String givenByName) {
+        this.givenByName = givenByName;
+    }
+
+    /**
+     * @param givenByTitle the givenByTitle to set
+     */
+    public void setGivenByTitle(String givenByTitle) {
+        this.givenByTitle = givenByTitle;
+    }
+
+    /**
+     * @return the immunizeID
+     */
+    public int getImmunizeID() {
+        return immunizeID;
+    }
+
+    /**
+     * @param immunizeID the immunizeID to set
+     */
+    public void setImmunizeID(int immunizeID) {
+        this.immunizeID = immunizeID;
+    }
+
+    /**
+     * @return the immunizeName
+     */
+    public String getImmunizeName() {
+        return immunizeName;
+    }
+
+    /**
+     * @param immunizeName the immunizeName to set
+     */
+    public void setImmunizeName(String immunizeName) {
+        this.immunizeName = immunizeName;
+    }
 }
