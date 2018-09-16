@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public class MedicalHistory {
     PatientProfile patientID;
+    int medicalHistoryID;
     Date procedureDate;
     String procedureName;
     int procedureAge;
@@ -20,6 +21,7 @@ public class MedicalHistory {
     /**
      * 
      * @param linkPatientID
+     * @param medHID
      * @param pDate
      * @param pName
      * @param pAge
@@ -30,9 +32,10 @@ public class MedicalHistory {
      * 
      * This is the constructor for the MedicalHistory Class.
      */
-    public MedicalHistory(PatientProfile linkPatientID, Date pDate, String pName, int pAge,
+    public MedicalHistory(PatientProfile linkPatientID, int medHID, Date pDate, String pName, int pAge,
             String allName, String allDesc, String currentMed, String pastMed){
         patientID = linkPatientID;
+        medicalHistoryID = medHID;
         procedureDate = pDate;
         procedureName = pName;
         procedureAge = pAge;
@@ -42,6 +45,13 @@ public class MedicalHistory {
         pastMedicalCondition = pastMed;
     }
     
+    /**
+     * Returns med history ID.
+     * @return med history ID.
+     */
+    public int getMedicalHistoryID(){
+        return medicalHistoryID;
+    }
     /**
      * Returns the procedure date.
      * @return An procedure date.

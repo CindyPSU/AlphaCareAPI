@@ -16,9 +16,6 @@ public class PrescriptionHistory {
     int rXID;
     String rXName;
     int refillCount;
-    //int preferredPharmacyID;
-    //String preferredPharmacyName;
-    //String preferredPharmacyAddress;
     
     /**
      * 

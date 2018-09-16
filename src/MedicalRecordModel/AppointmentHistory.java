@@ -10,6 +10,7 @@ import java.util.Date;
  */
 public class AppointmentHistory {
     PatientProfile patientID;
+    int appointmentID;
     Date appointmentDate;
     Time appointmentTime;
     String physicianName;
@@ -19,6 +20,7 @@ public class AppointmentHistory {
     /**
      * 
      * @param linkPatientID
+     * @param appID
      * @param appDate
      * @param appTime
      * @param docName
@@ -27,15 +29,25 @@ public class AppointmentHistory {
      * 
      * This is the constructor for the AppointmentHistory Class.
      */
-    public AppointmentHistory(PatientProfile linkPatientID, Date appDate, Time appTime, 
+    public AppointmentHistory(PatientProfile linkPatientID, int appID, Date appDate, Time appTime, 
             String docName, String appCode, String appCodeDesc){
         patientID = linkPatientID;
+        appointmentID = appID;
         appointmentDate = appDate;
         appointmentTime = appTime;
         physicianName = docName;
         appointmentCode = appCode;
         appCodeDescription = appCodeDesc;
     }
+    
+    /**
+     * Returns the appointment ID.
+     * @return An appointment ID.
+     */
+    public int getAppointmentID(){
+        return appointmentID;
+    }
+    
     
     /**
      * Returns the patient's appointment date.

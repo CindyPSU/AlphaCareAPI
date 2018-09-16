@@ -2,19 +2,16 @@
 package MedicalRecordModel;
 
 import java.util.Date;
-
 /**
  *
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
-
 public class PatientProfile {
     String patientID;
     String patientFirstName;
     String patientLastName;
     String patientMiddleInitial;
     String patientPreferredName;
-    int patientSSN;
     Date patientDOB;
     int patientPhoneNumber;
     String patientAddress;
@@ -27,7 +24,6 @@ public class PatientProfile {
      * @param pLastName
      * @param pMiddleInitial
      * @param pPreferredName
-     * @param pSSN
      * @param pDOB
      * @param pPhoneNumber
      * @param pAddress
@@ -36,13 +32,12 @@ public class PatientProfile {
      * This is the constructor for the PatientProfile Class.
      */
     public PatientProfile(String initPatientID, String pFirstName, String pLastName, String pMiddleInitial, 
-            String pPreferredName, int pSSN, Date pDOB, int pPhoneNumber, String pAddress, String pEmail){
+            String pPreferredName, Date pDOB, int pPhoneNumber, String pAddress, String pEmail){
         patientID = initPatientID;
         patientFirstName = pFirstName;
         patientLastName = pLastName;
         patientMiddleInitial = pMiddleInitial;
         patientPreferredName = pPreferredName;
-        patientSSN = pSSN;
         patientDOB = pDOB;
         patientPhoneNumber = pPhoneNumber;
         patientAddress = pAddress;
@@ -77,14 +72,6 @@ public class PatientProfile {
      */
     public String getPatientMiddleInitial(){
         return patientMiddleInitial;  
-    }
-    
-    /**
-     * Returns the patient social security number.
-     * @return A patient social security number.
-     */
-    public int getPatientSSN(){
-        return patientSSN;
     }
     
     /**
@@ -126,6 +113,6 @@ public class PatientProfile {
      * @return A patient complete medical record.
      */
     public static PatientProfile getCompleteMedicalRecord(String patientID){
-        return 
+        return null;
     }
 }
