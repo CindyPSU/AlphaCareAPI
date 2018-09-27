@@ -12,35 +12,31 @@ import java.util.Map;
  * Manages login transactions for a set of credentials.
  * 
  * @author chrismorris
+ * @param <T> The expected User Subtype.
  */
-public class UserLoginController {
-    
-    private final UserLoginControllerDelegate delegate;
-
-    public UserLoginController(UserLoginControllerDelegate delegate) {
-        this.delegate = delegate;
-    }
-    
-    /**
-     * The delegate responsible for communicating the result of the login transaction.
-     * @return UserLoginControllerDelegate
-     */
-    public UserLoginControllerDelegate getDelegate() {
-        return delegate;
+public class UserLoginController<T extends User> {
+   
+    public UserLoginController() {
+        
     }
     
     /**
      * Returns a User based on the credentials input. Calls the instance of 
      * UserLoginControllerDelegate when finished attempting login.
      * @param credentials The credentials used to verify and return a User instance
+     * @param type The expected type. This is used to cast to the generic type. 
+     * @return A User instance if the credentials are valid.
+     * @throws UserModel.InvalidCredentialsException
      */
-    public void login(UserLoginCredentials credentials) {
+    public T login(UserLoginCredentials credentials, Class<T> type) throws InvalidCredentialsException {
         User user = stubbedUserForCredentials(credentials);
         if (user == null) {
-            delegate.credentialsFailedToLogin();
-            return;
+            throw new InvalidCredentialsException(InvalidCredentialsException.ERROR_CODE_INVALID_USERNAME_OR_PASSWORD);
         }
-        delegate.credentialsDidLoginUser(user);
+        if (!type.isInstance(user)) {
+            throw new InvalidCredentialsException(InvalidCredentialsException.ERROR_CODE_INVALID_TYPE);
+        }
+        return type.cast(user);
     }
     
     private User stubbedUserForCredentials(UserLoginCredentials credentials) {

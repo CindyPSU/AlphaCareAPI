@@ -16,10 +16,5 @@ public interface UserLoginControllerDelegate {
      * The method called when the user transaction was successful
      * @param user User that resulted from the login transaction.
      */
-    void credentialsDidLoginUser(User user);
-    
-    /**
-     * Called when the login transaction fails to retrieve a user.
-     */
-    void credentialsFailedToLogin();
+    void userLoginControllerDelegateFinishedProcessing(User user, Error error);
 }

@@ -79,4 +79,8 @@ public abstract class User {
     public void setPreferredName(String preferredName) {
         this.preferredName = preferredName;
     }
+    
+    public String getClassName() {
+        return getClass().getSimpleName();
+    }
 }
