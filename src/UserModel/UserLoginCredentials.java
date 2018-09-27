@@ -49,4 +49,11 @@ public class UserLoginCredentials {
     public int hashCode() {
         return getUserName().hashCode();
     }
+
+    @Override
+    public String toString() {
+        return getUserName() + " " + getPassword();
+    }
+    
+    
 }
