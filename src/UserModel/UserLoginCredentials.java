@@ -34,5 +34,19 @@ public class UserLoginCredentials {
     public String getPassword() {
         return password;
     }
-    
+
+    @Override
+    public boolean equals(Object obj) {
+        UserLoginCredentials credentials = (UserLoginCredentials)obj;
+        if (credentials == null) {
+            return false;
+        }
+        return credentials.getUserName().equals(getUserName()) 
+            && credentials.getPassword().equals(getPassword());
+    }
+
+    @Override
+    public int hashCode() {
+        return getUserName().hashCode();
+    }
 }

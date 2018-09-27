@@ -5,6 +5,9 @@
  */
 package UserModel;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Manages login transactions for a set of credentials.
  * 
@@ -32,7 +35,36 @@ public class UserLoginController {
      * @param credentials The credentials used to verify and return a User instance
      */
     public void login(UserLoginCredentials credentials) {
-        // Call delegate.credentialsFailedToLogin(); when fails
-        // Call delegate.credentialsDidLoginUser(user); when successful
+        User user = stubbedUserForCredentials(credentials);
+        if (user == null) {
+            delegate.credentialsFailedToLogin();
+            return;
+        }
+        delegate.credentialsDidLoginUser(user);
+    }
+    
+    private User stubbedUserForCredentials(UserLoginCredentials credentials) {
+        Map<UserLoginCredentials, User> map = new HashMap<>();
+        map.put(new UserLoginCredentials("MedicalAdministrator", "IST412FTW"), 
+                new MedicalAdministrator());
+        map.put(new UserLoginCredentials("Nurse", "IST412FTW"), 
+                new Nurse());
+        map.put(new UserLoginCredentials("Patient", "IST412FTW"), 
+                new Patient());
+        map.put(new UserLoginCredentials("Physician", "IST412FTW"), 
+                new Physician());
+        map.put(new UserLoginCredentials("SystemAdministrator", "IST412FTW"), 
+                new SystemAdministrator());
+        
+        for (Map.Entry<UserLoginCredentials, User> entry : map.entrySet()) {
+            UserLoginCredentials key = entry.getKey();
+            User user = entry.getValue();
+            
+            if (credentials.equals(key)) {
+                return user;
+            }
+        }
+        
+        return null;
     }
 }
