@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package TreatmentModel;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -13,6 +9,7 @@ import java.util.Date;
  */
 public class Therapy {
     
+    private String therapyID;
     private String therapyService;
     private int thduration;
     private Date thPeriodStart;
@@ -25,7 +22,7 @@ public class Therapy {
     private Boolean thRefillable;
 
     /**
-     *
+     * @param thID
      * @param thServ
      * @param thDur
      * @param thStart
@@ -37,21 +34,38 @@ public class Therapy {
      * @param thElig whether the patient is eligible for therapy
      * @param thRefill whether the therapy order can be refilled
      */
-    public Therapy(String thServ, int thDur, Date thStart, Date thEnd, Date thOrd, 
-            String thInstr, Boolean thRef, Boolean thOon, Boolean thElig, Boolean thRefill){
+    public Therapy(String thID, String thServ, int thDur, Date thStart, Date thEnd, Date thOrd, 
+        String thInstr, Boolean thRef, Boolean thOon, Boolean thElig, Boolean thRefill){
        
-            therapyService = thServ;
-            thduration = thDur;
-            thPeriodStart = thStart;
-            thPeriodEnd = thEnd;
-            thOrdered = thOrd;
-            thInstructions = thInstr;
-            thReferral = thRef;
-            thOutOfNetwork = thOon;
-            thEligibility = thElig;
-            thRefillable = thRefill;
+        therapyID = thID;
+        therapyService = thServ;
+        thduration = thDur;
+        thPeriodStart = thStart;
+        thPeriodEnd = thEnd;
+        thOrdered = thOrd;
+        thInstructions = thInstr;
+        thReferral = thRef;
+        thOutOfNetwork = thOon;
+        thEligibility = thElig;
+        thRefillable = thRefill;
     }
 
+    /**
+     * Returns the therapy identification number
+     * @return the therapyID
+     */
+    public String getTherapyID() {
+        return therapyID;
+    }
+
+    /**
+     * Sets the therapy identification number
+     * @param therapyID 
+     */
+    public void setTherapyID(String therapyID) {
+        this.therapyID = therapyID;
+    }
+    
     /**
      * Returns the type of therapy being ordered, such as physical or psychotherapy.
      * @return the therapyService
@@ -211,4 +225,19 @@ public class Therapy {
     public void setThRefillable(Boolean thRefillable) {
         this.thRefillable = thRefillable;
     }
+    
+    /**
+     * Returns the details for the therapy being prescribed
+     * @param thID
+     * @return 
+     */
+    public static ArrayList<Therapy> getTherapyDetails(String thID){
+        
+        ArrayList<Therapy> therapyDetails;
+        therapyDetails = new ArrayList<>();
+        System.out.println("Therapy Details: \nID, service, duration, start, end, order,"
+                + "\ninstructions, referral, out of network, eligibility, refills");
+        return therapyDetails;
+    } 
+    
 }

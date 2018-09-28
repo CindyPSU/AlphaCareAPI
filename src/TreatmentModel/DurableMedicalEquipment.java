@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package TreatmentModel;
+
+import java.util.ArrayList;
 
 /**
  * The DurableMedicalEquipment model represents the available types that can be prescribed to patients.
@@ -11,6 +8,7 @@ package TreatmentModel;
  */
 public class DurableMedicalEquipment {
     
+    private String equipID;
     private String equipName;
     private String equipForm;
     private int equipQuantity;
@@ -21,7 +19,7 @@ public class DurableMedicalEquipment {
     private String warnings;
     
     /**
-     *
+     * @param equpID
      * @param equipNm
      * @param equipFrm
      * @param equipQty
@@ -31,9 +29,10 @@ public class DurableMedicalEquipment {
      * @param overVw
      * @param warn
      */
-    public DurableMedicalEquipment (String equipNm, String equipFrm, int equipQty,
+    public DurableMedicalEquipment (String equpID, String equipNm, String equipFrm, int equipQty,
             String equipIdent, String equipInstruct,String brnd, String overVw, String warn) {
         
+        equipID = equpID;
         equipName = equipNm;
         equipForm = equipFrm; 
         equipQuantity = equipQty;
@@ -44,6 +43,22 @@ public class DurableMedicalEquipment {
         warnings = warn;
     }
 
+     /**
+     * Returns the name of the equipment identification number.
+     * @return
+     */
+    public String getEquipmentID() {
+        return equipID;
+    }
+
+    /**
+     * Sets the name of the equipment identification number
+     * @param equipID
+     */
+    public void setEquipID(String equipID) {
+        this.equipID = equipID;
+    }
+    
     /**
      * Returns the name of the equipment.
      * @return
@@ -171,4 +186,18 @@ public class DurableMedicalEquipment {
     public void setWarnings(String warnings) {
         this.warnings = warnings;
     }
+
+    /**
+     * Returns the details for the prescribed item of durable medical equipment
+     * @param equpID
+     * @return 
+     */
+    public static ArrayList<DurableMedicalEquipment> getDMEDetails(String equpID){
+        
+        ArrayList<DurableMedicalEquipment> dmeDetails;
+        dmeDetails = new ArrayList<>();
+        System.out.println("Durable Medical Equipment Details: \nID, name, form, identification, quantity,"
+                + "\ninstructions, brand,overview, warnings");
+        return dmeDetails;
+    } 
 }

@@ -1,6 +1,6 @@
-
 package TreatmentModel;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public class Referral {
     
+    private String referralID;
     private Date referralPeriodStart;
     private Date referralPeriodEnd;
     private Date referralMade;
@@ -18,7 +19,7 @@ public class Referral {
     private Boolean eligibility;
  
     /**
-     * 
+     * @psrsm refID
      * @param refStart
      * @param refEnd
      * @param refMd
@@ -27,8 +28,9 @@ public class Referral {
      * @param oon whether the referred doctor or specialist is out of the network
      * @param elig whether the patient is eligible for the referral
      */
-    public Referral(Date refStart, Date refEnd, Date refMd, Boolean prApp, String serv, 
+    public Referral(String refID, Date refStart, Date refEnd, Date refMd, Boolean prApp, String serv, 
             Boolean oon, Boolean elig) {
+        referralID = refID;
         referralPeriodStart = refStart;
         referralPeriodEnd = refEnd;
         referralMade = refMd;
@@ -38,6 +40,22 @@ public class Referral {
         eligibility = elig;
     }
 
+     /**
+     * Returns the referral identification number
+     * @return
+     */
+    public String getReferralID() {
+        return referralID;
+    }
+
+    /**
+     * Sets the referral identification number
+     * @param referralID
+     */
+    public void setReferralPeriodStart(String referralID) {
+        this.referralID = referralID;
+    }
+    
     /**
      * Returns the date when the referral is valid.
      * @return
@@ -150,4 +168,18 @@ public class Referral {
         this.eligibility = eligibility;
     }
     
+    /**
+     * Returns the referral details
+     * @param refID
+     * @return 
+     */
+    public static ArrayList<Referral> getReferralDetails(String refID){
+        
+        ArrayList<Referral> referralDetails;
+        referralDetails = new ArrayList<>();
+        System.out.println("Referral Details: \nID, start, end, doc, approval,"
+                + "\nservice, out of network, eligibility");
+        return referralDetails;
+    }
+
 }
