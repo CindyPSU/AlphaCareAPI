@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package TreatmentModel;
+
+import java.util.ArrayList;
 
 /**
  * The Drug model represents the available types that can be prescribed and whether or 
@@ -12,6 +9,7 @@ package TreatmentModel;
  */
 public class Drug {
     
+    private String drugID;
     private String drugName;
     private int drugDosage;
     private String drugForm;
@@ -26,7 +24,7 @@ public class Drug {
     private String warnings;
     
     /**
-     *
+     * @param drgID
      * @param drgNm
      * @param drgDsg
      * @param drgFrm
@@ -40,10 +38,11 @@ public class Drug {
      * @param overVw
      * @param warn
      */
-    public Drug (String drgNm, int drgDsg, String drgFrm, String drgIdent, String drgInstruct,
+    public Drug (String drgID, String drgNm, int drgDsg, String drgFrm, String drgIdent, String drgInstruct,
         String drgCls, String brnd, Boolean ifInteract, String interact, String sdEff, 
         String overVw, String warn) {
         
+        drugID = drgID;
         drugName = drgNm;
         drugDosage = drgDsg;
         drugForm = drgFrm; 
@@ -58,6 +57,22 @@ public class Drug {
         warnings = warn;
     }
 
+     /**
+     * Returns the ID number of the drug.
+     * @return
+     */
+    public String getDrugID() {
+        return drugID;
+    }
+
+    /**
+     * Sets the ID number of the drug.
+     * @param drugID
+     */
+    public void setDrugID(String drugID) {
+        this.drugID = drugID;
+    }
+    
     /**
      * Returns the name of the drug.
      * @return
@@ -249,4 +264,19 @@ public class Drug {
     public void setWarnings(String warnings) {
         this.warnings = warnings;
     }
+
+    /**
+     * Returns the details for the prescribed drug
+     * @param drgID
+     * @return 
+     */
+    public static ArrayList<Drug> getDrugDetails(String drgID){
+        
+        ArrayList<Drug> drugDetails;
+        drugDetails = new ArrayList<>();
+        System.out.println("Drug Details: \nID, name, dosage, identification, form, instructions, class, "
+                + "\nbrand, interactions, side effects, overview, warnings");
+        return drugDetails;
+    }
+
 }

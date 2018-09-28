@@ -2,6 +2,7 @@
 package TreatmentModel;
 
 import UserModel.Pharmacy;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -34,6 +35,10 @@ public class Prescription extends Pharmacy {
     private Date filled;
     private Date reorder;
     private Date discard;
+    ArrayList<Drug> drug;
+    ArrayList<DurableMedicalEquipment> durableMedEquip;
+    ArrayList<Referral> referral;
+    ArrayList<Therapy> therapy;
     
     /**
      * If the prescribed item is a drug.
