@@ -2,6 +2,7 @@
 package MedicalRecordModel;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -142,5 +143,17 @@ public class AppointmentHistory {
      */
     public void setAppCodeDescription(String appCodeDescription) {
         this.appCodeDescription = appCodeDescription;
+    }
+    
+    /**
+     * Returns the patient's complete appointment history that matches the patientID provided.
+     * The patient ID is the same as the patient SSN.
+     * @param patientID
+     * @return An ArrayList of AppointmentHistory objects.
+     */
+    public static ArrayList<AppointmentHistory> getAppointments(String patientID){
+        ArrayList<AppointmentHistory> appointments = new ArrayList<AppointmentHistory>();
+        System.out.println("Appointment History will come from the DB.");
+        return appointments;
     }
 }

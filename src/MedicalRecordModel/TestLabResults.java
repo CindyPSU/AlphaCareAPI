@@ -2,6 +2,7 @@
 package MedicalRecordModel;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -142,5 +143,17 @@ public class TestLabResults {
      */
     public void setTestResult(String testResult) {
         this.testResult = testResult;
+    }
+    
+    /**
+     * Returns the patient's complete Test/Lab Results history that matches the patientID provided.
+     * The patient ID is the same as the patient SSN.
+     * @param patientID
+     * @return An ArrayList of Test/Lab Results objects.
+     */
+    public static ArrayList<TestLabResults> getLabResults(String patientID){
+        ArrayList<TestLabResults> labResults = new ArrayList<TestLabResults>();
+        System.out.println("Test/Lab Results History will come from the DB.");
+        return labResults;
     }
 }

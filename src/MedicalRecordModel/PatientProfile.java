@@ -1,6 +1,7 @@
 
 package MedicalRecordModel;
 
+import java.util.ArrayList;
 import java.util.Date;
 /**
  *
@@ -16,7 +17,20 @@ public class PatientProfile {
     private int patientPhoneNumber;
     private String patientAddress;
     private String patientEmailAddress;
-    
+    ArrayList<AppointmentHistory> appointments;
+    ArrayList<ImmunizationHistory> immunizations;
+    ArrayList<MedicalHistory> medicalData;
+    ArrayList<PrescriptionHistory> prescriptions;
+    ArrayList<TestLabResults> labResults;
+    ArrayList<VitalSigns> vitalSignsData;
+    /**
+     * 
+     * @param initPatientID 
+     * Basic entry constructor.
+     */
+    public PatientProfile(String initPatientID){
+        patientID = initPatientID;
+    }
     /**
      * 
      * @param initPatientID
@@ -43,6 +57,7 @@ public class PatientProfile {
         patientAddress = pAddress;
         patientEmailAddress = pEmail;
     }
+    
     /**
      * Returns the Patient ID that will be linked to the patient profile.
      * @return A long representing the patient ID.
@@ -113,7 +128,14 @@ public class PatientProfile {
      * @return A patient complete medical record.
      */
     public static PatientProfile getCompleteMedicalRecord(String patientID){
-        return null;
+        PatientProfile completePatientProfile = new PatientProfile(patientID);
+        completePatientProfile.appointments = AppointmentHistory.getAppointments(patientID);
+        completePatientProfile.immunizations = ImmunizationHistory.getImmunizations(patientID);
+        completePatientProfile.medicalData = MedicalHistory.getMedicalData(patientID);
+        completePatientProfile.prescriptions = PrescriptionHistory.getPrescriptions(patientID);
+        completePatientProfile.labResults = TestLabResults.getLabResults(patientID);
+        completePatientProfile.vitalSignsData = VitalSigns.getVitalSignsData(patientID);
+        return completePatientProfile;
     }
 
     /**

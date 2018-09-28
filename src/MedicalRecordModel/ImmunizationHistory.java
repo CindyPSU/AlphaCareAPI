@@ -2,6 +2,7 @@
 package MedicalRecordModel;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -170,5 +171,17 @@ public class ImmunizationHistory {
      */
     public void setImmunizeName(String immunizeName) {
         this.immunizeName = immunizeName;
+    }
+    
+    /**
+     * Returns the patient's complete immunization history that matches the patientID provided.
+     * The patient ID is the same as the patient SSN.
+     * @param patientID
+     * @return An ArrayList of ImmunizationHistory objects.
+     */
+    public static ArrayList<ImmunizationHistory> getImmunizations(String patientID){
+        ArrayList<ImmunizationHistory> immunizations = new ArrayList<ImmunizationHistory>();
+        System.out.println("Immunization History will come from the DB.");
+        return immunizations;
     }
 }
