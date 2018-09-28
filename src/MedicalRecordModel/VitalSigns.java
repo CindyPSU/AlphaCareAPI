@@ -2,6 +2,7 @@
 package MedicalRecordModel;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -159,5 +160,17 @@ public class VitalSigns {
      */
     public void setBreathsPerMinute(String breathsPerMinute) {
         this.breathsPerMinute = breathsPerMinute;
+    }
+    
+    /**
+     * Returns the patient's complete vital signs history that matches the patientID provided.
+     * The patient ID is the same as the patient SSN.
+     * @param patientID
+     * @return An ArrayList of vital signs objects.
+     */
+    public static ArrayList<VitalSigns> getVitalSignsData(String patientID){
+        ArrayList<VitalSigns> vitalSignsData = new ArrayList<VitalSigns>();
+        System.out.println("Vital Signs Data History will come from the DB.");
+        return vitalSignsData;
     }
 }

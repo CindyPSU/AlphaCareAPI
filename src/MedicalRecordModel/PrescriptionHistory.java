@@ -2,6 +2,7 @@
 package MedicalRecordModel;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -169,5 +170,17 @@ public class PrescriptionHistory {
      */
     public void setRefillCount(int refillCount) {
         this.refillCount = refillCount;
+    }
+    
+    /**
+     * Returns the patient's complete prescription history that matches the patientID provided.
+     * The patient ID is the same as the patient SSN.
+     * @param patientID
+     * @return An ArrayList of PrescriptionHistory objects.
+     */
+    public static ArrayList<PrescriptionHistory> getPrescriptions(String patientID){
+        ArrayList<PrescriptionHistory> prescriptions = new ArrayList<PrescriptionHistory>();
+        System.out.println("Prescription History will come from the DB.");
+        return prescriptions;
     }
 }

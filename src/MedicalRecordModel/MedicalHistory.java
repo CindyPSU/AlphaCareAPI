@@ -1,6 +1,7 @@
 
 package MedicalRecordModel;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -176,5 +177,17 @@ public class MedicalHistory {
      */
     public void setPastMedicalCondition(String pastMedicalCondition) {
         this.pastMedicalCondition = pastMedicalCondition;
+    }
+    
+    /**
+     * Returns the patient's complete medical history that matches the patientID provided.
+     * The patient ID is the same as the patient SSN.
+     * @param patientID
+     * @return An ArrayList of MedicalHistory objects.
+     */
+    public static ArrayList<MedicalHistory> getMedicalData(String patientID){
+        ArrayList<MedicalHistory> medicalData = new ArrayList<MedicalHistory>();
+        System.out.println("Medical History will come from the DB.");
+        return medicalData;
     }
 }
