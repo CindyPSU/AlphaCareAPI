@@ -10,5 +10,5 @@ package MedicalRecordModel;
  * @author chrismorris
  */
 public interface PatientDetailControllerDelegate {
-    public void patientDetailControllerDidUpdateRecord(PatientDetailController controller, PatientProfile updatedProfile);
+    public void patientDetailControllerDidUpdateRecord(PatientDetailController controller, PatientDetailModel model);
 }

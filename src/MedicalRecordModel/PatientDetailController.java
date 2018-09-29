@@ -11,19 +11,19 @@ package MedicalRecordModel;
  */
 public class PatientDetailController {
     
-    private final PatientProfile patient;
+    private final PatientDetailModel model;
     private final PatientDetailControllerDelegate delegate;
     
-    public PatientDetailController(PatientProfile patient, PatientDetailControllerDelegate delegate) {
-        this.patient = patient;
+    public PatientDetailController(PatientDetailModel model, PatientDetailControllerDelegate delegate) {
+        this.model = model;
         this.delegate = delegate;
     }
     
     /**
-     * @return the patient
+     * @return the model
      */
-    public PatientProfile getPatient() {
-        return patient;
+    public PatientDetailModel getModel() {
+        return model;
     }
     
     /**
@@ -34,15 +34,14 @@ public class PatientDetailController {
     }
     
     void show() {
-        System.out.println("Loading patient into the detail screen: " + getPatient());
+        System.out.println("Loading patient into the detail screen: " + getModel().getPatient());
     }
     
     // Public for the sake of TestHarness
     public void updateRecord() {
-        PatientProfile patient = getPatient();
-        patient.setPatientPreferredName("My New PreferredName");
-        System.out.println("Updated the patients record. The preferred name changed to " + patient.getPatientPreferredName());
-        getDelegate().patientDetailControllerDidUpdateRecord(this, patient);
+        getModel().updatePatientRecord();
+        System.out.println("Updated the patients record. The preferred name changed to " + getModel().getPatient().getPatientPreferredName());
+        getDelegate().patientDetailControllerDidUpdateRecord(this, getModel());
     }
     
 }
