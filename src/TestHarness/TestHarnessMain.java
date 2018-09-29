@@ -38,6 +38,8 @@ public class TestHarnessMain {
         else {
             System.out.println("Test Failed: Patient Record Does Not Exist.");
         }
+        
+        controller.testNurseLogsInToUpdateMedicalRecord();
     }
     
 }

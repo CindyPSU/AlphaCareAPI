@@ -7,9 +7,8 @@ package TestHarness;
 
 import UserModel.*;
 import MedicalRecordModel.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
+import Utilities.ErrorController;
+import java.text.*;
 
 
 /**
@@ -29,40 +28,40 @@ public class TestHarnessController {
         UserLoginCredentials credentials = new UserLoginCredentials("Nurs", "IST412FT");
         try {
             controller.login(credentials, Nurse.class);
-            System.out.println(failedTestMessageForUnexpectedSuccessfulLogin);
+            System.err.println(failedTestMessageForUnexpectedSuccessfulLogin);
             return;
         } catch (InvalidCredentialsException e) {
-            System.out.println("Message: " + e + " Code: " + e.getErrorCode());
+            showErrorWith(e);
         }
         
         // Valid username, Invalid password, Maching generic type
         credentials = new UserLoginCredentials("Nurse", "IST412FT");
         try {
             controller.login(credentials, Nurse.class);
-            System.out.println(failedTestMessageForUnexpectedSuccessfulLogin);
+            System.err.println(failedTestMessageForUnexpectedSuccessfulLogin);
             return;
         } catch (InvalidCredentialsException e) {
-            System.out.println("Message: " + e + " Code: " + e.getErrorCode());
+            showErrorWith(e);
         }
         
         // Invalid username, Valid password, Maching generic type
         credentials = new UserLoginCredentials("Nurs", "IST412FTW");
         try {
             controller.login(credentials, Nurse.class);
-            System.out.println(failedTestMessageForUnexpectedSuccessfulLogin);
+            System.err.println(failedTestMessageForUnexpectedSuccessfulLogin);
             return;
         } catch (InvalidCredentialsException e) {
-            System.out.println("Message: " + e + " Code: " + e.getErrorCode());
+            showErrorWith(e);
         }
         
         // Valid username, Valid password, Mismatching generic type
         credentials = new UserLoginCredentials("Patient", "IST412FTW");
         try {
             controller.login(credentials, Nurse.class);
-            System.out.println(failedTestMessageForUnexpectedSuccessfulLogin);
+            System.err.println(failedTestMessageForUnexpectedSuccessfulLogin);
             return;
         } catch (InvalidCredentialsException e) {
-            System.out.println("Message: " + e + " Code: " + e.getErrorCode());
+            showErrorWith(e);
         }
         
         // Valid username, Valid password, Matching generic type
@@ -71,7 +70,7 @@ public class TestHarnessController {
             Nurse nurse = controller.login(credentials, Nurse.class);
             System.out.println("Successfully logged in with a Nurse's account.");
         } catch (InvalidCredentialsException e) {
-            System.out.println("TEST FAILED. Threw exception when expecting to "
+            System.err.println("TEST FAILED. Threw exception when expecting to "
                     + "login successfully:\n" + e + "Code: " + e.getErrorCode());
             return;
         }
@@ -80,7 +79,43 @@ public class TestHarnessController {
         System.out.println();
     }
     
-    // Helper methods to login with a desired type
+    void testNurseLogsInToUpdateMedicalRecord() {
+        System.out.println();
+        System.out.println("Beginning User Scenario where Nurse logs in and "
+                + "updates a patient's existing record.");
+        
+        // login as Nurse
+        // This internally uses UserLoginController to login. This is a 
+        // convenience method so not every test has to add try-catch syntax
+        // for logging in.
+        Nurse nurse = loginNurse();
+        
+        // show home screen controller
+        HomeController homeController = new HomeController();
+        homeController.showWith(nurse);
+        
+        // Select patient list to show list controller
+        PatientListController listController = homeController.showPatientList();
+        
+        // Select patient from list to show detail controller
+        PatientDetailController detailController = listController.selectPatient();
+        
+        // update record in detail controller and close patient detail controller
+        detailController.updateRecord();
+        
+        System.out.println("Ending User Scenario.");
+        System.out.println();
+    }
+    
+    // Helper methods
+    
+    private void showErrorWith(Exception exception) {
+        ErrorController errorController = new ErrorController(
+                exception.getLocalizedMessage(), 
+                "Error"
+        );
+        errorController.show();
+    }
     
     /**
      * 
@@ -94,9 +129,9 @@ public class TestHarnessController {
      * @param credentials The user credentials for a Nurse.
      * @return A Nurse instance or null
      */
-    private Nurse loginNurseUsing(UserLoginCredentials credentials) {
+    private Nurse loginNurse() {
         return new LoginHelper<Nurse>().loginWithCredentials(
-                credentials, 
+                new UserLoginCredentials("Nurse", "IST412FTW"), 
                 Nurse.class
         );
     }
