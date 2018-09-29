@@ -21,23 +21,11 @@ public class TestHarnessMain {
         
         controller.testUserLoginWithMultipleAttemptsCredentials();
         
-        // Test One: Test for expected failure
-        // Returns a null to convey failure
-        if(controller.getCompletePatientMedicalRecord("123456789") == null){
-            System.out.println("Test Successful: Patient Record Does Not Exist Yet.");
-        }
-        else {
-            System.out.println("Test Failed: Patient Record Does Exist.");
-        }
+        controller.testMedicalAdminLogsInToCreateMedicalRecord();
         
-        // Test Two: Test for expected success.
-        controller.createPatientProfile();
-        if(controller.getCompletePatientMedicalRecord("123456789") != null){
-            System.out.println("Test Successful: Patient Record Exists.");
-        }
-        else {
-            System.out.println("Test Failed: Patient Record Does Not Exist.");
-        }
+        controller.testAccessMissingRecord();
+        
+        controller.testAccessExistingRecord();
         
         controller.testNurseLogsInToUpdateMedicalRecord();
     }
