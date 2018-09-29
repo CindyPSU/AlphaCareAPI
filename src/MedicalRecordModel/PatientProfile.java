@@ -1,8 +1,9 @@
 
 package MedicalRecordModel;
 
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 /**
  *
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
@@ -13,16 +14,17 @@ public class PatientProfile {
     private String patientLastName;
     private String patientMiddleInitial;
     private String patientPreferredName;
-    private Date patientDOB;
-    private int patientPhoneNumber;
+    private SimpleDateFormat patientDOB;
+    private String patientPhoneNumber;
     private String patientAddress;
     private String patientEmailAddress;
-    ArrayList<AppointmentHistory> appointments;
-    ArrayList<ImmunizationHistory> immunizations;
-    ArrayList<MedicalHistory> medicalData;
-    ArrayList<PrescriptionHistory> prescriptions;
-    ArrayList<TestLabResults> labResults;
-    ArrayList<VitalSigns> vitalSignsData;
+    public static ArrayList<PatientProfile> patientProfiles = new ArrayList<PatientProfile>();
+    public ArrayList<AppointmentHistory> appointments;
+    public ArrayList<ImmunizationHistory> immunizations;
+    public ArrayList<MedicalHistory> medicalData;
+    public ArrayList<PrescriptionHistory> prescriptions;
+    public ArrayList<TestLabResults> labResults;
+    public ArrayList<VitalSigns> vitalSignsData;
     /**
      * 
      * @param initPatientID 
@@ -46,7 +48,7 @@ public class PatientProfile {
      * This is the constructor for the PatientProfile Class.
      */
     public PatientProfile(String initPatientID, String pFirstName, String pLastName, String pMiddleInitial, 
-            String pPreferredName, Date pDOB, int pPhoneNumber, String pAddress, String pEmail){
+            String pPreferredName, SimpleDateFormat pDOB, String pPhoneNumber, String pAddress, String pEmail){
         patientID = initPatientID;
         patientFirstName = pFirstName;
         patientLastName = pLastName;
@@ -93,7 +95,7 @@ public class PatientProfile {
      * Returns the patient date of birth.
      * @return A patient date of birth.
      */
-    public Date getPatientDOB(){
+    public SimpleDateFormat getPatientDOB(){
         return patientDOB;
     }
     
@@ -101,7 +103,7 @@ public class PatientProfile {
      * Returns the patient phone number.
      * @return A patient phone number.
      */
-    public int getPatientPhoneNumber(){
+    public String getPatientPhoneNumber(){
         return patientPhoneNumber;
     }
     
@@ -128,14 +130,12 @@ public class PatientProfile {
      * @return A patient complete medical record.
      */
     public static PatientProfile getCompleteMedicalRecord(String patientID){
-        PatientProfile completePatientProfile = new PatientProfile(patientID);
-        completePatientProfile.appointments = AppointmentHistory.getAppointments(patientID);
-        completePatientProfile.immunizations = ImmunizationHistory.getImmunizations(patientID);
-        completePatientProfile.medicalData = MedicalHistory.getMedicalData(patientID);
-        completePatientProfile.prescriptions = PrescriptionHistory.getPrescriptions(patientID);
-        completePatientProfile.labResults = TestLabResults.getLabResults(patientID);
-        completePatientProfile.vitalSignsData = VitalSigns.getVitalSignsData(patientID);
-        return completePatientProfile;
+        for(PatientProfile pp : patientProfiles) {
+            if(pp.patientID.equals(patientID)){
+                return pp;
+            }
+        }
+        return null;
     }
 
     /**
@@ -145,6 +145,13 @@ public class PatientProfile {
         return patientID;
     }
 
+    /**
+     * @return the patientPreferredName
+     */
+    public String getPatientPreferredName() {
+        return patientPreferredName;
+    }
+    
     /**
      * @param patientID the patientID to set
      */
@@ -174,13 +181,6 @@ public class PatientProfile {
     }
 
     /**
-     * @return the patientPreferredName
-     */
-    public String getPatientPreferredName() {
-        return patientPreferredName;
-    }
-
-    /**
      * @param patientPreferredName the patientPreferredName to set
      */
     public void setPatientPreferredName(String patientPreferredName) {
@@ -190,14 +190,14 @@ public class PatientProfile {
     /**
      * @param patientDOB the patientDOB to set
      */
-    public void setPatientDOB(Date patientDOB) {
+    public void setPatientDOB(SimpleDateFormat patientDOB) {
         this.patientDOB = patientDOB;
     }
 
     /**
      * @param patientPhoneNumber the patientPhoneNumber to set
      */
-    public void setPatientPhoneNumber(int patientPhoneNumber) {
+    public void setPatientPhoneNumber(String patientPhoneNumber) {
         this.patientPhoneNumber = patientPhoneNumber;
     }
 

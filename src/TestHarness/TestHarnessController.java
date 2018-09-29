@@ -6,6 +6,11 @@
 package TestHarness;
 
 import UserModel.*;
+import MedicalRecordModel.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 
 /**
  *
@@ -75,7 +80,7 @@ public class TestHarnessController {
         System.out.println();
     }
     
-    // Melper methods to login with a desired type
+    // Helper methods to login with a desired type
     
     /**
      * 
@@ -134,4 +139,51 @@ public class TestHarnessController {
             }
         }
     }
+    
+    // @author Cindy Hilgeman
+    // PatientProfile object for testing purposes.
+    PatientProfile patientOne;
+    /**
+     * Returns a patient profile once created - just the patient last name for simple testing purposes.
+     * @return A patient profile object.
+     */
+    public PatientProfile createPatientProfile(){
+        
+        try
+        {
+            SimpleDateFormat df = new SimpleDateFormat();
+            patientOne = new PatientProfile("123456789", "Marty", "McFly", "CK", "Marty", df, "5556778", "9303 Roslyndale Ave, Pacoima, CA 91331", "bttf@gmail.com");
+            System.out.println(patientOne.getPatientLastName());
+            patientOne.appointments = AppointmentHistory.getAppointments(patientOne.getPatientID());
+            patientOne.immunizations = ImmunizationHistory.getImmunizations(patientOne.getPatientID());
+            patientOne.medicalData = MedicalHistory.getMedicalData(patientOne.getPatientID());
+            patientOne.prescriptions = PrescriptionHistory.getPrescriptions(patientOne.getPatientID());
+            patientOne.labResults = TestLabResults.getLabResults(patientOne.getPatientID());
+            patientOne.vitalSignsData = VitalSigns.getVitalSignsData(patientOne.getPatientID());
+            if(patientOne != null){
+                System.out.println("PatientProfile object successfully created.");
+            }
+            PatientProfile.patientProfiles.add(patientOne);
+            return patientOne;
+            
+
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+    
+        return null;
+    }
+     
+    /**
+     * Returns a complete patient medical record. 
+     * @param patientID
+     * @return 
+     */
+    public PatientProfile getCompletePatientMedicalRecord (String patientID){
+       return PatientProfile.getCompleteMedicalRecord(patientID);
+    }
+    
+    
 }
