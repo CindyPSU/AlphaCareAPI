@@ -157,9 +157,9 @@ public class TestHarnessController {
         );
     }
     
-    private MedicalAdministrator loginMedicalAdministratorUsing(UserLoginCredentials credentials) {
+    private MedicalAdministrator loginMedicalAdministratorUsing() {
         return new LoginHelper<MedicalAdministrator>().loginWithCredentials(
-                credentials, 
+                new UserLoginCredentials("MedicalAdministrator", "IST412FTW"),
                 MedicalAdministrator.class
         );
     }
@@ -175,9 +175,7 @@ public class TestHarnessController {
         }
     }
     
-    // @author Cindy Hilgeman
-    // PatientProfile object for testing purposes.
-    PatientProfile patientOne;
+    // @author Cindy Hilgeman    
     /**
      * Returns a patient profile once created - just the patient last name for simple testing purposes.
      * @return A patient profile object.
@@ -187,7 +185,7 @@ public class TestHarnessController {
         try
         {
             SimpleDateFormat df = new SimpleDateFormat();
-            patientOne = new PatientProfile("123456789", "Marty", "McFly", "CK", "Marty", df, "5556778", "9303 Roslyndale Ave, Pacoima, CA 91331", "bttf@gmail.com");
+            PatientProfile patientOne = new PatientProfile("123456789", "Marty", "McFly", "CK", "Marty", df, "5556778", "9303 Roslyndale Ave, Pacoima, CA 91331", "bttf@gmail.com");
             System.out.println(patientOne.getPatientLastName());
             patientOne.appointments = AppointmentHistory.getAppointments(patientOne.getPatientID());
             patientOne.immunizations = ImmunizationHistory.getImmunizations(patientOne.getPatientID());
@@ -210,7 +208,7 @@ public class TestHarnessController {
     
         return null;
     }
-     
+    
     /**
      * Returns a complete patient medical record. 
      * @param patientID
@@ -220,5 +218,58 @@ public class TestHarnessController {
        return PatientProfile.getCompleteMedicalRecord(patientID);
     }
     
+    /**
+     * Login as Medical Administrator
+     * This internally uses UserLoginController to login. 
+     */
+    void testMedicalAdminLogsInToCreateMedicalRecord() {
+        System.out.println();
+        System.out.println("Beginning User Scenario where Medical Admin logs in and "
+                + "creates a patient medical record.");
+        
+        // login as Medical Admin
+        MedicalAdministrator medAdmin = loginMedicalAdministratorUsing();
+        
+        // show home screen controller
+        HomeController homeController = new HomeController();
+        homeController.showWith(medAdmin);
+        
+        // Select patient list to show list controller
+        //PatientListController listController = homeController.showPatientList();
+        
+        // Select patient from list to show detail controller
+        //PatientDetailController detailController = listController.selectPatient();
+        
+        // update record in detail controller and close patient detail controller
+        //detailController.updateRecord();
+        
+        System.out.println("Ends login scenario and moves to next test to check for existing patient record"
+                + " before creating a new one.");
+        System.out.println();
+    }
     
+    // Test One: Test for expected failure
+    // Returns a null to convey failure
+    public void testAccessMissingRecord(){
+        if(getCompletePatientMedicalRecord("123456789") == null){
+            System.out.println("Test Successful: Patient Record Does Not Exist Yet. New patient record can be created.");
+        }
+        else {
+            System.out.println("Test Failed: Patient Record Does Exist.");
+        }
+    }
+    
+    // Test Two: Test for expected success.
+    // Returns patient record components and message to confirm success.
+    public void testAccessExistingRecord(){
+        // Creates new patient record.
+        createPatientProfile();
+        if(getCompletePatientMedicalRecord("123456789") != null){
+            System.out.println("Test Successful: Patient Record Created and Exists.");
+        }
+        else {
+            System.out.println("Test Failed: Patient Record Does Not Exist.");
+        }
+        System.out.println("Ending User Scenario.");
+    }
 }
