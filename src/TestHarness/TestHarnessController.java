@@ -7,6 +7,7 @@ package TestHarness;
 
 import UserModel.*;
 import MedicalRecordModel.*;
+import TreatmentModel.*;
 import Utilities.ErrorController;
 import java.text.*;
 
@@ -74,7 +75,7 @@ public class TestHarnessController {
                     + "login successfully:\n" + e + "Code: " + e.getErrorCode());
             return;
         }
-        
+                
         System.out.println("TEST PASSED.");
         System.out.println();
     }
@@ -133,6 +134,13 @@ public class TestHarnessController {
         return new LoginHelper<Nurse>().loginWithCredentials(
                 new UserLoginCredentials("Nurse", "IST412FTW"), 
                 Nurse.class
+        );
+    }
+    
+    private Physician loginPhysician() {
+        return new LoginHelper<Physician>().loginWithCredentials(
+                new UserLoginCredentials("Physician", "IST412MD"), 
+                Physician.class
         );
     }
     
@@ -272,4 +280,31 @@ public class TestHarnessController {
         }
         System.out.println("Ending User Scenario.");
     }
+    
+    void testPhysicianLogsInToPatientRecordAndAddsPrescription() {
+        System.out.println();
+        System.out.println("Beginning User Scenario where Physician logs in to "
+                + "create a prescription for a patient.");
+        
+        // login as Physician
+        Physician Physician = loginPhysician();
+        
+        // show home screen controller
+        HomeController homeController = new HomeController();
+        homeController.showWith(Physician);
+        
+        // Select patient list to show list controller
+        PatientListController listController = homeController.showPatientList();
+        
+        // Select patient from list to show detail controller
+        PatientDetailController detailController = listController.selectPatient();
+        
+        //todo create prescription
+        
+        // update record in detail controller and close patient detail controller
+        //detailController.updateRecord();
+        
+
+        System.out.println();
+    }  
 }
