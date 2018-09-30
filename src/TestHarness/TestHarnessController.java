@@ -289,7 +289,7 @@ public class TestHarnessController {
         System.out.println("Ending User Scenario.");
     }
     
-    void testPhysicianLogsInToPatientRecord() {
+    void testPhysicianLogsInToPatientRecord() { 
         System.out.println("Beginning User Scenario where Physician logs in to "
                 + "view a patient's record.");
         
@@ -314,9 +314,7 @@ public class TestHarnessController {
         System.out.println("Closing patient record.");
         System.out.println("Ending User(Physician) Scenario.");
         System.out.println();
-    }  
-    
-    
+    }    
     
     void testPatientAccessMedicalRecord()
     {
