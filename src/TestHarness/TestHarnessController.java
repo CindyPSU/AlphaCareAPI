@@ -289,10 +289,9 @@ public class TestHarnessController {
         System.out.println("Ending User Scenario.");
     }
     
-    void testPhysicianLogsInToPatientRecordAndAddsPrescription() {
-        System.out.println();
+    void testPhysicianLogsInToPatientRecord() { 
         System.out.println("Beginning User Scenario where Physician logs in to "
-                + "create a prescription for a patient.");
+                + "view a patient's record.");
         
         // login as Physician
         Physician physician = loginPhysician();
@@ -307,16 +306,15 @@ public class TestHarnessController {
         // Select patient from list to show detail controller
         PatientDetailController detailController = listController.selectPatient();
         
-        //todo create prescription
-        
-        // update record in detail controller and close patient detail controller
-        //detailController.updateRecord();
-        
-
+        //View available medications
+        TreatmentController t = new TreatmentController();
+        t.printList();
+               
+        //Ending Physician Scenario
+        System.out.println("Closing patient record.");
+        System.out.println("Ending User(Physician) Scenario.");
         System.out.println();
-    }  
-    
-    
+    }    
     
     void testPatientAccessMedicalRecord()
     {
