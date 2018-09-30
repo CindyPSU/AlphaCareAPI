@@ -139,7 +139,7 @@ public class TestHarnessController {
     
     private Physician loginPhysician() {
         return new LoginHelper<Physician>().loginWithCredentials(
-                new UserLoginCredentials("Physician", "IST412MD"), 
+                new UserLoginCredentials("Physician", "IST412FTW"), 
                 Physician.class
         );
     }
@@ -147,6 +147,14 @@ public class TestHarnessController {
     private Patient loginPatientUsing(UserLoginCredentials credentials) {
         return new LoginHelper<Patient>().loginWithCredentials(
                 credentials, 
+                Patient.class
+        );
+    }
+    
+    private Patient loginPatient() 
+    {
+        return new LoginHelper<Patient>().loginWithCredentials(
+                new UserLoginCredentials("Patient", "IST412FTW"),
                 Patient.class
         );
     }
@@ -287,11 +295,11 @@ public class TestHarnessController {
                 + "create a prescription for a patient.");
         
         // login as Physician
-        Physician Physician = loginPhysician();
+        Physician physician = loginPhysician();
         
         // show home screen controller
         HomeController homeController = new HomeController();
-        homeController.showWith(Physician);
+        homeController.showWith(physician);
         
         // Select patient list to show list controller
         PatientListController listController = homeController.showPatientList();
@@ -307,4 +315,76 @@ public class TestHarnessController {
 
         System.out.println();
     }  
+    
+    
+    
+    void testPatientAccessMedicalRecord()
+    {
+        String martyID = "123456789";
+        
+        System.out.println("Beginning User Scenario where Patient logs in "+
+                           "and access their record.");
+        
+        
+        //login in as Patient
+        Patient martyM = loginPatient();
+        
+        //show home screen controller for Patient:Marty McFly
+        HomeController homeController = new HomeController();
+        homeController.showWith(martyM);
+        
+        // Select patient list to show list controller
+        PatientListController listController = homeController.showPatientList();
+        
+         // Select patient from list to show detail controller
+        PatientDetailController detailController = listController.selectPatient();
+        
+        //Logged in patient viewing their  info:
+        System.out.println("\nPatient viewing Contact info: \n" 
+            + detailController.getModel().getPatient().getPatientFirstName() + " "
+            + detailController.getModel().getPatient().getPatientMiddleInitial() +" "
+            + detailController.getModel().getPatient().getPatientLastName() + "\n"
+            + detailController.getModel().getPatient().getPatientAddress() + "\n"
+            + detailController.getModel().getPatient().getPatientPhoneNumber() + "\n"
+            + detailController.getModel().getPatient().getPatientEmailAddress() + "\n"
+        );
+        
+        
+       //Logged patient changing their phone number
+       detailController.getModel().getPatient().setPatientPhoneNumber("(747) 555-6778");
+        System.out.println("Patient changed phone number to : "
+            + detailController.getModel().getPatient().getPatientPhoneNumber());
+        
+        //Logged patient accessing their Appointment record:
+        System.out.println("\nMarty's Appointment History: "
+                );
+         AppointmentHistory.getAppointments(martyID);
+        
+        
+        //Logged patient accessing their Immunization
+        System.out.println("\nMarty's Immunization History: ");
+        ImmunizationHistory.getImmunizations(martyID);
+        
+        //Logged in patient accessing their Medical Record
+        System.out.println("\nMarty's Medical Record: ");
+        MedicalHistory.getMedicalData(martyID);
+                      
+        //Logged patient accessing their prescription
+        System.out.println("\nMarty's Prescription History: ");
+        PrescriptionHistory.getPrescriptions(martyID);
+        
+        //Logged patient accessing their lab result and vitals
+        System.out.println("\nMarty's Lab Results: ");
+        TestLabResults.getLabResults(martyID);
+        VitalSigns.getVitalSignsData(martyID);
+                
+                
+    }
+    
+    
+    
+    
+    
+    
+    
 }
