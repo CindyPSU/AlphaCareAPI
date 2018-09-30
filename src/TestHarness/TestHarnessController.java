@@ -377,8 +377,11 @@ public class TestHarnessController {
         System.out.println("\nMarty's Lab Results: ");
         TestLabResults.getLabResults(martyID);
         VitalSigns.getVitalSignsData(martyID);
-                
-                
+        
+        //Ending Patient Scenario
+        System.out.println("");
+        System.out.println("Ending User(Patient) Scenario.");
+        System.out.println();
     }
     
     
