@@ -28,6 +28,10 @@ public class TestHarnessMain {
         controller.testAccessExistingRecord();
         
         controller.testNurseLogsInToUpdateMedicalRecord();
+        
+        controller.testPhysicianLogsInToPatientRecordAndAddsPrescription();
+        
+        controller.testPatientAccessMedicalRecord();
     }
     
 }
