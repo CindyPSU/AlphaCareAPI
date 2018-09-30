@@ -30,7 +30,7 @@ public class DrugList {
     
     public void printDrugList(){
         
-        System.out.println("The DrugList has these drugs:");
+        System.out.println("These drugs may be prescribed to this patient:");
         
         for(int i = 0; i < drugList.size(); i++){
             Drug currentDrug = (Drug)drugList.get(i);
