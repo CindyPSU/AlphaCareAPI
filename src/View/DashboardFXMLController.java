@@ -5,16 +5,26 @@
  */
 package View;
 
+import MedicalRecordModel.PatientDetailController;
+import MedicalRecordModel.PatientDetailControllerDelegate;
+import MedicalRecordModel.PatientDetailModel;
+import MedicalRecordModel.PatientStoreStub;
+import MedicalRecordModel.PatientProfile;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author Princess_ktwo
  */
-public class DashboardFXMLController implements Initializable {
+public class DashboardFXMLController implements Initializable, PatientDetailFXMLControllerDelegate {
 
     /**
      * Initializes the controller class.
@@ -24,12 +34,34 @@ public class DashboardFXMLController implements Initializable {
         // TODO
     } 
     
-    public void displayPatientSearchView(){
-        
+    public void displayPatientSearchView() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientMasterListDetailFXML.fxml"));
+            Parent root = loader.load();
+            PatientMasterListDetailFXMLController controller = loader.<PatientMasterListDetailFXMLController>getController();
+            controller.load(new PatientStoreStub());
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException error) {
+            System.out.println(error);
+        }
     }
     
-    public void displayCreateNewPatientView(){
-        
+    public void displayCreateNewPatientView() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientDetailFXML.fxml"));
+            Parent root = loader.load();
+            PatientDetailFXMLController controller = loader.<PatientDetailFXMLController>getController();
+            controller.setContext(new PatientDetailFXMLControllerContextCreate());
+            controller.setDelegate(this);
+            controller.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException error) {
+            System.out.println(error);
+        }
     }
     
     public void displayAppointmentCalendar(){
@@ -43,4 +75,14 @@ public class DashboardFXMLController implements Initializable {
     public void displayLoginView(){
         
     }
+    
+    // PatientDetailFXMLControllerDelegate
+
+    @Override
+    public void patientDetailFXMLControllerDidSavePatientProfile(PatientDetailFXMLController controller, Stage stage, PatientProfile profile) {
+        PatientStoreStub.savedPatients.add(profile);
+        stage.close();
+        displayPatientSearchView();
+    }
+    
 }
