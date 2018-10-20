@@ -5,8 +5,7 @@
  */
 package MedicalRecordModel;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  *
@@ -14,31 +13,17 @@ import java.util.ArrayList;
  */
 public class PatientListModel {
     
-    private ArrayList<PatientProfile> patients;
+    private List<PatientProfile> patients;
     
     /**
      * @return the patients
      */
-    public ArrayList<PatientProfile> getPatients() {
+    public List<PatientProfile> getPatients() {
         return patients;
     }
     
     void loadPatients() {
-        patients = new ArrayList();
-        PatientProfile patient = new PatientProfile(
-                "123456789", 
-                "Marty",
-                "McFly", 
-                "CK", 
-                "Marty", 
-                new SimpleDateFormat(), 
-                "5556778", 
-                "9303 Roslyndale Ave, Pacoima, CA 91331", 
-                "bttf@gmail.com"
-        );
-        getPatients().add(patient);
-        getPatients().add(patient);
-        getPatients().add(patient);
+        patients = new PatientStoreStub().loadPatients();
         
         System.out.println("Patient List Model loaded patients. Would typically "
                 + "load from a persistence layer.");
