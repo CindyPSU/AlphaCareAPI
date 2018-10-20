@@ -86,7 +86,7 @@
       </TextArea>
       <ImageView fitHeight="46.0" fitWidth="287.0" layoutX="6.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../OneDrive/Documents/FA%202018/IST412/ACLogo.png" />
+            <Image url="@../images/ACLogo.png" />
          </image>
       </ImageView>
       <Pane layoutX="206.0" prefHeight="51.0" prefWidth="533.0" />
