@@ -4,6 +4,7 @@ package TreatmentModel;
 import UserModel.Pharmacy;
 import java.util.ArrayList;
 import java.util.Date;
+import Utilities.IDigitalSigner;
 
 /**
  *
@@ -39,6 +40,7 @@ public class Prescription extends Pharmacy {
     ArrayList<DurableMedicalEquipment> durableMedEquip;
     ArrayList<Referral> referral;
     ArrayList<Therapy> therapy;
+    private String digitalSignature;
     
     /**
      * If the prescribed item is a drug.
@@ -124,7 +126,17 @@ public class Prescription extends Pharmacy {
         reorder = reord;
         discard = disc; 
     }
-    
+    // Example #1
+    // prescription p = new prescription(...);
+    // User u = new User(...);
+    // p.DigitallySign(u.getDigitalSigner());
+    // Example #2
+    // prescription p = new prescription(...);
+    // PowerOfAttorneyAdapter poa = new PowerOfAttorneyAdapter("Robert Smith, 123 Main Street, New York, NY 20012");
+    // p.DigitallySign(poa);
+    public void DigitallySign(IDigitalSigner signer) throws Exception{
+        digitalSignature = signer.digitalSign(this.toString());
+    }
     /**
      * Returns the name of the pharmacy.
      * @return
