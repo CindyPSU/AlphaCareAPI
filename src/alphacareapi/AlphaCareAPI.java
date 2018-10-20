@@ -11,12 +11,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
 /**
  *
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
 public class AlphaCareAPI extends Application {
-    
+
    @Override
    public void start(Stage primaryStage) throws Exception {
        URL url = getClass().getResource("/View/DashboardFXML.fxml");
@@ -31,5 +32,5 @@ public class AlphaCareAPI extends Application {
    public static void main(String[] args) {
        launch(args);
    }
-    
+
 }
