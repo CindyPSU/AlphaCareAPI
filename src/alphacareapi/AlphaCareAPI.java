@@ -1,4 +1,3 @@
-
 package alphacareapi;
 
 import java.net.URL;
@@ -14,23 +13,30 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
+ * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and
+ * Christopher Morris
  */
 public class AlphaCareAPI extends Application {
 
-   @Override
-   public void start(Stage primaryStage) throws Exception {
-       URL url = getClass().getResource("/View/DashboardFXML.fxml");
-       Parent root = FXMLLoader.load(url);
-       Scene scene = new Scene(root);
-       primaryStage.setScene(scene);
-       primaryStage.show();
-   }
+    public static Stage stage;
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        AlphaCareAPI.stage = primaryStage;
+        URL url = getClass().getResource("/View/LoginFXML.fxml");
+        Parent root = FXMLLoader.load(url);
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
     /**
+
     * @param args the command line arguments
     */
    public static void main(String[] args) {
        launch(args);
+
     }
 
 }

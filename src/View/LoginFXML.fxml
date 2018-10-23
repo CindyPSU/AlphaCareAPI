@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<GridPane id="GridPane" prefHeight="400.0" prefWidth="600.0" 
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LoginFXMLController" alignment="center" hgap="10" vgap="10">
+    <padding><Insets top="40" right="10" bottom="40" left="10"/></padding>
+    
+    <Text text="Login" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+    
+    <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <TextField fx:id="username" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    
+    <Button fx:id="loginButton" text="Login" GridPane.columnIndex="0" GridPane.rowIndex="9" GridPane.columnSpan="2" onAction="#didSelectLogin"/>
+    
+</GridPane>

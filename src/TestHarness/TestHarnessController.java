@@ -10,6 +10,7 @@ import MedicalRecordModel.*;
 import TreatmentModel.*;
 import Utilities.ErrorController;
 import java.text.*;
+import java.util.Date;
 
 
 /**
@@ -200,8 +201,7 @@ public class TestHarnessController {
         
         try
         {
-            SimpleDateFormat df = new SimpleDateFormat();
-            PatientProfile patientOne = new PatientProfile("123456789", "Marty", "McFly", "CK", "Marty", df, "5556778", "9303 Roslyndale Ave, Pacoima, CA 91331", "bttf@gmail.com");
+            PatientProfile patientOne = new PatientProfile("123456789", "Marty", "McFly", "CK", "Marty", new Date(), "5556778", "9303 Roslyndale Ave, Pacoima, CA 91331", "bttf@gmail.com");
             System.out.println(patientOne.getPatientLastName());
             patientOne.appointments = AppointmentHistory.getAppointments(patientOne.getPatientID());
             patientOne.immunizations = ImmunizationHistory.getImmunizations(patientOne.getPatientID());

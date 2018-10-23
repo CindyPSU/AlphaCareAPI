@@ -1,9 +1,8 @@
 
 package MedicalRecordModel;
 
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 /**
  *
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
@@ -14,7 +13,7 @@ public class PatientProfile {
     private String patientLastName;
     private String patientMiddleInitial;
     private String patientPreferredName;
-    private SimpleDateFormat patientDOB;
+    private Date patientDOB;
     private String patientPhoneNumber;
     private String patientAddress;
     private String patientEmailAddress;
@@ -48,7 +47,7 @@ public class PatientProfile {
      * This is the constructor for the PatientProfile Class.
      */
     public PatientProfile(String initPatientID, String pFirstName, String pLastName, String pMiddleInitial, 
-            String pPreferredName, SimpleDateFormat pDOB, String pPhoneNumber, String pAddress, String pEmail){
+            String pPreferredName, Date pDOB, String pPhoneNumber, String pAddress, String pEmail){
         patientID = initPatientID;
         patientFirstName = pFirstName;
         patientLastName = pLastName;
@@ -95,7 +94,7 @@ public class PatientProfile {
      * Returns the patient date of birth.
      * @return A patient date of birth.
      */
-    public SimpleDateFormat getPatientDOB(){
+    public Date getPatientDOB(){
         return patientDOB;
     }
     
@@ -190,7 +189,7 @@ public class PatientProfile {
     /**
      * @param patientDOB the patientDOB to set
      */
-    public void setPatientDOB(SimpleDateFormat patientDOB) {
+    public void setPatientDOB(Date patientDOB) {
         this.patientDOB = patientDOB;
     }
 
@@ -213,5 +212,14 @@ public class PatientProfile {
      */
     public void setPatientEmailAddress(String patientEmailAddress) {
         this.patientEmailAddress = patientEmailAddress;
+    }
+    
+    public String getFullName() {
+        String fullName = getPatientFirstName();
+        String middleInitial = getPatientMiddleInitial();
+        if (middleInitial != null) {
+            fullName += " " + middleInitial + ".";
+        }
+        return fullName + " " + getPatientLastName();
     }
 }
