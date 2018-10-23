@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class DrugList {
     
     private ArrayList<Drug> drugList = new ArrayList<Drug>();
-        
-    public DrugList(){
+    
+        public DrugList(){
         
         Drug amox = new Drug("12345", "Amoxicillin", 500, "Milligrams", "Pink liquid", 
                 "1 tsp every 8 hours", "Penicillin-like Antibiotics", "Trimox", false, 
@@ -19,9 +19,6 @@ public class DrugList {
         Drug alb = new Drug("23456", "Albuterol Sulfate", 180, "Mcg", "Red inhaler",
                 "2 puffs every 4 to 6 hours as needed", "Beta-2 agonist", "ProAir", true,
                 "None", "Racing heart", "Overview", "Warning");
-        
-        drugList.add(amox);
-        drugList.add(alb);
     }
     
     public ArrayList<Drug> getList(){
@@ -37,5 +34,5 @@ public class DrugList {
             
         System.out.println(currentDrug);
         }
-    }
+    }   
 }
