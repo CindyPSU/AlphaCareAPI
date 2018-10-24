@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
-public class Class {
+public class YogaClass implements HealthClasses {
     private String className;
     private String classType;
     private Date startDate;
@@ -24,7 +24,7 @@ public class Class {
     private String registrationRoster; //
     private int registrationCount;
     
-    public Class(String className, String classType, Date startDate, 
+    public YogaClass(String className, String classType, Date startDate, 
                     Date endDate,int startTime, int endTime, double classCost, 
                     String classLocation, String classDetails)
     {
@@ -42,6 +42,7 @@ public class Class {
     /**
      * @return the className
      */
+    @Override
     public String getClassName()
     {
         return className;
@@ -50,6 +51,7 @@ public class Class {
     /**
      * @param className the className to set
      */
+    @Override
     public void setClassName(String className)
     {
         this.className = className;
@@ -58,6 +60,7 @@ public class Class {
     /**
      * @return the classType
      */
+    @Override
     public String getClassType()
     {
         return classType;
@@ -66,6 +69,7 @@ public class Class {
     /**
      * @param classType the classType to set
      */
+    @Override
     public void setClassType(String classType)
     {
         this.classType = classType;
@@ -74,6 +78,7 @@ public class Class {
     /**
      * @return the startDate
      */
+    @Override
     public Date getStartDate()
     {
         return startDate;
@@ -82,6 +87,7 @@ public class Class {
     /**
      * @param startDate the startDate to set
      */
+    @Override
     public void setStartDate(Date startDate)
     {
         this.startDate = startDate;
@@ -90,6 +96,7 @@ public class Class {
     /**
      * @return the startTime
      */
+    @Override
     public int getStartTime()
     {
         return startTime;
@@ -98,6 +105,7 @@ public class Class {
     /**
      * @param startTime the startTime to set
      */
+    @Override
     public void setStartTime(int startTime)
     {
         this.startTime = startTime;
@@ -106,6 +114,7 @@ public class Class {
     /**
      * @return the endDate
      */
+    @Override
     public Date getEndDate()
     {
         return endDate;
@@ -114,6 +123,7 @@ public class Class {
     /**
      * @param endDate the endDate to set
      */
+    @Override
     public void setEndDate(Date endDate)
     {
         this.endDate = endDate;
@@ -122,6 +132,7 @@ public class Class {
     /**
      * @return the endTime
      */
+    @Override
     public int getEndTime()
     {
         return endTime;
@@ -130,6 +141,7 @@ public class Class {
     /**
      * @param endTime the endTime to set
      */
+    @Override
     public void setEndTime(int endTime)
     {
         this.endTime = endTime;
@@ -154,6 +166,7 @@ public class Class {
     /**
      * @return the classLocation
      */
+    @Override
     public String getClassLocation()
     {
         return classLocation;
@@ -162,6 +175,7 @@ public class Class {
     /**
      * @param classLocation the classLocation to set
      */
+    @Override
     public void setClassLocation(String classLocation)
     {
         this.classLocation = classLocation;
@@ -170,6 +184,7 @@ public class Class {
     /**
      * @return the classDetails
      */
+    @Override
     public String getClassDetails()
     {
         return classDetails;
@@ -178,6 +193,7 @@ public class Class {
     /**
      * @param classDetails the classDetails to set
      */
+    @Override
     public void setClassDetails(String classDetails)
     {
         this.classDetails = classDetails;
@@ -186,6 +202,7 @@ public class Class {
     /**
      * @return the registrationRoster
      */
+    @Override
     public String getRegistrationRoster()
     {
         return registrationRoster;
@@ -194,6 +211,7 @@ public class Class {
     /**
      * @param registrationRoster the registrationRoster to set
      */
+    @Override
     public void setRegistrationRoster(String registrationRoster)
     {
         this.registrationRoster = registrationRoster;
@@ -202,6 +220,7 @@ public class Class {
     /**
      * @return the registrationCount
      */
+    @Override
     public int getRegistrationCount()
     {
         return registrationCount;
@@ -210,6 +229,7 @@ public class Class {
     /**
      * @param registrationCount the registrationCount to set
      */
+    @Override
     public void setRegistrationCount(int registrationCount)
     {
         this.registrationCount = registrationCount;
