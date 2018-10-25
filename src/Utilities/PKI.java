@@ -60,15 +60,15 @@ public class PKI {
     Date startDate = new Date(now);
 
     X500Name dnName = new X500Name("CN="+name);
-    BigInteger certSerialNumber = new BigInteger(Long.toString(now)); // <-- Using the current timestamp as the certificate serial number
+    BigInteger certSerialNumber = new BigInteger(Long.toString(now)); // Using the current timestamp as the certificate serial number
 
     Calendar calendar = Calendar.getInstance();
     calendar.setTime(startDate);
-    calendar.add(Calendar.YEAR, 1); // <-- 1 Yr validity
+    calendar.add(Calendar.YEAR, 1); // 1 Yr validity
 
     Date endDate = calendar.getTime();
 
-    String signatureAlgorithm = "SHA256WithRSA"; // <-- Use appropriate signature algorithm based on your keyPair algorithm.
+    String signatureAlgorithm = "SHA256WithRSA"; // Use appropriate signature algorithm based on your keyPair algorithm.
 
     ContentSigner contentSigner = new JcaContentSignerBuilder(signatureAlgorithm).build(keyPair.getPrivate());
 
@@ -77,7 +77,7 @@ public class PKI {
     // Extensions --------------------------
 
     // Basic Constraints
-    BasicConstraints basicConstraints = new BasicConstraints(true); // <-- true for CA, false for EndEntity
+    BasicConstraints basicConstraints = new BasicConstraints(true); // true for CA, false for EndEntity
 
     certBuilder.addExtension(new ASN1ObjectIdentifier("2.5.29.19"), true, basicConstraints); // Basic Constraints is usually marked as critical.
 
