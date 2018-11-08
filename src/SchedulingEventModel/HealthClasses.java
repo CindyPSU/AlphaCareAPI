@@ -27,11 +27,7 @@ public interface HealthClasses
     int getStartTime();
     void setStartTime(int startTime);
     
-    Date getEndDate();
-    void setEndDate(Date endDate);
-    
-    int getEndTime();
-    void setEndTime(int endTime);
+ 
     
     String getClassLocation();
     void setClassLocation(String classLocation);
@@ -39,11 +35,7 @@ public interface HealthClasses
     String getClassDetails();
     void setClassDetails(String classDetails);
     
-    String getRegistrationRoster();
-    void setRegistrationRoster(String registrationRoster);
-    
-    int getRegistrationCount();
-    void setRegistrationCount(int registrationCount);
+   
 
     
     
