@@ -5,18 +5,23 @@
  */
 package View;
 
-import MedicalRecordModel.PatientDetailController;
-import MedicalRecordModel.PatientDetailControllerDelegate;
-import MedicalRecordModel.PatientDetailModel;
-import MedicalRecordModel.PatientStoreStub;
+import MedicalRecordModel.*;
 import UserModel.Patient;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 /**
@@ -25,13 +30,39 @@ import javafx.stage.Stage;
  * @author Princess_ktwo
  */
 public class DashboardFXMLController implements Initializable, PatientDetailFXMLControllerDelegate {
+    
+    private List<AppointmentHistory> appointments;
+    private EntityStore<AppointmentHistory> store;
+    
+    @FXML private TableView tableView;
+    @FXML private TableColumn<AppointmentHistory, String> tableViewColumnDate;
+    @FXML private TableColumn<AppointmentHistory, String> tableViewColumnTime;
+    @FXML private TableColumn<AppointmentHistory, String> tableViewColumnOffice;
+    @FXML private TableColumn<AppointmentHistory, String> tableViewColumnStatus;
+    
+    /**
+     * @return the appointments
+     */
+    public List<AppointmentHistory> getAppointments() {
+        return appointments;
+    }
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        tableViewColumnDate.setCellValueFactory((p)-> { return new SimpleStringProperty(p.getValue().getAppointmentDate().toString()); });
+        tableViewColumnTime.setCellValueFactory((p)-> { return new SimpleStringProperty(p.getValue().getAppointmentTime().toString()); });
+        tableViewColumnOffice.setCellValueFactory((p)-> { return new SimpleStringProperty(p.getValue().getPractice().getName()); });
+        tableViewColumnStatus.setCellValueFactory((p)-> { return new SimpleStringProperty(p.getValue().getStatus().getValue()); });
+        tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                // TODO: Open an appointment
+            }
+        });
+        load();
     } 
     
     public void displayPatientSearchView() {
@@ -85,4 +116,9 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
         displayPatientSearchView();
     }
     
+    public void load() {
+        store = new AppointmentStoreStub();
+        appointments = store.load();
+        tableView.getItems().setAll(appointments);
+    }
 }

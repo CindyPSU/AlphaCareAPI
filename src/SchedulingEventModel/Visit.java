@@ -13,6 +13,7 @@ import UserModel.*;
  * @author chrismorris
  */
 public class Visit {
+    
     private Appointment appointment;
     private Patient patient;
     private Physician physician;

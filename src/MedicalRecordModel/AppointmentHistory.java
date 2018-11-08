@@ -1,7 +1,7 @@
 
 package MedicalRecordModel;
 
-import UserModel.Patient;
+import UserModel.*;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,13 +11,16 @@ import java.util.Date;
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
 public class AppointmentHistory {
-    private Patient patientID;
+    
+    private String patientID;
     private int appointmentID;
     private Date appointmentDate;
     private Time appointmentTime;
     private String physicianName;
     private String appointmentCode;
     private String appCodeDescription;
+    private AppointmentStatus status;
+    private Practice practice;
     
     /**
      * 
@@ -31,8 +34,8 @@ public class AppointmentHistory {
      * 
      * This is the constructor for the AppointmentHistory Class.
      */
-    public AppointmentHistory(Patient linkPatientID, int appID, Date appDate, Time appTime, 
-            String docName, String appCode, String appCodeDesc){
+    public AppointmentHistory(String linkPatientID, int appID, Date appDate, Time appTime, 
+            String docName, String appCode, String appCodeDesc, AppointmentStatus status, Practice practice) {
         patientID = linkPatientID;
         appointmentID = appID;
         appointmentDate = appDate;
@@ -40,6 +43,8 @@ public class AppointmentHistory {
         physicianName = docName;
         appointmentCode = appCode;
         appCodeDescription = appCodeDesc;
+        this.status = status;
+        this.practice = practice;
     }
     
     /**
@@ -93,14 +98,14 @@ public class AppointmentHistory {
     /**
      * @return the patientID
      */
-    public Patient getPatientID() {
+    public String getPatientID() {
         return patientID;
     }
 
     /**
      * @param patientID the patientID to set
      */
-    public void setPatientID(Patient patientID) {
+    public void setPatientID(String patientID) {
         this.patientID = patientID;
     }
 
@@ -144,6 +149,34 @@ public class AppointmentHistory {
      */
     public void setAppCodeDescription(String appCodeDescription) {
         this.appCodeDescription = appCodeDescription;
+    }
+    
+    /**
+     * @return the status
+     */
+    public AppointmentStatus getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(AppointmentStatus status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the practice
+     */
+    public Practice getPractice() {
+        return practice;
+    }
+
+    /**
+     * @param practice the practice to set
+     */
+    public void setPractice(Practice practice) {
+        this.practice = practice;
     }
     
     /**
