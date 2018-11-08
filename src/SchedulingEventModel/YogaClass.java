@@ -24,19 +24,11 @@ public class YogaClass implements HealthClasses {
     private String registrationRoster; //
     private int registrationCount;
     
-    public YogaClass(String className, String classType, Date startDate, 
-                    Date endDate,int startTime, int endTime, double classCost, 
-                    String classLocation, String classDetails)
+    public YogaClass(String className, String classType, Date startDate)
     {
         this.className = className;
         this.classType = classType;
         this.startDate = startDate;
-        this.endDate = endDate;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.classCost = classCost;
-        this.classLocation = classLocation;
-        this.classDetails = classDetails;
     }
 
     /**
@@ -202,7 +194,6 @@ public class YogaClass implements HealthClasses {
     /**
      * @return the registrationRoster
      */
-    @Override
     public String getRegistrationRoster()
     {
         return registrationRoster;
@@ -211,7 +202,6 @@ public class YogaClass implements HealthClasses {
     /**
      * @param registrationRoster the registrationRoster to set
      */
-    @Override
     public void setRegistrationRoster(String registrationRoster)
     {
         this.registrationRoster = registrationRoster;
@@ -220,7 +210,6 @@ public class YogaClass implements HealthClasses {
     /**
      * @return the registrationCount
      */
-    @Override
     public int getRegistrationCount()
     {
         return registrationCount;
@@ -229,7 +218,6 @@ public class YogaClass implements HealthClasses {
     /**
      * @param registrationCount the registrationCount to set
      */
-    @Override
     public void setRegistrationCount(int registrationCount)
     {
         this.registrationCount = registrationCount;

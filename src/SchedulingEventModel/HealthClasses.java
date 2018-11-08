@@ -39,11 +39,6 @@ public interface HealthClasses
     String getClassDetails();
     void setClassDetails(String classDetails);
     
-    String getRegistrationRoster();
-    void setRegistrationRoster(String registrationRoster);
-    
-    int getRegistrationCount();
-    void setRegistrationCount(int registrationCount);
 
     
     
