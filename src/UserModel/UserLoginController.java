@@ -46,7 +46,7 @@ public class UserLoginController<T extends User> {
         map.put(new UserLoginCredentials("Nurse", "IST412FTW"), 
                 new Nurse());
         map.put(new UserLoginCredentials("Patient", "IST412FTW"), 
-                new Patient());
+                new Patient("initPatientID"));
         map.put(new UserLoginCredentials("Physician", "IST412FTW"), 
                 new Physician());
         map.put(new UserLoginCredentials("SystemAdministrator", "IST412FTW"), 

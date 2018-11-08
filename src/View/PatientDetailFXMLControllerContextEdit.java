@@ -5,7 +5,8 @@
  */
 package View;
 
-import MedicalRecordModel.PatientProfile;
+import UserModel.Address;
+import UserModel.Patient;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 
@@ -18,28 +19,32 @@ public class PatientDetailFXMLControllerContextEdit implements PatientDetailFXML
     /**
      * @return the profile
      */
-    public PatientProfile getProfile() {
+    public Patient getProfile() {
         return profile;
     }
     
-    private final PatientProfile profile;
+    private final Patient profile;
 
-    public PatientDetailFXMLControllerContextEdit(PatientProfile profile) {
+    public PatientDetailFXMLControllerContextEdit(Patient profile) {
         this.profile = profile;
     }
 
     @Override
     public void populateController(PatientDetailFXMLController controller) {
-        PatientProfile profile = getProfile();
-        controller.firstName.setText(profile.getPatientFirstName());
-        controller.lastName.setText(profile.getPatientLastName());
-        controller.middleInitial.setText(profile.getPatientMiddleInitial());
-        controller.preferredName.setText(profile.getPatientPreferredName());
-        controller.address.setText(profile.getPatientAddress());
+        Patient profile = getProfile();
+        controller.firstName.setText(profile.getFirstName());
+        controller.lastName.setText(profile.getLastName());
+        controller.middleInitial.setText(profile.getMiddleInitial());
+        controller.preferredName.setText(profile.getPreferredName());
+        Address address = profile.getAddress();
+        controller.line1.setText(address.getLine1());
+        controller.line2.setText(address.getLine2());
+        controller.city.setText(address.getCity());
+        controller.state.setText(address.getState());
+        controller.zipCode.setText(address.getZipCode());
         SimpleDateFormat format = new SimpleDateFormat();
-        controller.birthday.setValue(profile.getPatientDOB().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        controller.address.setText(profile.getPatientAddress());
-        controller.emailAddress.setText(profile.getPatientEmailAddress());
+        controller.birthday.setValue(profile.getBirthdate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        controller.emailAddress.setText(profile.getEmail());
     }
     
     @Override

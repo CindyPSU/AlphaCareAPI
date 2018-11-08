@@ -1,112 +1,160 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package UserModel;
 
+import MedicalRecordModel.*;
+import java.util.ArrayList;
 import java.util.Date;
-
 /**
- * A Patient is the entity that represents a person who is registered with an
- * office and visits with a doctors or multiple doctors.
+ *
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
 public class Patient extends User {
     
-    private String patientID;
-    private String socialSecurityNumber;
-    private Date dateOfBirth;
+    public static ArrayList<Patient> patientProfiles = new ArrayList<Patient>();
+    
+    private String identifier;
+    private Date birthdate;
     private String phoneNumber;
     private Address address;
-    private String emailAddress;
-
+    private String email;
+    
+    public ArrayList<AppointmentHistory> appointments;
+    public ArrayList<ImmunizationHistory> immunizations;
+    public ArrayList<MedicalHistory> medicalData;
+    public ArrayList<PrescriptionHistory> prescriptions;
+    public ArrayList<TestLabResults> labResults;
+    public ArrayList<VitalSigns> vitalSignsData;
     /**
-     * Returns the patient's unique identifier
-     * @return 
+     * 
+     * @param initPatientID 
+     * Basic entry constructor.
      */
-    public String getPatientID() {
-        return patientID;
+    public Patient(String initPatientID){
+        identifier = initPatientID;
     }
-
+    
     /**
-     * Returns the patient's social security number for Patient
-     * @return 
+     * 
+     * @param initPatientID
+     * @param pFirstName
+     * @param pLastName
+     * @param pMiddleInitial
+     * @param pPreferredName
+     * @param pDOB
+     * @param pPhoneNumber
+     * @param pAddress
+     * @param pEmail 
+     * 
+     * This is the constructor for the PatientProfile Class.
      */
-    public String getSocialSecurityNumber() {
-        return socialSecurityNumber;
+    public Patient(String initPatientID, String pFirstName, String pLastName, String pMiddleInitial, 
+            String pPreferredName, Date pDOB, String pPhoneNumber, Address pAddress, String pEmail){
+        identifier = initPatientID;
+        this.firstName = pFirstName;
+        this.lastName = pLastName;
+        this.middleInitial = pMiddleInitial;
+        this.preferredName = preferredName;
+        birthdate = pDOB;
+        phoneNumber = pPhoneNumber;
+        address = pAddress;
+        email = pEmail;
     }
-
+    
     /**
-     * Sets the social security number for Patient
-     * @param socialSecurityNumber 
+     * Returns the Patient ID that will be linked to the patient profile.
+     * @return A long representing the patient ID.
      */
-    public void setSocialSecurityNumber(String socialSecurityNumber) {
-        this.socialSecurityNumber = socialSecurityNumber;
+    public String setPatientID(){
+        return getIdentifier();
     }
-
+    
     /**
-     * Returns the DOB for Patient
-     * @return 
+     * Returns the patient date of birth.
+     * @return A patient date of birth.
      */
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public Date getBirthdate(){
+        return birthdate;
     }
-
+    
     /**
-     * Sets the DOB for Patient
-     * @param dateOfBirth 
+     * Returns the patient phone number.
+     * @return A patient phone number.
      */
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    /**
-     * Returns the phone number for Patient
-     * @return 
-     */
-    public String getPhoneNumber() {
+    public String getPhoneNumber(){
         return phoneNumber;
     }
+    
+    /**
+     * Returns the patient home address.
+     * @return A patient home address.
+     */
+    public Address getAddress(){
+        return address;
+    }
+    
+    /**
+     * Returns the patient email address.
+     * @return A patient email address.
+     */
+    public String getEmail(){
+        return email;
+    }
+    
+    /**
+     * Returns the patient complete medical record when the patient ID is provided.
+     * The patient ID is the same as the patient SSN.
+     * @param patientID
+     * @return A patient complete medical record.
+     */
+    public static Patient getCompleteMedicalRecord(String patientID){
+        for(Patient pp : patientProfiles) {
+            if(pp.identifier.equals(patientID)){
+                return pp;
+            }
+        }
+        return null;
+    }
 
     /**
-     * Sets the phone number for Patient
-     * @param phoneNumber 
+     * @return the identifier
+     */
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    /**
+     * @param identifier the identifier to set
+     */
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
+    }
+
+    /**
+     * @param birthdate the birthdate to set
+     */
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    /**
+     * @param phoneNumber the phoneNumber to set
      */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
     /**
-     * Returns the address for Patient
-     * @return 
-     */
-    public Address getAddress() {
-        return address;
-    }
-
-    /**
-     * Sets the address for Patient
-     * @param address 
+     * @param address the address to set
      */
     public void setAddress(Address address) {
         this.address = address;
     }
 
     /**
-     * Returns the email address for Patient
-     * @return 
+     * @param email the email to set
      */
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    /**
-     * Sets the email address for Patient
-     * @param emailAddress 
-     */
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setEmail(String email) {
+        this.email = email;
     }
     
 }

@@ -22,4 +22,13 @@ public class UserDigitalSigner implements IDigitalSigner {
     public String digitalSign(String data) throws Exception {
         return PKI.signData(data, keyPair, certificate);
     }
+    
+    // Instance of user named "Jon"
+    // Anytime you need Jon's digital signature on something
+    // You would call Jon.digitalSign(content that he's signing)
+    public static UserDigitalSigner digitalSigner(String value) throws Exception {
+        KeyPair keyPair = PKI.generateKeyPair();
+        X509Certificate certificate = PKI.generateCertificate(keyPair, value);
+        return new UserDigitalSigner(keyPair, certificate);
+    }
 }

@@ -1,6 +1,7 @@
 
 package MedicalRecordModel;
 
+import UserModel.Patient;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,7 +11,7 @@ import java.util.Date;
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
 public class VitalSigns {
-    private PatientProfile patientID;
+    private Patient patientID;
     private int vitalSignsID;
     private Date vitalSignsDate;
     private Time vitalSignsTime;
@@ -32,7 +33,7 @@ public class VitalSigns {
      * 
      * This is the constructor for the VitalSigns Class.
      */
-    public VitalSigns(PatientProfile linkPatientID, int vsID, Date vsDate, Time vsTime, 
+    public VitalSigns(Patient linkPatientID, int vsID, Date vsDate, Time vsTime, 
             String hRate, String bPressure, String oSat, String bpm){
         patientID = linkPatientID;
         vitalSignsID = vsID;
@@ -102,14 +103,14 @@ public class VitalSigns {
     /**
      * @return the patientID
      */
-    public PatientProfile getPatientID() {
+    public Patient getPatientID() {
         return patientID;
     }
 
     /**
      * @param patientID the patientID to set
      */
-    public void setPatientID(PatientProfile patientID) {
+    public void setPatientID(Patient patientID) {
         this.patientID = patientID;
     }
 

@@ -12,31 +12,10 @@ import java.security.cert.X509Certificate;
  */
 public abstract class User {
 
-    private String firstName;
-    private String lastName;
-    private String middleInitial;
-    private String preferredName;
-    private KeyPair keyPair;
-    private X509Certificate certificate;
-    
-    // Instance of user named "Jon"
-    // Anytime you need Jon's digital signature on something
-    // You would call Jon.digitalSign(content that he's signing)
-    
-    
-    public String userFullName(){
-        return firstName+" "+middleInitial+" "+lastName;
-    }
-    
-    public UserDigitalSigner getDigitalSigner()throws Exception{
-        if(keyPair == null){
-            keyPair = PKI.generateKeyPair();
-        }
-        if(certificate == null){
-            certificate = PKI.generateCertificate(keyPair, userFullName());
-        }
-        return new UserDigitalSigner(keyPair, certificate);
-    }
+    protected String firstName;
+    protected String lastName;
+    protected String middleInitial;
+    protected String preferredName;
     
     /**
      * Returns the first name of User
@@ -105,11 +84,13 @@ public abstract class User {
     public String getClassName() {
         return getClass().getSimpleName();
     }
-
-    /**
-     * @return the certificate
-     */
-    public X509Certificate getCertificate() {
-        return certificate;
+    
+    public String getFullName(){
+        String fullName = getFirstName();
+        String middleInitial = getMiddleInitial();
+        if (middleInitial != null) {
+            fullName += " " + middleInitial + ".";
+        }
+        return fullName + " " + getLastName();
     }
 }

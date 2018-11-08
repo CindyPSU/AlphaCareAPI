@@ -5,26 +5,28 @@
  */
 package MedicalRecordModel;
 
+import UserModel.Patient;
+
 /**
  *
  * @author chrismorris
  */
 public class PatientDetailModel {
     
-    private final PatientProfile patient;
+    private final Patient patient;
     
-    public PatientDetailModel(PatientProfile patient) {
+    public PatientDetailModel(Patient patient) {
         this.patient = patient;
     }
     
     /**
      * @return the patient
      */
-    public PatientProfile getPatient() {
+    public Patient getPatient() {
         return patient;
     }
     
     public void updatePatientRecord() {
-        getPatient().setPatientPreferredName("My New PreferredName");
+        getPatient().setPreferredName("My New PreferredName");
     }
 }

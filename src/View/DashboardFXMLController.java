@@ -9,7 +9,7 @@ import MedicalRecordModel.PatientDetailController;
 import MedicalRecordModel.PatientDetailControllerDelegate;
 import MedicalRecordModel.PatientDetailModel;
 import MedicalRecordModel.PatientStoreStub;
-import MedicalRecordModel.PatientProfile;
+import UserModel.Patient;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -79,7 +79,7 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
     // PatientDetailFXMLControllerDelegate
 
     @Override
-    public void patientDetailFXMLControllerDidSavePatientProfile(PatientDetailFXMLController controller, Stage stage, PatientProfile profile) {
+    public void patientDetailFXMLControllerDidSavePatientProfile(PatientDetailFXMLController controller, Stage stage, Patient profile) {
         PatientStoreStub.savedPatients.add(profile);
         stage.close();
         displayPatientSearchView();

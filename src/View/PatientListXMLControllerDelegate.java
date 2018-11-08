@@ -5,12 +5,12 @@
  */
 package View;
 
-import MedicalRecordModel.PatientProfile;
+import UserModel.Patient;
 
 /**
  *
  * @author chrismorris
  */
 public interface PatientListXMLControllerDelegate {
-    void patientListXMLControllerDidSelectPatient(PatientProfile profile);
+    void patientListXMLControllerDidSelectPatient(Patient profile);
 }

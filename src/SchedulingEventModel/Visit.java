@@ -5,10 +5,8 @@
  */
 package SchedulingEventModel;
 
-import UserModel.Nurse;
 import UserModel.Patient;
-import UserModel.Physician;
-import UserModel.Practice;
+import UserModel.*;
 
 /**
  *

@@ -5,7 +5,8 @@
  */
 package View;
 
-import MedicalRecordModel.PatientProfile;
+import UserModel.Address;
+import UserModel.Patient;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -30,8 +31,12 @@ public class PatientDetailFXMLController implements Initializable {
     @FXML TextField preferredName;
     @FXML DatePicker birthday;
     @FXML TextField phoneNumber;
-    @FXML TextField address;
     @FXML TextField emailAddress;
+    @FXML TextField line1;
+    @FXML TextField line2;
+    @FXML TextField city;
+    @FXML TextField state;
+    @FXML TextField zipCode;
     @FXML Button saveButton;
     
     private PatientDetailFXMLControllerContext context;
@@ -91,7 +96,7 @@ public class PatientDetailFXMLController implements Initializable {
     protected void didSelectSaveButton(ActionEvent event) {
         try {
             Stage stage = (Stage)saveButton.getScene().getWindow();
-            PatientProfile profile = generateProfile();
+            Patient profile = generateProfile();
             getDelegate().patientDetailFXMLControllerDidSavePatientProfile(this, stage, profile);
         } catch (PatientDetailControllerException exception) {
             // show error
@@ -99,7 +104,7 @@ public class PatientDetailFXMLController implements Initializable {
         }
     }
     
-    private PatientProfile generateProfile() throws PatientDetailControllerException {
+    private Patient generateProfile() throws PatientDetailControllerException {
         String identifierValue = "my_random_id";
         
         String firstNameValue = firstName.getText();
@@ -133,8 +138,12 @@ public class PatientDetailFXMLController implements Initializable {
             throw new PatientDetailControllerException(PatientDetailControllerException.ERROR_CODE_INVALID_PHONE_NUMBER);
         }
         
-        String addressValue = address.getText();
-        if (addressValue == null) {
+        String line1Value = line1.getText();
+        String line2Value = line2.getText();
+        String cityValue = city.getText();
+        String stateValue = state.getText();
+        String zipCodeValue = zipCode.getText();
+        if (line1Value == null || cityValue == null || stateValue == null || zipCodeValue == null) {
             throw new PatientDetailControllerException(PatientDetailControllerException.ERROR_CODE_INVALID_ADDRESS);
         }
         
@@ -143,7 +152,13 @@ public class PatientDetailFXMLController implements Initializable {
             throw new PatientDetailControllerException(PatientDetailControllerException.ERROR_CODE_INVALID_EMAIL_ADDRESS);
         }
         
-        return new PatientProfile(
+        Address address = new Address();
+        address.setLine1(line1Value);
+        address.setLine2(line2Value);
+        address.setCity(cityValue);
+        address.setState(stateValue);
+        address.setZipCode(zipCodeValue);
+        return new Patient(
                 identifierValue, 
                 firstNameValue, 
                 lastNameValue,
@@ -151,7 +166,7 @@ public class PatientDetailFXMLController implements Initializable {
                 preferredNameValue, 
                 birthdayValue, 
                 phoneNumberValue, 
-                addressValue, 
+                address, 
                 emailAddressValue
         );
     }

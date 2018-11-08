@@ -5,7 +5,7 @@
  */
 package View;
 
-import MedicalRecordModel.PatientProfile;
+import UserModel.Patient;
 import MedicalRecordModel.PatientStoreStub;
 import UserModel.InvalidCredentialsException;
 import UserModel.MedicalAdministrator;

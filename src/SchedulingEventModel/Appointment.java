@@ -5,8 +5,8 @@
  */
 package SchedulingEventModel;
 
-import UserModel.Address;
 import UserModel.Patient;
+import UserModel.Address;
 import UserModel.Physician;
 import java.util.Date;
 

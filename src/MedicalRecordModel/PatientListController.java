@@ -5,6 +5,8 @@
  */
 package MedicalRecordModel;
 
+import UserModel.Patient;
+
 /**
  *
  * @author chrismorris
@@ -20,8 +22,8 @@ public class PatientListController implements PatientDetailControllerDelegate {
     
     // Made public for the sake of TestHarness
     public PatientDetailController selectPatient() {
-        PatientProfile patient = model.getPatients().get(1);
-        System.out.println("Selected patient named: " + patient.getPatientFirstName());
+        Patient patient = model.getPatients().get(1);
+        System.out.println("Selected patient named: " + patient.getFirstName());
         PatientDetailController controller = new PatientDetailController(
                 new PatientDetailModel(patient), 
                 this
