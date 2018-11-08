@@ -5,8 +5,10 @@
  */
 package View;
 
+import Utilities.PatientInputException;
 import UserModel.Address;
 import UserModel.Patient;
+import Utilities.PatientInputValidator;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -16,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 /**
@@ -98,76 +101,27 @@ public class PatientDetailFXMLController implements Initializable {
             Stage stage = (Stage)saveButton.getScene().getWindow();
             Patient profile = generateProfile();
             getDelegate().patientDetailFXMLControllerDidSavePatientProfile(this, stage, profile);
-        } catch (PatientDetailControllerException exception) {
-            // show error
-            System.out.println(exception);
+        } catch (PatientInputException exception) {
+            Alert alert = new Alert(AlertType.ERROR, exception.toString(), ButtonType.CANCEL);
+            alert.showAndWait();
         }
     }
     
-    private Patient generateProfile() throws PatientDetailControllerException {
-        String identifierValue = "my_random_id";
-        
-        String firstNameValue = firstName.getText();
-        if (firstNameValue == null) {
-            throw new PatientDetailControllerException(PatientDetailControllerException.ERROR_CODE_INVALID_FIRST_NAME);
-        }
-        
-        String lastNameValue = lastName.getText();
-        if (lastNameValue == null) {
-            throw new PatientDetailControllerException(PatientDetailControllerException.ERROR_CODE_INVALID_LAST_NAME);
-        }
-        
-        String middleInitialValue = middleInitial.getText();
-        if (middleInitialValue == null) {
-            throw new PatientDetailControllerException(PatientDetailControllerException.ERROR_CODE_INVALID_MIDDLE_INITIAL);
-        }
-        
-        String preferredNameValue = preferredName.getText();
-        if (preferredNameValue == null) {
-            throw new PatientDetailControllerException(PatientDetailControllerException.ERROR_CODE_INVALID_PREFERRED_NAME);
-        }
-        
-        LocalDate birthdayLocalDateValue = birthday.getValue();
-        if (birthdayLocalDateValue == null) {
-            throw new PatientDetailControllerException(PatientDetailControllerException.ERROR_CODE_INVALID_BIRTHDATE);
-        }
-        Date birthdayValue = Date.from(birthdayLocalDateValue.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        
-        String phoneNumberValue = phoneNumber.getText();
-        if (phoneNumberValue == null) {
-            throw new PatientDetailControllerException(PatientDetailControllerException.ERROR_CODE_INVALID_PHONE_NUMBER);
-        }
-        
-        String line1Value = line1.getText();
-        String line2Value = line2.getText();
-        String cityValue = city.getText();
-        String stateValue = state.getText();
-        String zipCodeValue = zipCode.getText();
-        if (line1Value == null || cityValue == null || stateValue == null || zipCodeValue == null) {
-            throw new PatientDetailControllerException(PatientDetailControllerException.ERROR_CODE_INVALID_ADDRESS);
-        }
-        
-        String emailAddressValue = emailAddress.getText();
-        if (emailAddressValue == null) {
-            throw new PatientDetailControllerException(PatientDetailControllerException.ERROR_CODE_INVALID_EMAIL_ADDRESS);
-        }
-        
-        Address address = new Address();
-        address.setLine1(line1Value);
-        address.setLine2(line2Value);
-        address.setCity(cityValue);
-        address.setState(stateValue);
-        address.setZipCode(zipCodeValue);
-        return new Patient(
-                identifierValue, 
-                firstNameValue, 
-                lastNameValue,
-                middleInitialValue, 
-                preferredNameValue, 
-                birthdayValue, 
-                phoneNumberValue, 
-                address, 
-                emailAddressValue
+    private Patient generateProfile() throws PatientInputException {
+        PatientInputValidator validator = new PatientInputValidator(
+                firstName.getText(), 
+                lastName.getText(), 
+                middleInitial.getText(), 
+                preferredName.getText(), 
+                birthday.getValue(), 
+                phoneNumber.getText(), 
+                line1.getText(), 
+                line2.getText(), 
+                city.getText(), 
+                state.getText(), 
+                zipCode.getText(), 
+                emailAddress.getText()
         );
+        return validator.validated();
     }
 }
