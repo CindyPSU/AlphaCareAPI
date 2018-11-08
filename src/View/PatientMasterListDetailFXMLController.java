@@ -6,7 +6,7 @@
 package View;
 
 import MedicalRecordModel.PatientStoreStub;
-import MedicalRecordModel.PatientProfile;
+import UserModel.Patient;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -83,13 +83,13 @@ public class PatientMasterListDetailFXMLController implements Initializable, Pat
     }
 
     @Override
-    public void patientDetailFXMLControllerDidSavePatientProfile(PatientDetailFXMLController controller, Stage stage, PatientProfile profile) {
+    public void patientDetailFXMLControllerDidSavePatientProfile(PatientDetailFXMLController controller, Stage stage, Patient profile) {
         patientLoader.updatePatient(profile);
         listController.load();
     }
 
     @Override
-    public void patientListXMLControllerDidSelectPatient(PatientProfile profile) {
+    public void patientListXMLControllerDidSelectPatient(Patient profile) {
         detailController.setContext(new PatientDetailFXMLControllerContextEdit(profile));
     }
 

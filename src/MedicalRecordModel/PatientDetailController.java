@@ -40,7 +40,7 @@ public class PatientDetailController {
     // Public for the sake of TestHarness
     public void updateRecord() {
         getModel().updatePatientRecord();
-        System.out.println("Updated the patients record. The preferred name changed to " + getModel().getPatient().getPatientPreferredName());
+        System.out.println("Updated the patients record. The preferred name changed to " + getModel().getPatient().getPreferredName());
         getDelegate().patientDetailControllerDidUpdateRecord(this, getModel());
     }
     

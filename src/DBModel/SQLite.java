@@ -1,7 +1,7 @@
 
 package DBModel;
 
-import MedicalRecordModel.PatientProfile;
+import UserModel.Patient;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -30,11 +30,11 @@ public class SQLite {
      * Saves the patient's profile to the database.
      * @param profile 
      */
-    public static void savePatientProfile(PatientProfile profile){
+    public static void savePatientProfile(Patient profile){
         initializeDatabase();
         // code for inserting patient profile into the database
         /*try (
-            String sql = "INSERT INTO PatientProfile"
+            String sql = "INSERT INTO Patient"
             Statement stmt = conn.createStatement()) {
             // create a new table
             stmt.execute(sql);

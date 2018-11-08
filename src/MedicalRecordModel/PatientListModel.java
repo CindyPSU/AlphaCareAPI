@@ -5,6 +5,7 @@
  */
 package MedicalRecordModel;
 
+import UserModel.Patient;
 import java.util.*;
 
 /**
@@ -13,12 +14,12 @@ import java.util.*;
  */
 public class PatientListModel {
     
-    private List<PatientProfile> patients;
+    private List<Patient> patients;
     
     /**
      * @return the patients
      */
-    public List<PatientProfile> getPatients() {
+    public List<Patient> getPatients() {
         return patients;
     }
     

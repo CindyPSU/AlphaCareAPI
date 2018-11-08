@@ -5,7 +5,7 @@
  */
 package View;
 
-import MedicalRecordModel.PatientProfile;
+import UserModel.Patient;
 import javafx.stage.Stage;
 
 /**
@@ -13,5 +13,5 @@ import javafx.stage.Stage;
  * @author chrismorris
  */
 public interface PatientDetailFXMLControllerDelegate {
-    void patientDetailFXMLControllerDidSavePatientProfile(PatientDetailFXMLController controller, Stage stage, PatientProfile profile);
+    void patientDetailFXMLControllerDidSavePatientProfile(PatientDetailFXMLController controller, Stage stage, Patient profile);
 }

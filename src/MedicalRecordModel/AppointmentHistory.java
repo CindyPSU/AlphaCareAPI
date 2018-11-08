@@ -1,6 +1,7 @@
 
 package MedicalRecordModel;
 
+import UserModel.Patient;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,7 +11,7 @@ import java.util.Date;
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
 public class AppointmentHistory {
-    private PatientProfile patientID;
+    private Patient patientID;
     private int appointmentID;
     private Date appointmentDate;
     private Time appointmentTime;
@@ -30,7 +31,7 @@ public class AppointmentHistory {
      * 
      * This is the constructor for the AppointmentHistory Class.
      */
-    public AppointmentHistory(PatientProfile linkPatientID, int appID, Date appDate, Time appTime, 
+    public AppointmentHistory(Patient linkPatientID, int appID, Date appDate, Time appTime, 
             String docName, String appCode, String appCodeDesc){
         patientID = linkPatientID;
         appointmentID = appID;
@@ -92,14 +93,14 @@ public class AppointmentHistory {
     /**
      * @return the patientID
      */
-    public PatientProfile getPatientID() {
+    public Patient getPatientID() {
         return patientID;
     }
 
     /**
      * @param patientID the patientID to set
      */
-    public void setPatientID(PatientProfile patientID) {
+    public void setPatientID(Patient patientID) {
         this.patientID = patientID;
     }
 

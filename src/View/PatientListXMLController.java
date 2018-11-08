@@ -5,6 +5,7 @@
  */
 package View;
 
+import UserModel.Patient;
 import MedicalRecordModel.*;
 import java.net.URL;
 import java.util.*;
@@ -21,16 +22,16 @@ import javafx.scene.control.*;
 public class PatientListXMLController implements Initializable {
     
     @FXML private TableView tableView;
-    @FXML private TableColumn<PatientProfile, String> tableViewColumn;
+    @FXML private TableColumn<Patient, String> tableViewColumn;
     
-    private List<PatientProfile> patients;
+    private List<Patient> patients;
     private PatientStore patientLoader;
     private PatientListXMLControllerDelegate delegate;
     
     /**
      * @return the patients
      */
-    public List<PatientProfile> getPatients() {
+    public List<Patient> getPatients() {
         return patients;
     }
     
@@ -72,7 +73,7 @@ public class PatientListXMLController implements Initializable {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 if (tableView.getSelectionModel().getSelectedItem() != null) {
-                    PatientProfile profile = (PatientProfile)tableView.getSelectionModel().getSelectedItem();
+                    Patient profile = (Patient)tableView.getSelectionModel().getSelectedItem();
                     getDelegate().patientListXMLControllerDidSelectPatient(profile);
                 }
             }

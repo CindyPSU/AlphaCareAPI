@@ -11,46 +11,11 @@ package UserModel;
  */
 public class Address {
     
-    private String name;
-    private String phoneNumber;
     private String line1;
     private String line2;
     private String city;
     private String state;
-    private String country;
     private String zipCode;
-
-    /**
-     * Returns the name for an Address.
-     * @return String
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Sets the name for an Address.
-     * @param name 
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * Returns the phone number for an Address.
-     * @return 
-     */
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    /**
-     * Sets the phone number for an Address.
-     * @param phoneNumber 
-     */
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
 
     /**
      * Returns the first line of the street address for for an Address.
@@ -116,22 +81,6 @@ public class Address {
         this.state = state;
     }
 
-    /**
-     * Returns the country for for an Address.
-     * @return 
-     */
-    public String getCountry() {
-        return country;
-    }
-
-    /**
-     * Sets the country for for an Address.
-     * @param country 
-     */
-    public void setCountry(String country) {
-        this.country = country;
-    }
-    
     /**
      * Returns the zip code for for an Address.
      * @return

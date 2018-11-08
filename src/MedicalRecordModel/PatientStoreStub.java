@@ -5,6 +5,8 @@
  */
 package MedicalRecordModel;
 
+import UserModel.Address;
+import UserModel.Patient;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,10 +18,15 @@ import java.util.stream.Collectors;
  */
 public class PatientStoreStub implements PatientStore {
     
-    public static final List<PatientProfile> savedPatients = new ArrayList();
+    public static final List<Patient> savedPatients = new ArrayList();
     
     public static void initiate() {
-        savedPatients.add(new PatientProfile(
+        Address addressOne = new Address();
+        addressOne.setLine1("9303 Roslyndale Ave");
+        addressOne.setCity("Pacoima");
+        addressOne.setState("CA");
+        addressOne.setZipCode("91331");
+        savedPatients.add(new Patient(
                 "123456789", 
                 "Marty",
                 "McFly", 
@@ -27,10 +34,16 @@ public class PatientStoreStub implements PatientStore {
                 "Marty", 
                 new Date(), 
                 "5556778", 
-                "9303 Roslyndale Ave, Pacoima, CA 91331", 
+                addressOne, 
                 "bttf@gmail.com"
         ));
-        savedPatients.add(new PatientProfile(
+        
+        Address addressTwo = new Address();
+        addressTwo.setLine1("3822 Upstreet Drive");
+        addressTwo.setCity("Pacoima");
+        addressTwo.setState("CA");
+        addressTwo.setZipCode("91331");
+        savedPatients.add(new Patient(
                 "987654321", 
                 "Jeffery",
                 "Rosendale", 
@@ -38,10 +51,16 @@ public class PatientStoreStub implements PatientStore {
                 "Jeff", 
                 new Date(), 
                 "5552132", 
-                "3822 Upstreet Drive, Pacoima, CA 91331", 
+                addressTwo, 
                 "jeff.is.the.man@gmail.com"
         ));
-        savedPatients.add(new PatientProfile(
+        
+        Address addressThree = new Address();
+        addressThree.setLine1("123 UFC Road");
+        addressThree.setCity("Las Vegas");
+        addressThree.setState("NV");
+        addressThree.setZipCode("89104");
+        savedPatients.add(new Patient(
                 "3768487", 
                 "Jimmy",
                 "Buffet", 
@@ -49,25 +68,25 @@ public class PatientStoreStub implements PatientStore {
                 "", 
                 new Date(), 
                 "5551111", 
-                "123 UFC Road, Las Vegas, NV 89104", 
+                addressThree, 
                 "bttf@gmail.com"
         ));
     }
 
     @Override
-    public List<PatientProfile> loadPatients() {
+    public List<Patient> loadPatients() {
         return PatientStoreStub.savedPatients;
     }
 
     @Override
-    public void updatePatient(PatientProfile profile) {
-        List<PatientProfile> filtered = PatientStoreStub.savedPatients.stream().filter(
-                _profile -> _profile.getPatientID().equals(profile.getPatientID())
+    public void updatePatient(Patient profile) {
+        List<Patient> filtered = PatientStoreStub.savedPatients.stream().filter(
+                _profile -> _profile.getIdentifier().equals(profile.getIdentifier())
         ).collect(Collectors.toList());
         if (filtered.size() != 1) {
             return;
         }
-        PatientProfile matchingProfile = filtered.get(0);
+        Patient matchingProfile = filtered.get(0);
         matchingProfile = profile;
     }    
 
