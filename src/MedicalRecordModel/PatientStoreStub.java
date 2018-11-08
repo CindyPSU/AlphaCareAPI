@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  *
  * @author chrismorris
  */
-public class PatientStoreStub implements PatientStore {
+public class PatientStoreStub implements EntityStore<Patient> {
     
     public static final List<Patient> savedPatients = new ArrayList();
     
@@ -74,12 +74,12 @@ public class PatientStoreStub implements PatientStore {
     }
 
     @Override
-    public List<Patient> loadPatients() {
+    public List<Patient> load() {
         return PatientStoreStub.savedPatients;
     }
 
     @Override
-    public void updatePatient(Patient profile) {
+    public void update(Patient profile) {
         List<Patient> filtered = PatientStoreStub.savedPatients.stream().filter(
                 _profile -> _profile.getIdentifier().equals(profile.getIdentifier())
         ).collect(Collectors.toList());

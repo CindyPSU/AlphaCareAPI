@@ -5,14 +5,13 @@
  */
 package MedicalRecordModel;
 
-import UserModel.Patient;
 import java.util.List;
 
 /**
  *
  * @author chrismorris
  */
-public interface PatientStore {
-    public List<Patient> loadPatients();
-    public void updatePatient(Patient profile);
+public interface EntityStore<T> {
+    public List<T> load();
+    public void update(T profile);
 }

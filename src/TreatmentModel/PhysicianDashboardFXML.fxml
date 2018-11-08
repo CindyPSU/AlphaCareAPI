@@ -62,11 +62,12 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TableView layoutX="29.0" layoutY="40.0" prefHeight="200.0" prefWidth="287.0">
+                  <TableView fx:id="tableView" layoutX="29.0" layoutY="40.0" prefHeight="200.0" prefWidth="300">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Date" />
-                      <TableColumn prefWidth="75.0" text="Time" />
-                        <TableColumn prefWidth="75.0" text="Office" />
+                      <TableColumn fx:id="tableViewColumnDate" prefWidth="75.0" text="Date" />
+                      <TableColumn fx:id="tableViewColumnTime" prefWidth="75.0" text="Time" />
+                      <TableColumn fx:id="tableViewColumnOffice" prefWidth="75.0" text="Office" />
+                      <TableColumn fx:id="tableViewColumnStatus" prefWidth="75.0" text="Status" />
                     </columns>
                   </TableView>
                   <Label layoutX="142.0" layoutY="19.0" text="Schedule">

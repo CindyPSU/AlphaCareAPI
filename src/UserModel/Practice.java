@@ -13,13 +13,16 @@ import java.util.ArrayList;
  */
 public class Practice {
     
+    private String name;
     private Address address;
     private ArrayList<Physician> physicians;
     private ArrayList<Nurse> nurses;
     private ArrayList<MedicalAdministrator> medicalAdministrators;
     private ArrayList<Patient> patients;
 
-    public Practice(ArrayList<Physician> physicians, ArrayList<Nurse> nurses, ArrayList<MedicalAdministrator> medicalAdministrators, ArrayList<Patient> patients) {
+    public Practice(String name, Address address, ArrayList<Physician> physicians, ArrayList<Nurse> nurses, ArrayList<MedicalAdministrator> medicalAdministrators, ArrayList<Patient> patients) {
+        this.name = name;
+        this.address = address;
         this.physicians = physicians;
         this.nurses = nurses;
         this.medicalAdministrators = medicalAdministrators;
@@ -96,6 +99,27 @@ public class Practice {
      */
     public Address getAddress() {
         return address;
+    }
+    
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

@@ -25,7 +25,7 @@ public class PatientListXMLController implements Initializable {
     @FXML private TableColumn<Patient, String> tableViewColumn;
     
     private List<Patient> patients;
-    private PatientStore patientLoader;
+    private EntityStore<Patient> patientLoader;
     private PatientListXMLControllerDelegate delegate;
     
     /**
@@ -38,14 +38,14 @@ public class PatientListXMLController implements Initializable {
     /**
      * @return the patientLoader
      */
-    public PatientStore getPatientLoader() {
+    public EntityStore<Patient> getPatientLoader() {
         return patientLoader;
     }
 
     /**
      * @param patientLoader the patientLoader to set
      */
-    public void setPatientLoader(PatientStore patientLoader) {
+    public void setPatientLoader(EntityStore<Patient> patientLoader) {
         this.patientLoader = patientLoader;
     }
     
@@ -81,7 +81,7 @@ public class PatientListXMLController implements Initializable {
     }
     
     public void load() {
-        patients = getPatientLoader().loadPatients();
+        patients = getPatientLoader().load();
         tableView.getItems().setAll(getPatients());
     }
 }

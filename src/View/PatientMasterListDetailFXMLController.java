@@ -5,18 +5,15 @@
  */
 package View;
 
-import MedicalRecordModel.PatientStoreStub;
+import MedicalRecordModel.*;
 import UserModel.Patient;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.*;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import MedicalRecordModel.PatientStore;
 
 /**
  * FXML Controller class
@@ -29,7 +26,7 @@ public class PatientMasterListDetailFXMLController implements Initializable, Pat
     
     private PatientListXMLController listController;
     private PatientDetailFXMLController detailController;
-    private PatientStore patientLoader;
+    private EntityStore<Patient> patientLoader;
     
     /**
      * @return the root
@@ -46,13 +43,13 @@ public class PatientMasterListDetailFXMLController implements Initializable, Pat
         // TODO
     }
 
-    public void load(PatientStore patientLoader) {
+    public void load(EntityStore<Patient> patientLoader) {
         this.patientLoader = patientLoader;
         loadList(patientLoader);
         loadDetail();
     }
     
-    private void loadList(PatientStore patientLoader) {
+    private void loadList(EntityStore<Patient> patientLoader) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientListXML.fxml"));
             Parent root = loader.load();
@@ -84,7 +81,7 @@ public class PatientMasterListDetailFXMLController implements Initializable, Pat
 
     @Override
     public void patientDetailFXMLControllerDidSavePatientProfile(PatientDetailFXMLController controller, Stage stage, Patient profile) {
-        patientLoader.updatePatient(profile);
+        patientLoader.update(profile);
         listController.load();
     }
 

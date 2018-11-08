@@ -24,7 +24,7 @@ public class PatientListModel {
     }
     
     void loadPatients() {
-        patients = new PatientStoreStub().loadPatients();
+        patients = new PatientStoreStub().load();
         
         System.out.println("Patient List Model loaded patients. Would typically "
                 + "load from a persistence layer.");
