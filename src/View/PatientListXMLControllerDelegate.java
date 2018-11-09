@@ -6,11 +6,12 @@
 package View;
 
 import UserModel.Patient;
+import javafx.stage.Stage;
 
 /**
  *
  * @author chrismorris
  */
 public interface PatientListXMLControllerDelegate {
-    void patientListXMLControllerDidSelectPatient(Patient profile);
+    void patientListXMLControllerDidSelectPatient(Patient profile, Stage stage);
 }

@@ -13,6 +13,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -74,7 +75,8 @@ public class PatientListXMLController implements Initializable {
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 if (tableView.getSelectionModel().getSelectedItem() != null) {
                     Patient profile = (Patient)tableView.getSelectionModel().getSelectedItem();
-                    getDelegate().patientListXMLControllerDidSelectPatient(profile);
+                    Stage stage = (Stage)tableView.getScene().getWindow();
+                    getDelegate().patientListXMLControllerDidSelectPatient(profile, stage);
                 }
             }
         });
