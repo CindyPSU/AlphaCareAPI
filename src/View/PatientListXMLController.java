@@ -9,6 +9,7 @@ import UserModel.Patient;
 import MedicalRecordModel.*;
 import java.net.URL;
 import java.util.*;
+import java.util.stream.Collectors;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.*;
 import javafx.fxml.*;
@@ -24,6 +25,7 @@ public class PatientListXMLController implements Initializable {
     
     @FXML private TableView tableView;
     @FXML private TableColumn<Patient, String> tableViewColumn;
+    @FXML private TextField searchBar;
     
     private List<Patient> patients;
     private EntityStore<Patient> patientLoader;
@@ -79,6 +81,19 @@ public class PatientListXMLController implements Initializable {
                     getDelegate().patientListXMLControllerDidSelectPatient(profile, stage);
                 }
             }
+        });
+        
+        searchBar.textProperty().addListener((obs, oldText, newText) -> {
+            if (newText.length() < 2) {
+                if (oldText.length() > 1) {
+                    tableView.getItems().setAll(patients);
+                }
+                return;
+            }
+            List<Patient> filtered = patients.stream().filter(profile -> 
+                    profile.getFullName().contains(newText)
+            ).collect(Collectors.toList());
+            tableView.getItems().setAll(filtered);
         });
     }
     
