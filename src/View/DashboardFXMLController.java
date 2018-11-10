@@ -34,11 +34,11 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
     private List<AppointmentHistory> appointments;
     private EntityStore<AppointmentHistory> store;
     
-    @FXML private TableView tableView;
-    @FXML private TableColumn<AppointmentHistory, String> tableViewColumnDate;
-    @FXML private TableColumn<AppointmentHistory, String> tableViewColumnTime;
-    @FXML private TableColumn<AppointmentHistory, String> tableViewColumnOffice;
-    @FXML private TableColumn<AppointmentHistory, String> tableViewColumnStatus;
+    private TableView tableView;
+    private TableColumn<AppointmentHistory, String> tableViewColumnDate;
+    private TableColumn<AppointmentHistory, String> tableViewColumnTime;
+    private TableColumn<AppointmentHistory, String> tableViewColumnOffice;
+    private TableColumn<AppointmentHistory, String> tableViewColumnStatus;
     
     /**
      * @return the appointments

@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="805.0" prefWidth="1055.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.CompleteMedicalRecordFXMLController">
+   <children>
+      <Accordion layoutX="31.0" layoutY="69.0" prefHeight="645.0" prefWidth="993.0">
+        <panes>
+          <TitledPane animated="false" prefHeight="328.0" prefWidth="993.0" text="Patient Information">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="320.0" prefWidth="991.0" style="-fx-background-color: #ffff66;">
+                     <children>
+                        <Label layoutX="106.0" layoutY="24.0" prefHeight="17.0" prefWidth="117.0" text="Label" />
+                        <Label layoutX="34.0" layoutY="24.0" text="Patient ID" />
+                        <Label layoutX="35.0" layoutY="66.0" text="First Name" />
+                        <Label layoutX="310.0" layoutY="66.0" text="Last Name" />
+                        <Label layoutX="550.0" layoutY="66.0" text="Middle Initial" />
+                        <Label layoutX="716.0" layoutY="66.0" text="Preferred Name" />
+                        <Label layoutX="366.0" layoutY="24.0" text="Date of Birth" />
+                        <Label layoutX="35.0" layoutY="110.0" text="Homes Address" />
+                        <Label layoutX="34.0" layoutY="152.0" text="Phone Number" />
+                        <Label layoutX="35.0" layoutY="190.0" text="Email" />
+                        <TextField layoutX="106.0" layoutY="62.0" />
+                        <TextField layoutX="381.0" layoutY="62.0" />
+                        <TextField layoutX="630.0" layoutY="62.0" prefHeight="25.0" prefWidth="29.0" />
+                        <TextField layoutX="814.0" layoutY="62.0" />
+                        <TextField layoutX="139.0" layoutY="106.0" prefHeight="25.0" prefWidth="740.0" />
+                        <TextField layoutX="139.0" layoutY="148.0" prefHeight="25.0" prefWidth="214.0" />
+                        <TextField layoutX="139.0" layoutY="186.0" prefHeight="25.0" prefWidth="383.0" />
+                        <DatePicker layoutX="443.0" layoutY="20.0" prefHeight="25.0" prefWidth="153.0" />
+                        <Label layoutX="36.0" layoutY="251.0" text="**If any of your personal information is incorrect, please contact Records Management at (406) 558 - 9778.">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" prefHeight="292.0" prefWidth="993.0" style="-fx-background-color: #1E90FF;" text="Medical History">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="280.0" prefWidth="991.0" style="-fx-background-color: #1E90FF;">
+                     <children>
+                        <Label layoutX="30.0" layoutY="30.0" text="Date" />
+                        <Label layoutX="173.0" layoutY="30.0" text="Current Medical Condition" />
+                        <Label layoutX="30.0" layoutY="171.0" text="Date" />
+                        <Label layoutX="30.0" layoutY="210.0" text="Procedure Name" />
+                        <Label layoutX="173.0" layoutY="92.0" text="Past Medical Conditions" />
+                        <Separator layoutX="16.0" layoutY="153.0" prefHeight="5.0" prefWidth="960.0" />
+                        <TextField layoutX="173.0" layoutY="56.0" prefHeight="25.0" prefWidth="786.0" />
+                        <TextField layoutX="330.0" layoutY="26.0" prefHeight="25.0" prefWidth="628.0" />
+                        <Label layoutX="119.0" layoutY="60.0" text="Notes" />
+                        <TextField layoutX="330.0" layoutY="88.0" prefHeight="25.0" prefWidth="629.0" />
+                        <Label layoutX="121.0" layoutY="120.0" text="Notes" />
+                        <TextField layoutX="173.0" layoutY="116.0" prefHeight="25.0" prefWidth="786.0" />
+                        <TextField layoutX="135.0" layoutY="206.0" prefHeight="25.0" prefWidth="306.0" />
+                        <Label layoutX="349.0" layoutY="171.0" text="Age" />
+                        <TextField layoutX="388.0" layoutY="167.0" prefHeight="25.0" prefWidth="53.0" />
+                        <Label layoutX="29.0" layoutY="265.0" text="Date" />
+                        <Label layoutX="346.0" layoutY="265.0" text="Age" />
+                        <Label layoutX="29.0" layoutY="306.0" text="Procedure Name" />
+                        <Label layoutX="29.0" layoutY="369.0" text="Date" />
+                        <Label layoutX="29.0" layoutY="418.0" text="Procedure Name" />
+                        <Label layoutX="346.0" layoutY="369.0" text="Age" />
+                        <TextField layoutX="388.0" layoutY="261.0" prefHeight="25.0" prefWidth="53.0" />
+                        <TextField layoutX="135.0" layoutY="302.0" prefHeight="25.0" prefWidth="306.0" />
+                        <TextField layoutX="388.0" layoutY="365.0" prefHeight="25.0" prefWidth="53.0" />
+                        <TextField layoutX="137.0" layoutY="414.0" prefHeight="25.0" prefWidth="305.0" />
+                        <Label layoutX="638.0" layoutY="171.0" text="Allergy" />
+                        <Label layoutX="638.0" layoutY="210.0" text="Reaction Description" />
+                        <Label layoutX="638.0" layoutY="265.0" text="Allergy" />
+                        <Label layoutX="638.0" layoutY="306.0" text="Reaction Description" />
+                        <Label layoutX="640.0" layoutY="369.0" text="Allergy" />
+                        <Label layoutX="638.0" layoutY="418.0" text="Reaction Description" />
+                        <TextField layoutX="693.0" layoutY="167.0" prefHeight="25.0" prefWidth="200.0" />
+                        <TextField layoutX="763.0" layoutY="206.0" prefHeight="25.0" prefWidth="215.0" />
+                        <TextField layoutX="693.0" layoutY="261.0" prefHeight="25.0" prefWidth="200.0" />
+                        <TextField layoutX="763.0" layoutY="302.0" prefHeight="25.0" prefWidth="215.0" />
+                        <TextField layoutX="693.0" layoutY="365.0" prefHeight="25.0" prefWidth="215.0" />
+                        <TextField layoutX="763.0" layoutY="414.0" prefHeight="25.0" prefWidth="215.0" />
+                        <Separator layoutX="543.0" layoutY="174.0" orientation="VERTICAL" prefHeight="278.0" prefWidth="0.0" />
+                        <DatePicker layoutX="60.0" layoutY="26.0" prefHeight="25.0" prefWidth="108.0" />
+                        <DatePicker layoutX="63.0" layoutY="167.0" prefHeight="25.0" prefWidth="119.0" />
+                        <DatePicker layoutX="63.0" layoutY="261.0" prefHeight="25.0" prefWidth="119.0" />
+                        <DatePicker layoutX="63.0" layoutY="365.0" prefHeight="25.0" prefWidth="119.0" />
+                     </children>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Immunization History">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #ff9999;">
+                     <children>
+                        <Label layoutX="29.0" layoutY="33.0" text="Date" />
+                        <Label layoutX="195.0" layoutY="33.0" text="Time" />
+                        <Label layoutX="350.0" layoutY="33.0" text="Given By" />
+                        <Label layoutX="722.0" layoutY="33.0" text="Title" />
+                        <Label layoutX="29.0" layoutY="73.0" text="ID" />
+                        <Label layoutX="195.0" layoutY="73.0" text="Type" />
+                        <TextField layoutX="232.0" layoutY="29.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField layoutX="404.0" layoutY="29.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField layoutX="759.0" layoutY="29.0" />
+                        <TextField layoutX="59.0" layoutY="69.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField layoutX="232.0" layoutY="69.0" prefHeight="25.0" prefWidth="307.0" />
+                        <Label layoutX="28.0" layoutY="138.0" text="Date" />
+                        <DatePicker layoutX="59.0" layoutY="29.0" prefHeight="25.0" prefWidth="117.0" />
+                        <DatePicker layoutX="59.0" layoutY="134.0" prefHeight="25.0" prefWidth="117.0" />
+                        <Label layoutX="194.0" layoutY="138.0" text="Time" />
+                        <Label layoutX="350.0" layoutY="138.0" text="Given By" />
+                        <Label layoutX="722.0" layoutY="138.0" text="Title" />
+                        <Label layoutX="29.0" layoutY="176.0" text="ID" />
+                        <Label layoutX="193.0" layoutY="176.0" text="Type" />
+                        <TextField layoutX="232.0" layoutY="134.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField layoutX="404.0" layoutY="134.0" prefHeight="25.0" prefWidth="278.0" />
+                        <TextField layoutX="759.0" layoutY="134.0" />
+                        <TextField layoutX="59.0" layoutY="172.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField layoutX="232.0" layoutY="172.0" prefHeight="25.0" prefWidth="307.0" />
+                        <Label layoutX="29.0" layoutY="246.0" text="Date" />
+                        <Label layoutX="192.0" layoutY="246.0" text="Time" />
+                        <Label layoutX="350.0" layoutY="246.0" text="Given By" />
+                        <Label layoutX="722.0" layoutY="246.0" text="Title" />
+                        <Label layoutX="29.0" layoutY="286.0" text="ID" />
+                        <Label layoutX="192.0" layoutY="286.0" text="Type" />
+                        <Label layoutX="29.0" layoutY="361.0" text="Date" />
+                        <Label layoutX="192.0" layoutY="361.0" text="Time" />
+                        <Label layoutX="350.0" layoutY="361.0" text="Given By" />
+                        <Label layoutX="722.0" layoutY="361.0" text="Title" />
+                        <Label layoutX="29.0" layoutY="407.0" text="ID" />
+                        <Label layoutX="192.0" layoutY="407.0" text="Type" />
+                        <DatePicker layoutX="59.0" layoutY="242.0" prefHeight="25.0" prefWidth="118.0" />
+                        <DatePicker layoutX="59.0" layoutY="357.0" prefHeight="25.0" prefWidth="117.0" />
+                        <TextField layoutX="232.0" layoutY="242.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField layoutX="232.0" layoutY="357.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField layoutX="404.0" layoutY="242.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField layoutX="404.0" layoutY="357.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField layoutX="759.0" layoutY="242.0" />
+                        <TextField layoutX="759.0" layoutY="357.0" />
+                        <TextField layoutX="59.0" layoutY="403.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField layoutX="59.0" layoutY="282.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField layoutX="232.0" layoutY="282.0" prefHeight="25.0" prefWidth="307.0" />
+                        <TextField layoutX="232.0" layoutY="403.0" prefHeight="25.0" prefWidth="307.0" />
+                     </children>
+                     <effect>
+                        <InnerShadow />
+                     </effect></AnchorPane>
+            </content>
+          </TitledPane>
+            <TitledPane animated="false" layoutX="10.0" layoutY="60.0" style="-fx-background-color: #bb99ff;" text="Prescription History">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #bb99ff;">
+                     <children>
+                        <Label layoutX="25.0" layoutY="38.0" text="Order Date" />
+                        <Label layoutX="295.0" layoutY="38.0" text="Order Time" />
+                        <Label layoutX="25.0" layoutY="134.0" text="Order Date" />
+                        <Label layoutX="25.0" layoutY="236.0" text="Order Date" />
+                        <Label layoutX="25.0" layoutY="351.0" text="Order Date" />
+                        <Label layoutX="295.0" layoutY="134.0" text="Order Time" />
+                        <Label layoutX="295.0" layoutY="236.0" text="Order Time" />
+                        <Label layoutX="295.0" layoutY="351.0" text="Order Time" />
+                        <Label layoutX="565.0" layoutY="38.0" text="Physician Name" />
+                        <Label layoutX="565.0" layoutY="134.0" text="Physician Name" />
+                        <Label layoutX="565.0" layoutY="236.0" text="Physician Name" />
+                        <Label layoutX="565.0" layoutY="351.0" text="Physician Name" />
+                        <Label layoutX="25.0" layoutY="73.0" text="RX ID" />
+                        <Label layoutX="295.0" layoutY="73.0" text="RX Name" />
+                        <Label layoutX="565.0" layoutY="73.0" text="Refill Count" />
+                        <Label layoutX="25.0" layoutY="171.0" text="RX ID" />
+                        <Label layoutX="25.0" layoutY="274.0" text="RX ID" />
+                        <Label layoutX="25.0" layoutY="390.0" text="RX ID" />
+                        <Label layoutX="295.0" layoutY="171.0" text="RX Name" />
+                        <Label layoutX="295.0" layoutY="274.0" text="RX Name" />
+                        <Label layoutX="295.0" layoutY="390.0" text="RX Name" />
+                        <Label layoutX="565.0" layoutY="171.0" text="Refill Count" />
+                        <Label layoutX="565.0" layoutY="274.0" text="Refill Count" />
+                        <Label layoutX="565.0" layoutY="390.0" text="Refill Count" />
+                        <DatePicker layoutX="96.0" layoutY="34.0" />
+                        <DatePicker layoutX="96.0" layoutY="130.0" />
+                        <DatePicker layoutX="96.0" layoutY="232.0" />
+                        <DatePicker layoutX="96.0" layoutY="347.0" />
+                        <TextField layoutX="368.0" layoutY="34.0" />
+                        <TextField layoutX="368.0" layoutY="130.0" />
+                        <TextField layoutX="368.0" layoutY="232.0" />
+                        <TextField layoutX="368.0" layoutY="347.0" />
+                        <TextField layoutX="664.0" layoutY="34.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField layoutX="664.0" layoutY="130.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField layoutX="664.0" layoutY="232.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField layoutX="664.0" layoutY="347.0" prefHeight="25.0" prefWidth="225.0" />
+                        <ChoiceBox layoutX="96.0" layoutY="386.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="368.0" layoutY="386.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="96.0" layoutY="270.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="368.0" layoutY="270.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="96.0" layoutY="69.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="368.0" layoutY="69.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="96.0" layoutY="167.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="368.0" layoutY="167.0" prefWidth="150.0" />
+                        <Label layoutX="664.0" layoutY="73.0" text="Refills Remaining #" />
+                        <Label layoutX="664.0" layoutY="171.0" text="Refills Remaining #" />
+                        <Label layoutX="664.0" layoutY="274.0" text="Refills Remaining #" />
+                        <Label layoutX="664.0" layoutY="390.0" text="Refills Remaining #" />
+                     </children>
+                     <effect>
+                        <InnerShadow />
+                     </effect></AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" layoutX="10.0" layoutY="85.0" text="Appointment History">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #6699CC;">
+                     <children>
+                        <Label layoutX="25.0" layoutY="38.0" text="Date" />
+                        <Label layoutX="295.0" layoutY="38.0" text="Time" />
+                        <Label layoutX="25.0" layoutY="185.0" text="Date" />
+                        <Label layoutX="25.0" layoutY="340.0" text="Date" />
+                        <Label layoutX="295.0" layoutY="185.0" text="Time" />
+                        <Label layoutX="295.0" layoutY="340.0" text="Time" />
+                        <Label layoutX="565.0" layoutY="38.0" text="Physician Name" />
+                        <Label layoutX="565.0" layoutY="185.0" text="Physician Name" />
+                        <Label layoutX="565.0" layoutY="340.0" text="Physician Name" />
+                        <Label layoutX="25.0" layoutY="73.0" text="Code" />
+                        <Label layoutX="295.0" layoutY="73.0" text="Description" />
+                        <Label layoutX="565.0" layoutY="73.0" text="Status" />
+                        <Label layoutX="25.0" layoutY="229.0" text="Code" />
+                        <Label layoutX="25.0" layoutY="377.0" text="Code" />
+                        <Label layoutX="295.0" layoutY="229.0" text="Description" />
+                        <Label layoutX="295.0" layoutY="377.0" text="Description" />
+                        <Label layoutX="565.0" layoutY="229.0" text="Status" />
+                        <Label layoutX="565.0" layoutY="377.0" text="Status" />
+                        <DatePicker layoutX="96.0" layoutY="34.0" prefHeight="25.0" prefWidth="150.0" />
+                        <DatePicker layoutX="96.0" layoutY="181.0" />
+                        <DatePicker layoutX="96.0" layoutY="336.0" />
+                        <TextField layoutX="368.0" layoutY="34.0" />
+                        <TextField layoutX="368.0" layoutY="181.0" />
+                        <TextField layoutX="368.0" layoutY="336.0" />
+                        <TextField layoutX="664.0" layoutY="34.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField layoutX="664.0" layoutY="181.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField layoutX="664.0" layoutY="336.0" prefHeight="25.0" prefWidth="225.0" />
+                        <ChoiceBox layoutX="96.0" layoutY="373.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="368.0" layoutY="373.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="96.0" layoutY="225.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="368.0" layoutY="225.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="96.0" layoutY="69.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="368.0" layoutY="69.0" prefWidth="150.0" />
+                        <Label layoutX="664.0" layoutY="73.0" />
+                        <Label layoutX="664.0" layoutY="399.0" />
+                        <ChoiceBox layoutX="664.0" layoutY="69.0" prefWidth="150.0" />
+                        <Label layoutX="25.0" layoutY="118.0" text="Medical Practice" />
+                        <TextField layoutX="131.0" layoutY="114.0" prefHeight="25.0" prefWidth="431.0" />
+                        <Label layoutX="25.0" layoutY="422.0" text="Medical Practice" />
+                        <ChoiceBox layoutX="664.0" layoutY="373.0" prefWidth="150.0" />
+                        <TextField layoutX="131.0" layoutY="418.0" prefHeight="25.0" prefWidth="431.0" />
+                        <Separator layoutX="25.0" layoutY="313.0" prefHeight="4.0" prefWidth="937.0" />
+                        <Label layoutX="25.0" layoutY="274.0" text="Medical Practice" />
+                        <ChoiceBox layoutX="664.0" layoutY="225.0" prefWidth="150.0" />
+                        <Separator layoutX="25.0" layoutY="154.0" prefHeight="4.0" prefWidth="937.0" />
+                        <TextField layoutX="131.0" layoutY="270.0" prefHeight="25.0" prefWidth="431.0" />
+                     </children>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" layoutX="10.0" layoutY="60.0" text="Vital Signs">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #5dd5d5;">
+                     <children>
+                        <Label layoutX="29.0" layoutY="33.0" text="Date" />
+                        <Label layoutX="195.0" layoutY="33.0" text="Time" />
+                        <Label layoutX="350.0" layoutY="33.0" text="Checked By" />
+                        <Label layoutX="29.0" layoutY="73.0" text="HR" />
+                        <Label layoutX="195.0" layoutY="73.0" text="BP" />
+                        <TextField layoutX="232.0" layoutY="29.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField layoutX="421.0" layoutY="29.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField layoutX="59.0" layoutY="69.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField layoutX="232.0" layoutY="69.0" prefHeight="25.0" prefWidth="100.0" />
+                        <Label layoutX="28.0" layoutY="138.0" text="Date" />
+                        <DatePicker layoutX="59.0" layoutY="29.0" prefHeight="25.0" prefWidth="117.0" />
+                        <DatePicker layoutX="59.0" layoutY="134.0" prefHeight="25.0" prefWidth="117.0" />
+                        <Label layoutX="194.0" layoutY="138.0" text="Time" />
+                        <Label layoutX="350.0" layoutY="138.0" text="Checked By" />
+                        <Label layoutX="29.0" layoutY="176.0" text="HR" />
+                        <Label layoutX="193.0" layoutY="176.0" text="BP" />
+                        <TextField layoutX="232.0" layoutY="134.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField layoutX="421.0" layoutY="134.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField layoutX="59.0" layoutY="172.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField layoutX="232.0" layoutY="172.0" prefHeight="25.0" prefWidth="100.0" />
+                        <Label layoutX="29.0" layoutY="246.0" text="Date" />
+                        <Label layoutX="192.0" layoutY="246.0" text="Time" />
+                        <Label layoutX="350.0" layoutY="246.0" text="Checked By" />
+                        <Label layoutX="29.0" layoutY="286.0" text="HR" />
+                        <Label layoutX="192.0" layoutY="286.0" text="BP" />
+                        <Label layoutX="29.0" layoutY="361.0" text="Date" />
+                        <Label layoutX="192.0" layoutY="361.0" text="Time" />
+                        <Label layoutX="350.0" layoutY="361.0" text="Checked By" />
+                        <Label layoutX="29.0" layoutY="407.0" text="HR" />
+                        <Label layoutX="192.0" layoutY="407.0" text="BP" />
+                        <DatePicker layoutX="59.0" layoutY="242.0" prefHeight="25.0" prefWidth="118.0" />
+                        <DatePicker layoutX="59.0" layoutY="357.0" prefHeight="25.0" prefWidth="117.0" />
+                        <TextField layoutX="232.0" layoutY="242.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField layoutX="232.0" layoutY="357.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField layoutX="421.0" layoutY="242.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField layoutX="421.0" layoutY="357.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField layoutX="59.0" layoutY="403.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField layoutX="59.0" layoutY="282.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField layoutX="232.0" layoutY="282.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField layoutX="232.0" layoutY="403.0" prefHeight="25.0" prefWidth="100.0" />
+                        <Label layoutX="350.0" layoutY="73.0" text="O2" />
+                        <TextField layoutX="381.0" layoutY="69.0" prefHeight="25.0" prefWidth="50.0" />
+                        <Label layoutX="454.0" layoutY="73.0" text="BPM" />
+                        <TextField layoutX="496.0" layoutY="69.0" prefHeight="25.0" prefWidth="50.0" />
+                        <Label layoutX="350.0" layoutY="176.0" text="O2" />
+                        <TextField layoutX="381.0" layoutY="172.0" prefHeight="25.0" prefWidth="50.0" />
+                        <Label layoutX="454.0" layoutY="176.0" text="BPM" />
+                        <TextField layoutX="496.0" layoutY="172.0" prefHeight="25.0" prefWidth="50.0" />
+                        <Label layoutX="350.0" layoutY="286.0" text="O2" />
+                        <TextField layoutX="381.0" layoutY="282.0" prefHeight="25.0" prefWidth="50.0" />
+                        <Label layoutX="454.0" layoutY="286.0" text="BPM" />
+                        <TextField layoutX="496.0" layoutY="282.0" prefHeight="25.0" prefWidth="50.0" />
+                        <Label layoutX="350.0" layoutY="407.0" text="O2" />
+                        <TextField layoutX="381.0" layoutY="403.0" prefHeight="25.0" prefWidth="50.0" />
+                        <Label layoutX="454.0" layoutY="407.0" text="BPM" />
+                        <TextField layoutX="496.0" layoutY="403.0" prefHeight="25.0" prefWidth="50.0" />
+                     </children>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" layoutX="10.0" layoutY="85.0" text="Test &amp; Lab Results">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #00b300;">
+                     <children>
+                        <Label layoutX="25.0" layoutY="38.0" text="Order Date" />
+                        <Label layoutX="295.0" layoutY="38.0" text="Order Time" />
+                        <Label layoutX="25.0" layoutY="134.0" text="Order Date" />
+                        <Label layoutX="25.0" layoutY="236.0" text="Order Date" />
+                        <Label layoutX="25.0" layoutY="351.0" text="Order Date" />
+                        <Label layoutX="295.0" layoutY="134.0" text="Order Time" />
+                        <Label layoutX="295.0" layoutY="236.0" text="Order Time" />
+                        <Label layoutX="295.0" layoutY="351.0" text="Order Time" />
+                        <Label layoutX="565.0" layoutY="38.0" text="Physician Name" />
+                        <Label layoutX="565.0" layoutY="134.0" text="Physician Name" />
+                        <Label layoutX="565.0" layoutY="236.0" text="Physician Name" />
+                        <Label layoutX="565.0" layoutY="351.0" text="Physician Name" />
+                        <Label layoutX="25.0" layoutY="73.0" text="Test ID" />
+                        <Label layoutX="295.0" layoutY="73.0" text="Test Name" />
+                        <Label layoutX="565.0" layoutY="73.0" text="Test Result" />
+                        <Label layoutX="25.0" layoutY="171.0" text="Test ID" />
+                        <Label layoutX="25.0" layoutY="274.0" text="Test ID" />
+                        <Label layoutX="25.0" layoutY="390.0" text="Test ID" />
+                        <Label layoutX="295.0" layoutY="171.0" text="Test Name" />
+                        <Label layoutX="295.0" layoutY="274.0" text="Test Name" />
+                        <Label layoutX="295.0" layoutY="390.0" text="Test Name" />
+                        <Label layoutX="565.0" layoutY="171.0" text="Test Result" />
+                        <Label layoutX="565.0" layoutY="274.0" text="Test Result" />
+                        <Label layoutX="565.0" layoutY="390.0" text="Test Result" />
+                        <DatePicker layoutX="96.0" layoutY="34.0" />
+                        <DatePicker layoutX="96.0" layoutY="130.0" />
+                        <DatePicker layoutX="96.0" layoutY="232.0" />
+                        <DatePicker layoutX="96.0" layoutY="347.0" />
+                        <TextField layoutX="368.0" layoutY="34.0" />
+                        <TextField layoutX="368.0" layoutY="130.0" />
+                        <TextField layoutX="368.0" layoutY="232.0" />
+                        <TextField layoutX="368.0" layoutY="347.0" />
+                        <TextField layoutX="664.0" layoutY="34.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField layoutX="664.0" layoutY="130.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField layoutX="664.0" layoutY="232.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField layoutX="664.0" layoutY="347.0" prefHeight="25.0" prefWidth="225.0" />
+                        <ChoiceBox layoutX="96.0" layoutY="386.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="368.0" layoutY="386.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="96.0" layoutY="270.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="368.0" layoutY="270.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="96.0" layoutY="69.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="368.0" layoutY="69.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="96.0" layoutY="167.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="368.0" layoutY="167.0" prefWidth="150.0" />
+                        <Label layoutX="664.0" layoutY="73.0" />
+                        <TextField layoutX="664.0" layoutY="69.0" />
+                        <TextField layoutX="664.0" layoutY="167.0" />
+                        <TextField layoutX="664.0" layoutY="270.0" />
+                        <TextField layoutX="664.0" layoutY="386.0" />
+                     </children>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+        </panes>
+      </Accordion>
+      <Button layoutX="981.0" layoutY="746.0" mnemonicParsing="false" text="Save" />
+      <Button layoutX="823.0" layoutY="746.0" mnemonicParsing="false" text="Return to Dashboard" />
+   </children>
+</AnchorPane>
