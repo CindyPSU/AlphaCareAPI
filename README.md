@@ -42,8 +42,9 @@ Initially, several system reports were outlined in the requirements ascertained 
 
 2) **Tabbed or Accordion View for Patient Medical Record Interface**
 Given the non-definitive aesthetic preference for either design option, the development team will proceed with the most user-friendly and pragmatic design option. To make the final decision, the development team will implement both designs and then make the aesthetic selection for the interface.
+
 *Design Notes:*
-1. Patient Medical Record Interface Implemented with Accordion Control for the layout. The medical record contains seven (7) sections: Patient Information, Medical History, Immunization History, Prescription History, Appointment History, Vital Signs, and Test & Lab Results. 
+Patient Medical Record Interface Implemented with Accordion Control for the layout. The medical record contains seven (7) sections: Patient Information, Medical History, Immunization History, Prescription History, Appointment History, Vital Signs, and Test & Lab Results. 
 
 **Use Case Implementation** View/Create Patient Medical Record
 Rationale: The last development phase resulted in the creation of viewing patient details based on a patient search function. In this development phase we have implemented the complete patient medical record view (CompleteMedicalRecordFXML.fxml), and the functionality to create a new patient record. 
