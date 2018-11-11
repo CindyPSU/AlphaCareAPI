@@ -10,6 +10,7 @@ import UserModel.Patient;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
@@ -27,17 +28,22 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Princess_ktwo
+ * @author Cindy Hilgeman (cdh5367)
  */
 public class DashboardFXMLController implements Initializable, PatientDetailFXMLControllerDelegate, PatientListXMLControllerDelegate {
     
     private List<AppointmentHistory> appointments;
     private EntityStore<AppointmentHistory> store;
     
+    @FXML
     private TableView tableView;
+    @FXML
     private TableColumn<AppointmentHistory, String> tableViewColumnDate;
+    @FXML
     private TableColumn<AppointmentHistory, String> tableViewColumnTime;
+    @FXML
     private TableColumn<AppointmentHistory, String> tableViewColumnOffice;
+    @FXML
     private TableColumn<AppointmentHistory, String> tableViewColumnStatus;
     
     /**
@@ -82,7 +88,7 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
     }
     
     public void displayCreateNewPatientView() {
-        showDetail(new PatientDetailFXMLControllerContextCreate());
+        showDetail(null);
     }
     
     public void displayAppointmentCalendar(){
@@ -97,15 +103,21 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
         
     }
     
-    private void showDetail(PatientDetailFXMLControllerContext context) {
+    private void showDetail(Patient profile) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientDetailFXML.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CompleteMedicalRecordFXML.fxml"));
             Parent root = loader.load();
-            PatientDetailFXMLController controller = loader.<PatientDetailFXMLController>getController();
-            controller.setContext(context);
-            controller.setDelegate(this);
-            controller.load();
+            //PatientDetailFXMLController controller = loader.<PatientDetailFXMLController>getController();
+            CompleteMedicalRecordFXMLController controller = loader.<CompleteMedicalRecordFXMLController>getController();
+            if(profile != null)
+            {
+                controller.setProfile(profile);
+            }
+            //controller.setContext(context);
+            //controller.setDelegate(this);
+            //controller.load();
             Stage stage = new Stage();
+            controller.setStage(stage);
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException error) {
@@ -131,6 +143,6 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
     @Override
     public void patientListXMLControllerDidSelectPatient(Patient profile, Stage stage) {
         stage.close();
-        showDetail(new PatientDetailFXMLControllerContextEdit(profile));
+        showDetail(profile);
     }
 }

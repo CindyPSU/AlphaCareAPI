@@ -2,6 +2,7 @@
 package MedicalRecordModel;
 
 import UserModel.Patient;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
 public class MedicalHistory {
     private Patient patientID;
     private int medicalHistoryID;
-    private Date procedureDate;
+    private LocalDate procedureDate;
     private String procedureName;
     private int procedureAge;
     private String allergyName;
@@ -34,7 +35,7 @@ public class MedicalHistory {
      * 
      * This is the constructor for the MedicalHistory Class.
      */
-    public MedicalHistory(Patient linkPatientID, int medHID, Date pDate, String pName, int pAge,
+    public MedicalHistory(Patient linkPatientID, int medHID, LocalDate pDate, String pName, int pAge,
             String allName, String allDesc, String currentMed, String pastMed){
         patientID = linkPatientID;
         medicalHistoryID = medHID;
@@ -58,7 +59,7 @@ public class MedicalHistory {
      * Returns the procedure date.
      * @return An procedure date.
      */
-    public Date getProcedureDate(){
+    public LocalDate getProcedureDate(){
         return procedureDate;
     }
     
@@ -76,6 +77,12 @@ public class MedicalHistory {
      */
     public int getProcedureAge(){
         return procedureAge;
+    }
+    
+    public String getProcedureAgeString(){
+        String p_age;
+        p_age = Integer.toString(procedureAge);
+        return p_age;
     }
     
     /**
@@ -134,7 +141,7 @@ public class MedicalHistory {
     /**
      * @param procedureDate the procedureDate to set
      */
-    public void setProcedureDate(Date procedureDate) {
+    public void setProcedureDate(LocalDate procedureDate) {
         this.procedureDate = procedureDate;
     }
 
