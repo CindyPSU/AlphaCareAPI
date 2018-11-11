@@ -54,7 +54,7 @@ public class SQLite {
                         + "patientMiddleInitial='" + profile.getMiddleInitial()+ "', "
                         + "patientPreferredName='" + profile.getPreferredName()+ "', "
                         + "patientDOB='" + profile.getBirthdate().format(DateTimeFormatter.ISO_LOCAL_DATE)+"',"
-                        + "patientPhoneNumber='" + profile.getPhoneNumber() + ", "
+                        + "patientPhoneNumber='" + profile.getPhoneNumber() + "', "
                         + "patientAddress='" + profile.getAddress() + "', "
                         + "patientEmailAddress='" + profile.getEmail() + "'"
                         + ""
@@ -71,7 +71,7 @@ public class SQLite {
                     + "'" + profile.getMiddleInitial()+ "', "
                     + "'" + profile.getPreferredName()+ "', "
                     + "'" + profile.getBirthdate().format(DateTimeFormatter.ISO_LOCAL_DATE) + "', "
-                    + "" +  profile.getPhoneNumber() + ", "
+                    + "'" +  profile.getPhoneNumber() + "', "
                     + "'" + profile.getAddress() + "', "
                     + "'" + profile.getEmail() + "'"
                     + ")";
