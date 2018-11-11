@@ -9,6 +9,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
@@ -33,14 +36,79 @@ public class SQLite {
     public static void savePatientProfile(Patient profile){
         initializeDatabase();
         // code for inserting patient profile into the database
-        /*try (
-            String sql = "INSERT INTO Patient"
+        try (
             Statement stmt = conn.createStatement()) {
+
+            String sqlSearch = "SELECT * FROM PatientProfile WHERE patientID='" + profile.getIdentifier() + "'";
+            ResultSet rs = stmt.executeQuery(sqlSearch);
+            
+            String sqlUpdateOrInsert = null;
+            boolean updated = false;
+            while(rs.next())
+            {
+                updated = true;
+                sqlUpdateOrInsert = "UPDATE PatientProfile SET "
+                    + "patientFirstName='" + profile.getFirstName() + "', "
+                    + "patientLastName='" + profile.getLastName() + "'"
+                    + " WHERE patientID='" + profile.getIdentifier() + "'";
+            }
+            
+            if(!updated)
+            {
+                sqlUpdateOrInsert = "INSERT INTO PatientProfile (patientID, patientFirstName, patientLastName, patientMiddleInitial, "
+                    + "patientPreferredName, patientDOB, patientPhoneNumber, patientAddress, patientEmailAddress) VALUES ("
+                    + "'" + profile.getIdentifier() + "', "
+                    + "'" + profile.getFirstName() + "', "
+                    + "'" + profile.getLastName() + "', "
+                    + "'" + profile.getMiddleInitial()+ "', "
+                    + "'" + profile.getPreferredName()+ "', "
+                    + "'" + profile.getBirthdate().format(DateTimeFormatter.ISO_LOCAL_DATE) + "', "
+                    + "" +  profile.getPhoneNumber() + ", "
+                    + "'" + profile.getAddress() + "', "
+                    + "'" + profile.getEmail() + "'"
+                    + ")";
+            }
+            
             // create a new table
-            stmt.execute(sql);
+            stmt.execute(sqlUpdateOrInsert);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }*/
+        }
+    }
+    
+    /**
+     * Saves the patient's profile to the database.
+     * @param profile 
+     */
+    public static List<Patient>  loadPatients(){
+
+        ArrayList<Patient> results = new ArrayList<Patient>();
+        
+        initializeDatabase();
+        // code for inserting patient profile into the database
+        try (
+            Statement stmt = conn.createStatement()) {
+
+            String sqlSearch = "SELECT * FROM PatientProfile";
+            ResultSet rs = stmt.executeQuery(sqlSearch);
+
+            while(rs.next())
+            {
+                Patient p = new Patient();
+                p.setIdentifier(rs.getString("patientID"));
+                p.setFirstName(rs.getString("patientFirstName"));
+                p.setLastName(rs.getString("patientLastName"));
+                p.setMiddleInitial(rs.getString("patientMiddleInitial"));
+                p.setPreferredName(rs.getString("patientPreferredName"));
+                // Cindy add the rest here
+                results.add(p);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return results;
     }
     
     /**
@@ -58,7 +126,8 @@ public class SQLite {
             // Define the connection string
             String url = "jdbc:sqlite:" + fileName;
             // Try to connect to the database
-            try (Connection conn = DriverManager.getConnection(url)) {
+            try  {
+                Connection conn = DriverManager.getConnection(url);
                 if (conn != null) {
                    //DatabaseMetaData meta = conn.getMetaData();
                    initializePatientProfileTable(conn); 
@@ -91,7 +160,7 @@ public class SQLite {
                 +"patientMiddleInitial text, \n"
                 +"patientPreferredName text, \n"
                 +"patientDOB text, \n" // Date format YYYY-MM-DD HH:MM:SS.SSS
-                +"patientPhoneNumber integer, \n"
+                +"patientPhoneNumber text, \n"
                 +"patientAddress text, \n"
                 +"patientEmailAddress text);";
         try (

@@ -3,6 +3,7 @@ package MedicalRecordModel;
 
 import UserModel.Patient;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  */
 public class TestLabResults {
     private Patient patientID;
-    private Date testOrderDate;
+    private LocalDate testOrderDate;
     private Time testOrderTime;
     private String physicianName;
     private int testID;
@@ -31,7 +32,7 @@ public class TestLabResults {
      * 
      * This is the constructor for the TestLabResults Class.
      */
-    public TestLabResults(Patient linkPatientID, Date testDate, Time testTime, String docName,
+    public TestLabResults(Patient linkPatientID, LocalDate testDate, Time testTime, String docName,
             int enterTestID, String testType, String testRelease){
         patientID = linkPatientID;
         testOrderDate = testDate;
@@ -46,7 +47,7 @@ public class TestLabResults {
      * Returns the test order date.
      * @return A test order date.
      */
-    public Date getTestOrderDate(){
+    public LocalDate getTestOrderDate(){
         return testOrderDate;
     }
     
@@ -107,7 +108,7 @@ public class TestLabResults {
     /**
      * @param testOrderDate the testOrderDate to set
      */
-    public void setTestOrderDate(Date testOrderDate) {
+    public void setTestOrderDate(LocalDate testOrderDate) {
         this.testOrderDate = testOrderDate;
     }
 

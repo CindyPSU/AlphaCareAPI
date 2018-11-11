@@ -3,6 +3,7 @@ package MedicalRecordModel;
 
 import UserModel.Patient;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  */
 public class ImmunizationHistory {
     private Patient patientID;
-    private Date immunizeDate;
+    private LocalDate immunizeDate;
     private Time immunizeTime;
     private String givenByName;
     private String givenByTitle;
@@ -31,7 +32,7 @@ public class ImmunizationHistory {
      * 
      * This is the constructor for the ImmunizationHistory Class.
      */
-    public ImmunizationHistory(Patient linkPatientID, Date iDate, Time iTime, String givenName,
+    public ImmunizationHistory(Patient linkPatientID, LocalDate iDate, Time iTime, String givenName,
             String givenTitle, int iID, String iName){
         patientID = linkPatientID;
         immunizeDate = iDate;
@@ -46,7 +47,7 @@ public class ImmunizationHistory {
      * Returns the immunization date.
      * @return An immunization date.
      */
-    public Date getImmunizationDate(){
+    public LocalDate getImmunizationDate(){
         return getImmunizeDate();
     }
     
@@ -82,6 +83,12 @@ public class ImmunizationHistory {
         return getImmunizeID();
     }
     
+    public String getImmunizationIDString(){
+        String imm_id;
+        imm_id = Integer.toString(immunizeID);
+        return imm_id;
+    }
+    
     /**
      * Returns the immunization name that is linked to the ID.
      * @return An immunization name.
@@ -107,14 +114,14 @@ public class ImmunizationHistory {
     /**
      * @return the immunizeDate
      */
-    public Date getImmunizeDate() {
+    public LocalDate getImmunizeDate() {
         return immunizeDate;
     }
 
     /**
      * @param immunizeDate the immunizeDate to set
      */
-    public void setImmunizeDate(Date immunizeDate) {
+    public void setImmunizeDate(LocalDate immunizeDate) {
         this.immunizeDate = immunizeDate;
     }
 
