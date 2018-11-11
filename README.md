@@ -16,7 +16,7 @@ GitHub Process
 
 Good Times :)
 
-README FILE FOR REFACTORING NOTES
+**README FILE FOR REFACTORING NOTES FOR M04-A03 Two Implemented Use Cases with Clean, Refactored Code**
 
 REFACTORING, BY CHRIS MORRIS:
 1. Adding the status field to appointments
