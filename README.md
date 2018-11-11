@@ -37,7 +37,6 @@ REFACTORING, BY CHRIS MORRIS:
 	- User: Removed the signing method all together.
 
 REFACTORING AND 2ND USE CASE IMPLEMENTATION, BY CINDY HILGEMAN
-Cindy - Items to Refactor
 1) **System Reports** - Simplify requirement to address new system usage by medical staff
 Initially, several system reports were outlined in the requirements ascertained from stakeholders; however, to ensure appropriate and consistent system usage, stakeholders have agreed to begin with system usage reporting before proceeding with more complex reporting. (Refactoring of this component will be finalized in next dev phase due to the need to finalize the medical record interface noted in item 2 below.)
 
