@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,14 @@ public class SQLite {
                 updated = true;
                 sqlUpdateOrInsert = "UPDATE PatientProfile SET "
                     + "patientFirstName='" + profile.getFirstName() + "', "
-                    + "patientLastName='" + profile.getLastName() + "'"
+                    + "patientLastName='" + profile.getLastName() + "',"
+                        + "patientMiddleInitial='" + profile.getMiddleInitial()+ "', "
+                        + "patientPreferredName='" + profile.getPreferredName()+ "', "
+                        + "patientDOB='" + profile.getBirthdate().format(DateTimeFormatter.ISO_LOCAL_DATE)+"',"
+                        + "patientPhoneNumber='" + profile.getPhoneNumber() + ", "
+                        + "patientAddress='" + profile.getAddress() + "', "
+                        + "patientEmailAddress='" + profile.getEmail() + "'"
+                        + ""
                     + " WHERE patientID='" + profile.getIdentifier() + "'";
             }
             
@@ -100,7 +108,10 @@ public class SQLite {
                 p.setLastName(rs.getString("patientLastName"));
                 p.setMiddleInitial(rs.getString("patientMiddleInitial"));
                 p.setPreferredName(rs.getString("patientPreferredName"));
-                // Cindy add the rest here
+                p.setAddress(rs.getString("patientAddress"));
+                p.setPhoneNumber(rs.getString("patientPhoneNumber"));
+                p.setEmail(rs.getString("patientEmailAddress"));
+                p.setBirthdate(LocalDate.parse(rs.getString("patientDOB")));
                 results.add(p);
             }
 

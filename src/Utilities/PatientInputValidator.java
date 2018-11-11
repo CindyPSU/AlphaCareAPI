@@ -72,7 +72,7 @@ public class PatientInputValidator {
                 preferredName, 
                 birthdayValue, 
                 phoneNumber, 
-                address, 
+                address.toString(), 
                 email
         );
     }

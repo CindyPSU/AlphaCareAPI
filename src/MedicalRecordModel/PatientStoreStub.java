@@ -36,7 +36,7 @@ public class PatientStoreStub implements EntityStore<Patient> {
                 "Marty", 
                 LocalDate.now(), 
                 "5556778", 
-                addressOne, 
+                addressOne.toString(), 
                 "bttf@gmail.com"
         ));
         
@@ -53,7 +53,7 @@ public class PatientStoreStub implements EntityStore<Patient> {
                 "Jeff", 
                 LocalDate.now(), 
                 "5552132", 
-                addressTwo, 
+                addressTwo.toString(), 
                 "jeff.is.the.man@gmail.com"
         ));
         
@@ -70,7 +70,7 @@ public class PatientStoreStub implements EntityStore<Patient> {
                 "", 
                 LocalDate.now(), 
                 "5551111", 
-                addressThree, 
+                addressThree.toString(), 
                 "bttf@gmail.com"
         ));
     }
