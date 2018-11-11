@@ -18,7 +18,7 @@ Good Times :)
 
 README FILE FOR REFACTORING NOTES
 
-Chris:
+REFACTORING, BY CHRIS MORRIS:
 1. Adding the status field to appointments
 	- AppointmentStatus: A new enum that has the list of different statuses of appointments.
 	- AppointmentHistory: Refactored to add an AppointmentStatus property to maintain the current status of an appointment.
@@ -36,11 +36,35 @@ Chris:
 	- UserDigitalSigner: Added the signing functionality to UserDigitalSigner. The new static method takes a String argument, signs it, and returns an instance of UserDigitalSigner.
 	- User: Removed the signing method all together.
 
+REFACTORING AND 2ND USE CASE IMPLEMENTATION, BY CINDY HILGEMAN
 Cindy - Items to Refactor
 1) **System Reports** - Simplify requirement to address new system usage by medical staff
-Initially, several system reports were outlined in the requirements ascertained from stakeholders; however, to ensure appropriate and consistent system usage, stakeholders have agreed to begin with system usage reporting before proceeding with more complex reporting.
+Initially, several system reports were outlined in the requirements ascertained from stakeholders; however, to ensure appropriate and consistent system usage, stakeholders have agreed to begin with system usage reporting before proceeding with more complex reporting. (Refactoring of this component will be finalized in next dev phase due to the need to finalize the medical record interface noted in item 2 below.)
+
 2) **Tabbed or Accordion View for Patient Medical Record Interface**
 Given the non-definitive aesthetic preference for either design option, the development team will proceed with the most user-friendly and pragmatic design option. To make the final decision, the development team will implement both designs and then make the aesthetic selection for the interface.
+*Design Notes:*
+1. Patient Medical Record Interface Implemented with Accordion Control for the layout. The medical record contains seven (7) sections: Patient Information, Medical History, Immunization History, Prescription History, Appointment History, Vital Signs, and Test & Lab Results. 
+
+**Use Case Implementation** View/Create Patient Medical Record
+Rationale: The last development phase resulted in the creation of viewing patient details based on a patient search function. In this development phase we have implemented the complete patient medical record view (CompleteMedicalRecordFXML.fxml), and the functionality to create a new patient record. 
+
+*Search/Update Patient Profile Use Case*
+Usability Steps (Modified in this Dev Phase to utilized the Complete Medical Record View):
+1. Run the AlphaCareAPI Application
+2. Click on Login
+3. Click on Patient Search
+4. Select the patient row provided in the list view
+5. The Complete Patient Medical Record will display and you can view the completed Patient Information section.
+6. This information can be edited, saved (by clicking the save button at the bottom of the window), and will be stored in the Application database.
+
+*View/Create Patient Medical Record Use Case*
+Usability Steps:
+1. Run the AlphaCareAPI Application
+2. Click on Login
+3. Click on Create New Patient
+5. An empty Patient Medical Record will display and you can input and complete the Patient Information section.
+6. Click Save and the new patient will be stored in the Application database.
 
 REFACTORING IN TREATMENTMODEL BY KARIN MARTIN:
 
