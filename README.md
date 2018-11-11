@@ -91,13 +91,30 @@ BLOATER - LONG PARAMETER LIST
 OBJECT-ORIENTATION ABUSER - SWITCH STATEMENT (IF/ELSE IN THIS CASE)
 1. 
 
+REFACTORING, BY JONATHAN CELESTIN:
 
+DISPENSABLE - DEAD CODE
+1. Deleted TestHarness package
+2. Deleted TestHarnessController.java which was not being used.
+3. Deleted TestHarnessMain.java which caused conflict because of two main class.
 
+BLOATER - LONG PARAMETER LIST
+1. Removed method getRegistrationRoster() from HealthClasses interface
+2. Removed method setRegistrationRoster() from HealthClasses interface
+3. Removed method getRegistrationCount() from HealthClasses interface
+4. Removed method setRegistrationCount() from HealthClasses interface
+5. Shrink parameter list in YogaClass.java
+	-Deleted endDate parameter from constructor
+	-Deleted startTime parameter from constructor
+	-Deleted endTime parameter from constructor
+	-Deleted classCost parameter from constructor
+	-Deleted classLocation parameter from contructor
+	-Deleted classDetails parameter from contructor
 
-
-
-
-
+DISPENSABLE - DRY
+1. Code was reviewed and removed all unnecessary  redundancy that would violate DRY between the following classes.
+	-AppointmentHistory.java
+	-Visit.java
 
 
 
