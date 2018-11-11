@@ -38,9 +38,11 @@ public class InteractionsView extends javax.swing.JFrame {
         redoButton.addActionListener(redoListener);
         undoButton.addActionListener(undoListener);
         
+        //set contents of first combobox and clears entry
         setBoxA();
         drug1.setSelectedItem(null);
         
+        //set the contents of second combobox and clears entry
         setBoxB();            
         drug2.setSelectedItem(null); 
         
@@ -276,20 +278,21 @@ public class InteractionsView extends javax.swing.JFrame {
     //Set combobox1 drugs
     public void setBoxA(){
         drug1.addItem("Amoxicillan");
-        drug1.addItem("Diphenhydramine");
-        drug1.addItem("Warfarin");
+        drug1.addItem("Albuterol");
+        drug1.addItem("Coumadin");
     }
     
     //Set combobox2 drugs
     public void setBoxB(){
         drug2.addItem("Amoxicillan");
-        drug2.addItem("Diphenhydramine");
-        drug2.addItem("Warfarin");
+        drug2.addItem("Albuterol");
+        drug2.addItem("Coumadin");
     }
    
     //Return combobox1 selection
     public void getDrug1(){
         firstDrug = (String) drug1.getSelectedItem();
+        System.out.println("FirstDrug = " + firstDrug);
     }
     
     //Return combobox selection as String to prescribe
@@ -301,61 +304,85 @@ public class InteractionsView extends javax.swing.JFrame {
     //Return combobox2 selection
     public void getDrug2(){
         secondDrug = (String) drug2.getSelectedItem();  
+        System.out.println("SecondDrug = " + secondDrug);
     }
 
+    //Warning message for selection of same drug
+    public void same(){
+        JOptionPane.showMessageDialog(null,"Please select a different drug for comparison!");
+    }
+    
+    //Response if there are no interactions
+    public void noInt(){
+        JOptionPane.showMessageDialog(null,"There are no interactions.");
+    }
+    
+    //Warning if there are bad interactions
+    public void badInt(){
+        JOptionPane.showMessageDialog(null,"There are potentially fatal interactions between these two medications!!!!");
+    }
+    
+    
     //Check for interactions between the comboBox selections
     public void checkInteractions(){
         getDrug1();
         getDrug2();
         
-        //Cycle through possible selections
-        if (firstDrug == "Amoxicillan"){
-            
-            if(secondDrug == "Amoxicillan"){
-                JOptionPane.showMessageDialog(null,"Please select a different drug for comparison!");
-            }
-            else if (secondDrug == "Diphenhydramine"){
-                JOptionPane.showMessageDialog(null,"There are no interactions.");
-            }
-            else {  //if (secondDrug == "Warfarin"){
-                JOptionPane.showMessageDialog(null,"There are potentially fatal interactions between these two medications!!!!");
-            }
-        }
-        else if (secondDrug == "Warfarin") {
-            
-            if(firstDrug == "Amoxicillan"){
-                JOptionPane.showMessageDialog(null,"Please select a different drug for comparison!");
-            }
-            else if(firstDrug == "Diphenhydramine"){
-                JOptionPane.showMessageDialog(null,"There are no interactions.");
-            }   
-            else { //(firstDrug == "Warfarin")
-                JOptionPane.showMessageDialog(null,"There are potentially fatal interactions between these two medications!!!!");
-            }
-        }
-        else if (firstDrug == "Diphenhydramine") {
-            if(secondDrug == "Amoxicillan"){
-                JOptionPane.showMessageDialog(null,"There are no interactions.");
-            }
-            else if(secondDrug == "Diphenhydramine"){
-                JOptionPane.showMessageDialog(null,"Please select a different drug for comparison!");
-            }   
-            else { 
-                JOptionPane.showMessageDialog(null,"There are no interactions.");
-            }
-        }
-        else if (secondDrug == "Warfarin") {
-            if(firstDrug == "Amoxicillan"){
-                JOptionPane.showMessageDialog(null,"There are potentially fatal interactions between these two medications!!!!");
-            }
-            else if(firstDrug == "Diphenhydramine"){
-                JOptionPane.showMessageDialog(null,"There are no interactions.");
-            }   
-            else { 
-                JOptionPane.showMessageDialog(null,"Please select a different drug for comparison!");
-            }
+        switch(firstDrug){
+            case "Amoxicillan":          
+                secondSwitch();
+                break;
+            case "Albuterol":
+                thirdSwitch();
+                break;
+            case "Coumadin":
+                fourthSwitch();
+                break;          
         }
     }
+    
+    //If second drug is Amox
+    public void secondSwitch(){
+        switch(secondDrug){
+                    case "Amoxicillan":
+                        same();
+                        break;
+                    case "Albuterol":
+                        noInt();
+                        break;
+                    case "Coumadin":
+                        badInt();
+        }
+    }
+   
+    //If first drug is Alb
+    public void thirdSwitch(){
+        switch(secondDrug){
+                    case "Amoxicillan":
+                        noInt();
+                        break;
+                    case "Albuterol":
+                        same();
+                        break;
+                    case "Coumadin":
+                        noInt();
+        }
+    }
+    
+    //If first drug is Coum
+    public void fourthSwitch(){
+        switch(secondDrug){
+            case "Amoxicillan":
+                badInt();
+                break;
+            case "Albuterol":
+                noInt();
+                break;
+            case "Coumadin":
+                same();
+        }
+    }
+      
     
     //Wrap the text
     public void formatButton(){

@@ -12,120 +12,42 @@ import Utilities.IDigitalSigner;
  */
 
 /**
- * The Prescription model represents all of the necessary components of a prescribed drug or 
- * piece of durable equipment.
+ * The Prescription model represents all of the necessary components of a prescription.
  */
 public class Prescription extends Pharmacy {
     
-    private String pharmName;
-    private String pharmAddress;
-    private String pharmPhone;
-    private long rxIdentificationNbr;
-    private int numberRefills;
-    private String doctorName;
-    private int qtyFilled;
+    private Pharmacy pharmacy; 
+    private int rXID;
     private String drugName;
-    private String drugStrength;
-    private String equipmentName;
-    private Boolean drugNotEquipment;
-    private String instructions;
-    private String pillMarkings;
-    private String manufacturerName;
-    private String manufacturerLocation;
+    ArrayList<Drug> drug;
+    private int quantity;
+    private int refills;
     private Date written;
-    private Date filled;
     private Date reorder;
     private Date discard;
-    ArrayList<Drug> drug;
-    ArrayList<DurableMedicalEquipment> durableMedEquip;
-    ArrayList<Referral> referral;
-    ArrayList<Therapy> therapy;
     private String digitalSignature;
     
     /**
-     * If the prescribed item is a drug.
-     * @param phName
-     * @param phAdd
-     * @param phPhn
-     * @param rxID
-     * @param numRef
-     * @param mdName
-     * @param qtyF
+     * @param pharm
+     * @param rx
      * @param drgNm
-     * @param drgStr
-     * @param drgNotEquip whether prescription is a drug
-     * @param instr
-     * @param pillMrk
-     * @param manu
-     * @param manuLoc
+     * @param numRef
+     * @param qty
      * @param writ
-     * @param fill
      * @param reord
      * @param disc
      */
-    public Prescription(String phName, String phAdd, String phPhn, long rxID, int numRef, String mdName, 
-            int qtyF, String drgNm, String drgStr, Boolean drgNotEquip, String instr, String pillMrk, String manu, String manuLoc, 
-            Date writ, Date fill, Date reord, Date disc) {
-        pharmName = phName;
-        pharmAddress = phAdd;
-        rxIdentificationNbr = rxID;
-        numberRefills = numRef;
-        doctorName = mdName;
-        qtyFilled = qtyF;
+    public Prescription(Pharmacy pharm, int rx, String drgNm, int numRef, int qty, Date writ, Date reord, Date disc) {
+        pharmacy = pharm;
+        rXID = rx;
         drugName = drgNm;
-        drugStrength = drgStr;
-        drugNotEquipment = drgNotEquip;
-        instructions = instr;
-        pillMarkings = pillMrk;
-        manufacturerName = manu;
-        manufacturerLocation = manuLoc;
+        refills = numRef;
+        quantity = qty;
         written = writ;
-        filled = fill;
         reorder = reord;
-        discard = disc;
-        
+        discard = disc;   
     }
 
-     /**
-     * If the prescribed item is a piece of durable equipment.
-     * @param phName
-     * @param phAdd
-     * @param phPhn
-     * @param rxID
-     * @param numRef
-     * @param mdName
-     * @param qtyF
-     * @param equipNm
-     * @param drgNotEquip whether prescription is a drug
-     * @param instr
-     * @param pillMrk
-     * @param manu
-     * @param manuLoc
-     * @param writ
-     * @param fill
-     * @param reord
-     * @param disc
-     */
-    public Prescription(String phName, String phAdd, String phPhn, long rxID, int numRef, String mdName, 
-            int qtyF, String equipNm, Boolean drgNotEquip, String instr, String pillMrk, String manu, String manuLoc, 
-            Date writ, Date fill, Date reord, Date disc) {
-        pharmName = phName;
-        pharmAddress = phAdd;
-        rxIdentificationNbr = rxID;
-        numberRefills = numRef;
-        doctorName = mdName;
-        qtyFilled = qtyF;
-        equipmentName = equipNm;
-        drugNotEquipment = drgNotEquip;
-        instructions = instr;
-        pillMarkings = pillMrk;
-        manufacturerName = manu;
-        manufacturerLocation = manuLoc;
-        written = writ;
-        filled = fill;
-        reorder = reord;
-        discard = disc; 
-    }
     // Example #1
     // prescription p = new prescription(...);
     // User u = new User(...);
@@ -137,68 +59,37 @@ public class Prescription extends Pharmacy {
     public void DigitallySign(IDigitalSigner signer) throws Exception{
         digitalSignature = signer.digitalSign(this.toString());
     }
+    
     /**
      * Returns the name of the pharmacy.
      * @return
      */
-    public String getPharmName() {
-        return pharmName;
+    public Pharmacy getPharmacy() {
+        return pharmacy;
     }
 
     /**
      * Sets the name of the pharmacy.
-     * @param pharmName
+     * @param pharmacy
      */
-    public void setPharmName(String pharmName) {
-        this.pharmName = pharmName;
-    }
-
-    /**
-     * Returns the address of the pharmacy.
-     * @return 
-     */
-    public String getPharmAddress() {
-        return pharmAddress;
-    }
-
-    /**
-     * Sets the address of the pharmacy.
-     * @param pharmAddress
-     */
-    public void setPharmAddress(String pharmAddress) {
-        this.pharmAddress = pharmAddress;
-    }
-
-    /**
-     * Returns the phone number of the pharmacy.
-     * @return
-     */
-    public String getPharmPhone() {
-        return pharmPhone;
-    }
-
-    /**
-     * Sets the phone number of the pharmacy.
-     * @param pharmPhone
-     */
-    public void setPharmPhone(String pharmPhone) {
-        this.pharmPhone = pharmPhone;
+    public void setPharmName(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
     }
 
     /**
      * Returns the prescription identification number.
      * @return
      */
-    public long getRxIdentificationNbr() {
-        return rxIdentificationNbr;
+    public long getRxID() {
+        return rXID;
     }
 
     /**
      * Sets the prescription identification number.
-     * @param rxIdentificationNbr
+     * @param rXID
      */
-    public void setRxIdentificationNbr(long rxIdentificationNbr) {
-        this.rxIdentificationNbr = rxIdentificationNbr;
+    public void setRXID(int rXID) {
+        this.rXID = rXID;
     }
 
     /**
@@ -206,31 +97,15 @@ public class Prescription extends Pharmacy {
      * @return
      */
     public int getNumberRefills() {
-        return numberRefills;
+        return refills;
     }
 
     /**
      * Sets the number of allowable refills.
-     * @param numberRefills
+     * @param refills
      */
-    public void setNumberRefills(int numberRefills) {
-        this.numberRefills = numberRefills;
-    }
-
-    /**
-     * Returns the name of the doctor.
-     * @return
-     */
-    public String getDoctorName() {
-        return doctorName;
-    }
-
-    /**
-     * Sets the name of the doctor.
-     * @param doctorName
-     */
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
+    public void setNumberRefills(int refills) {
+        this.refills = refills;
     }
 
     /**
@@ -238,15 +113,15 @@ public class Prescription extends Pharmacy {
      * @return
      */
     public int getQtyFilled() {
-        return qtyFilled;
+        return quantity;
     }
 
     /**
      * Sets the quantity to be filled.
-     * @param qtyFilled
+     * @param quantity
      */
-    public void setQtyFilled(int qtyFilled) {
-        this.qtyFilled = qtyFilled;
+    public void setQtyFilled(int quantity) {
+        this.quantity = quantity;
     }
 
     /**
@@ -266,86 +141,6 @@ public class Prescription extends Pharmacy {
     }
 
     /**
-     * Returns the strength of the prescribed drug.
-     * @return
-     */
-    public String getDrugStrength() {
-        return drugStrength;
-    }
-
-    /**
-     * Sets the strength of the prescribed drug.
-     * @param drugStrength
-     */
-    public void setDrugStrength(String drugStrength) {
-        this.drugStrength = drugStrength;
-    }
-
-    /**
-     * Returns the instructions for taking the prescription.
-     * @return
-     */
-    public String getInstructions() {
-        return instructions;
-    }
-
-    /**
-     * Sets the instructions for taking the prescription.
-     * @param instructions
-     */
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
-    }
-
-    /**
-     * Returns the identification of the prescribed drug.
-     * @return
-     */
-    public String getPillMarkings() {
-        return pillMarkings;
-    }
-
-    /**
-     * Sets the identification of the prescribed drug.
-     * @param pillMarkings
-     */
-    public void setPillMarkings(String pillMarkings) {
-        this.pillMarkings = pillMarkings;
-    }
-
-    /**
-     * Returns the name of the manufacturer of the prescribed drug.
-     * @return
-     */
-    public String getManufacturerName() {
-        return manufacturerName;
-    }
-
-    /**
-     * Sets the name of the manufacturer of the prescribed drug.
-     * @param manufacturerName
-     */
-    public void setManufacturerName(String manufacturerName) {
-        this.manufacturerName = manufacturerName;
-    }
-
-    /**
-     * Returns the location of the manufacturer drug.
-     * @return
-     */
-    public String getManufacturerLocation() {
-        return manufacturerLocation;
-    }
-
-    /**
-     * Sets the location of the manufacturer of the drug.
-     * @param manufacturerLocation
-     */
-    public void setManufacturerLocation(String manufacturerLocation) {
-        this.manufacturerLocation = manufacturerLocation;
-    }
-
-    /**
      * Returns the date of when the physician wrote the prescription.
      * @return
      */
@@ -362,23 +157,7 @@ public class Prescription extends Pharmacy {
     }
 
     /**
-     * Returns the date that the prescription was filled by the patient.
-     * @return
-     */
-    public Date getFilled() {
-        return filled;
-    }
-
-    /**
-     * Sets the date that the prescription was filled by the patient.
-     * @param filled
-     */
-    public void setFilled(Date filled) {
-        this.filled = filled;
-    }
-
-    /**
-     * Returns the quantity of allowable refills of the prescription.
+     * Returns the date that the patient can refill the prescription.
      * @return
      */
     public Date getReorder() {
@@ -386,7 +165,7 @@ public class Prescription extends Pharmacy {
     }
 
     /**
-     * Sets the quantity of allowable refills of the prescription.
+     * Sets the date that the patient can refill the prescription.
      * @param reorder
      */
     public void setReorder(Date reorder) {
@@ -408,22 +187,5 @@ public class Prescription extends Pharmacy {
     public void setDiscard(Date discard) {
         this.discard = discard;
     }
-
-    public String getEquipmentName() {
-        return equipmentName;
-    }
-
-    public void setEquipmentName(String equipmentName) {
-        this.equipmentName = equipmentName;
-    }
-
-    public Boolean getDrugNotEquipment() {
-        return drugNotEquipment;
-    }
-
-    public void setDrugNotEquipment(Boolean drugNotEquipment) {
-        this.drugNotEquipment = drugNotEquipment;
-    }
-    
     
 }
