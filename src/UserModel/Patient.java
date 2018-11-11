@@ -16,7 +16,7 @@ public class Patient extends User {
     private String identifier;
     private LocalDate birthdate;
     private String phoneNumber;
-    private Address address;
+    private String address;
     private String email;
     
     public ArrayList<AppointmentHistory> appointments;
@@ -55,7 +55,7 @@ public class Patient extends User {
      * This is the constructor for the PatientProfile Class.
      */
     public Patient(String initPatientID, String pFirstName, String pLastName, String pMiddleInitial, 
-            String pPreferredName, LocalDate pDOB, String pPhoneNumber, Address pAddress, String pEmail){
+            String pPreferredName, LocalDate pDOB, String pPhoneNumber, String pAddress, String pEmail){
         identifier = initPatientID;
         this.firstName = pFirstName;
         this.lastName = pLastName;
@@ -95,7 +95,7 @@ public class Patient extends User {
      * Returns the patient home address.
      * @return A patient home address.
      */
-    public Address getAddress(){
+    public String getAddress(){
         return address;
     }
     
@@ -153,7 +153,7 @@ public class Patient extends User {
     /**
      * @param address the address to set
      */
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

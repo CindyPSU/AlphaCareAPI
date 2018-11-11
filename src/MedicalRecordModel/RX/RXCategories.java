@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package MedicalRecordModel.RX;
 
 import javafx.collections.FXCollections;
@@ -27,9 +23,21 @@ public class RXCategories {
         rxCategory.add(ANT2);
         
         RXCategory ANT3 = new RXCategory("ANT3");
+        ANT3.addOption("Levaquin");
+        rxCategory.add(ANT3);
+        
         RXCategory NAR1 = new RXCategory("NAR1");
+        NAR1.addOption("Codeine");
+        rxCategory.add(NAR1);
+        
         RXCategory NAR2 = new RXCategory("NAR2");
+        NAR2.addOption("Morphine");
+        NAR2.addOption("Demerol");
+        rxCategory.add(NAR2);
+        
         RXCategory NAR3 = new RXCategory("NAR3");
+        NAR3.addOption("Oxycontin");
+        rxCategory.add(NAR3);
         
         
     }

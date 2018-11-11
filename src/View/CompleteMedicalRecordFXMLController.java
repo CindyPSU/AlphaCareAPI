@@ -382,7 +382,15 @@ public class CompleteMedicalRecordFXMLController implements Initializable {
         this.profile.setFirstName(this.patient_first_name.getText());
         this.profile.setLastName(this.patient_last_name.getText());
         this.profile.setBirthdate(this.patient_dob.getValue());
+        this.profile.setMiddleInitial(this.patient_middle_initial.getText());
+        this.profile.setPreferredName(this.patient_preferred_name.getText());
+        this.profile.setAddress(this.patient_home_address.getText());
+        this.profile.setPhoneNumber(this.patient_phone_number.getText());
+        this.profile.setEmail(this.patient_email.getText());
+        // NOTE TO SELF: To complete the medical record mapping to the patient profile
+        // add the remaining medical record fields here to save
         // finishing adding in all record fields to save   
+        // MedicalHx, ImmunizationHx, RXHx, AppHx, VitalSigns, T&LResults
         PatientStoreStub.save(this.profile);
     }
 
@@ -399,7 +407,7 @@ public class CompleteMedicalRecordFXMLController implements Initializable {
         this.patient_last_name.setText(profile.getLastName());
         this.patient_middle_initial.setText(profile.getMiddleInitial());
         this.patient_preferred_name.setText(profile.getPreferredName());
-        this.patient_home_address.setText(profile.getAddress().toString());
+        this.patient_home_address.setText(profile.getAddress());
         this.patient_phone_number.setText(profile.getPhoneNumber());
         this.patient_email.setText(profile.getEmail());
         
@@ -468,6 +476,7 @@ public class CompleteMedicalRecordFXMLController implements Initializable {
         this.im_type_four.setText(immunizationHistory.getImmunizationName());
         }
         
+        // Repeat this syntax for all multiple row medical record sections
         // Load Prescription History Data
         if(this.profile.prescriptions != null)
         {
@@ -586,6 +595,7 @@ public class CompleteMedicalRecordFXMLController implements Initializable {
         }
     }
     
+    // Repeat this syntax for all multiple row medical record sections
     // loadPrescriptionHistory(prescriptionHistory1, presc_id_one, presc_name_one, presc_order_date_one, presc_order_time_one, presc_order_physician_one, presc_refills_one);
     private void loadPrescriptionHistory(PrescriptionHistory prescriptionHistory, ChoiceBox<RXCategory> rxIDChoiceBox, ChoiceBox<RXOptions> rxNameChoiceBox, 
             DatePicker dpOrderDate, TextField txtOrderTime, TextField txtPhysician, Label txtRefills)
@@ -608,9 +618,7 @@ public class CompleteMedicalRecordFXMLController implements Initializable {
                 // RX Name
                 rxNameChoiceBox.setValue(option);
             }
-        }
-        
-        
+        } 
     }
     
     
