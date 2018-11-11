@@ -22,6 +22,7 @@ public class Drug {
     private String sideEffects;
     private String overview;
     private String warnings;
+    private String manufacturer;
     
     /**
      * @param drgID
@@ -37,10 +38,11 @@ public class Drug {
      * @param sdEff
      * @param overVw
      * @param warn
+     * @param manu
      */
     public Drug (String drgID, String drgNm, int drgDsg, String drgFrm, String drgIdent, String drgInstruct,
         String drgCls, String brnd, Boolean ifInteract, String interact, String sdEff, 
-        String overVw, String warn) {
+        String overVw, String warn, String manu) {
         
         drugID = drgID;
         drugName = drgNm;
@@ -55,6 +57,7 @@ public class Drug {
         sideEffects = sdEff;
         overview = overVw;
         warnings = warn;
+        manufacturer = manu;
     }
 
      /**
@@ -234,7 +237,7 @@ public class Drug {
     }
 
     /**
-     *
+     * Returns the overview of the 
      * @return
      */
     public String getOverview() {
@@ -242,7 +245,7 @@ public class Drug {
     }
 
     /**
-     *
+     * Sets the overview details for the drug
      * @param overview
      */
     public void setOverview(String overview) {
@@ -250,15 +253,15 @@ public class Drug {
     }
 
     /**
-     *
-     * @return
+     * Returns the warnings for the drug
+     * @return warnings
      */
     public String getWarnings() {
         return warnings;
     }
 
     /**
-     *
+     * Sets the warnings for the drug
      * @param warnings
      */
     public void setWarnings(String warnings) {
@@ -275,8 +278,24 @@ public class Drug {
         ArrayList<Drug> drugDetails;
         drugDetails = new ArrayList<>();
         System.out.println("Drug Details: \nID, name, dosage, identification, form, instructions, class, "
-                + "\nbrand, interactions, side effects, overview, warnings");
+                + "\nbrand, interactions, side effects, overview, warnings, manufacturer");
         return drugDetails;
+    }
+
+    /**
+     * Returns the name of the manufacturer
+     * @return the manufacturer
+     */
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    /**
+     * Sets the name of the manufacturer
+     * @param manufacturer 
+     */
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
 }
