@@ -27,7 +27,7 @@
                         <Label layoutX="550.0" layoutY="66.0" text="Middle Initial" />
                         <Label layoutX="716.0" layoutY="66.0" text="Preferred Name" />
                         <Label layoutX="366.0" layoutY="24.0" text="Date of Birth" />
-                        <Label layoutX="35.0" layoutY="110.0" text="Homes Address" />
+                        <Label layoutX="35.0" layoutY="110.0" text="Home Address" />
                         <Label layoutX="34.0" layoutY="152.0" text="Phone Number" />
                         <Label layoutX="35.0" layoutY="190.0" text="Email" />
                         <TextField fx:id="patient_first_name" layoutX="106.0" layoutY="62.0" />
@@ -250,7 +250,7 @@
                         <TextField fx:id="app_physician_one" layoutX="664.0" layoutY="34.0" prefHeight="25.0" prefWidth="225.0" />
                         <TextField fx:id="app_physician_two" layoutX="664.0" layoutY="181.0" prefHeight="25.0" prefWidth="225.0" />
                         <TextField fx:id="app_physician_three" layoutX="664.0" layoutY="336.0" prefHeight="25.0" prefWidth="225.0" />
-                        <ChoiceBox fx:id="app_code_three" layoutX="96.0" layoutY="373.0" prefWidth="150.0" value="Select One"/>
+                        <ChoiceBox fx:id="app_code_three" layoutX="96.0" layoutY="373.0" prefWidth="150.0" value="Select One" />
                         <ChoiceBox fx:id="app_desc_three" layoutX="368.0" layoutY="373.0" prefWidth="150.0" value="Select One" />
                         <ChoiceBox fx:id="app_code_two" layoutX="96.0" layoutY="225.0" prefWidth="150.0" value="Select One" />
                         <ChoiceBox fx:id="app_desc_two" layoutX="368.0" layoutY="225.0" prefWidth="150.0" value="Select One" />

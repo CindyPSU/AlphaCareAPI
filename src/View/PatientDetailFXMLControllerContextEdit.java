@@ -35,12 +35,13 @@ public class PatientDetailFXMLControllerContextEdit implements PatientDetailFXML
         controller.lastName.setText(profile.getLastName());
         controller.middleInitial.setText(profile.getMiddleInitial());
         controller.preferredName.setText(profile.getPreferredName());
-        Address address = profile.getAddress();
+        /*Address address = profile.getAddress();
         controller.line1.setText(address.getLine1());
         controller.line2.setText(address.getLine2());
         controller.city.setText(address.getCity());
         controller.state.setText(address.getState());
         controller.zipCode.setText(address.getZipCode());
+*/
         SimpleDateFormat format = new SimpleDateFormat();
         controller.birthday.setValue(profile.getBirthdate());
         controller.emailAddress.setText(profile.getEmail());
