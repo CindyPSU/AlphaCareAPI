@@ -89,7 +89,11 @@ BLOATER - LONG PARAMETER LIST
 2. Added Pharmacy object parameter to replace pharmacy name, address and phone number. Edited method to match updated list of parameters.
 
 OBJECT-ORIENTATION ABUSER - SWITCH STATEMENT (IF/ELSE IN THIS CASE)
-1. 
+1. Removed if/else statements. Replaced with explicit methods.
+
+CLASSIC SMELL - COMMENTS/DOCUMENTATION
+1. Fixed some incorrect javadocs in Drug.java and Prescription.java.
+2. Added javadocs to various methods that were not yet completed in Prescription.java and Drug.java.
 
 REFACTORING, BY JONATHAN CELESTIN:
 
