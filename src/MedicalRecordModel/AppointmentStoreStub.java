@@ -10,6 +10,7 @@ import UserModel.Address;
 import UserModel.AppointmentStatus;
 import UserModel.Practice;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +27,7 @@ public class AppointmentStoreStub implements EntityStore<AppointmentHistory> {
         AppointmentHistory appointment = new AppointmentHistory(
                 "", 
                 0, 
-                new Date(), 
+                LocalDate.now(), 
                 new Time(System.currentTimeMillis()), 
                 "Dr. Kevorkian", 
                 "appointment_code", 

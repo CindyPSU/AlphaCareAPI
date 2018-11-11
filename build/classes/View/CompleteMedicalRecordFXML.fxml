@@ -20,7 +20,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="320.0" prefWidth="991.0" style="-fx-background-color: #ffff66;">
                      <children>
-                        <Label layoutX="106.0" layoutY="24.0" prefHeight="17.0" prefWidth="117.0" text="Label" />
+                        <Label fx:id="patientID" layoutX="106.0" layoutY="24.0" prefHeight="17.0" prefWidth="117.0" text="Label" />
                         <Label layoutX="34.0" layoutY="24.0" text="Patient ID" />
                         <Label layoutX="35.0" layoutY="66.0" text="First Name" />
                         <Label layoutX="310.0" layoutY="66.0" text="Last Name" />
@@ -30,15 +30,15 @@
                         <Label layoutX="35.0" layoutY="110.0" text="Homes Address" />
                         <Label layoutX="34.0" layoutY="152.0" text="Phone Number" />
                         <Label layoutX="35.0" layoutY="190.0" text="Email" />
-                        <TextField layoutX="106.0" layoutY="62.0" />
-                        <TextField layoutX="381.0" layoutY="62.0" />
-                        <TextField layoutX="630.0" layoutY="62.0" prefHeight="25.0" prefWidth="29.0" />
-                        <TextField layoutX="814.0" layoutY="62.0" />
-                        <TextField layoutX="139.0" layoutY="106.0" prefHeight="25.0" prefWidth="740.0" />
-                        <TextField layoutX="139.0" layoutY="148.0" prefHeight="25.0" prefWidth="214.0" />
-                        <TextField layoutX="139.0" layoutY="186.0" prefHeight="25.0" prefWidth="383.0" />
-                        <DatePicker layoutX="443.0" layoutY="20.0" prefHeight="25.0" prefWidth="153.0" />
-                        <Label layoutX="36.0" layoutY="251.0" text="**If any of your personal information is incorrect, please contact Records Management at (406) 558 - 9778.">
+                        <TextField fx:id="patient_first_name" layoutX="106.0" layoutY="62.0" />
+                        <TextField fx:id="patient_last_name" layoutX="381.0" layoutY="62.0" />
+                        <TextField fx:id="patient_middle_initial" layoutX="630.0" layoutY="62.0" prefHeight="25.0" prefWidth="29.0" />
+                        <TextField fx:id="patient_preferred_name" layoutX="814.0" layoutY="62.0" />
+                        <TextField fx:id="patient_home_address" layoutX="139.0" layoutY="106.0" prefHeight="25.0" prefWidth="740.0" />
+                        <TextField fx:id="patient_phone_number" layoutX="139.0" layoutY="148.0" prefHeight="25.0" prefWidth="214.0" />
+                        <TextField fx:id="patient_email" layoutX="139.0" layoutY="186.0" prefHeight="25.0" prefWidth="383.0" />
+                        <DatePicker fx:id="patient_dob" layoutX="443.0" layoutY="20.0" prefHeight="25.0" prefWidth="153.0" />
+                        <Label fx:id="patient_contact" layoutX="36.0" layoutY="251.0" text="**If any of your personal information is incorrect, please contact Records Management at (406) 558 - 9778.">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
@@ -60,42 +60,42 @@
                         <Label layoutX="30.0" layoutY="210.0" text="Procedure Name" />
                         <Label layoutX="173.0" layoutY="92.0" text="Past Medical Conditions" />
                         <Separator layoutX="16.0" layoutY="153.0" prefHeight="5.0" prefWidth="960.0" />
-                        <TextField layoutX="173.0" layoutY="56.0" prefHeight="25.0" prefWidth="786.0" />
-                        <TextField layoutX="330.0" layoutY="26.0" prefHeight="25.0" prefWidth="628.0" />
+                        <TextField fx:id="current_notes" layoutX="173.0" layoutY="56.0" prefHeight="25.0" prefWidth="786.0" />
+                        <TextField fx:id="current_med_condition" layoutX="330.0" layoutY="26.0" prefHeight="25.0" prefWidth="628.0" />
                         <Label layoutX="119.0" layoutY="60.0" text="Notes" />
-                        <TextField layoutX="330.0" layoutY="88.0" prefHeight="25.0" prefWidth="629.0" />
+                        <TextField fx:id="past_med_condition" layoutX="330.0" layoutY="88.0" prefHeight="25.0" prefWidth="629.0" />
                         <Label layoutX="121.0" layoutY="120.0" text="Notes" />
-                        <TextField layoutX="173.0" layoutY="116.0" prefHeight="25.0" prefWidth="786.0" />
-                        <TextField layoutX="135.0" layoutY="206.0" prefHeight="25.0" prefWidth="306.0" />
+                        <TextField fx:id="past_notes" layoutX="173.0" layoutY="116.0" prefHeight="25.0" prefWidth="786.0" />
+                        <TextField fx:id="proc_name_recent" layoutX="135.0" layoutY="206.0" prefHeight="25.0" prefWidth="306.0" />
                         <Label layoutX="349.0" layoutY="171.0" text="Age" />
-                        <TextField layoutX="388.0" layoutY="167.0" prefHeight="25.0" prefWidth="53.0" />
+                        <TextField fx:id="proc_age_recent" layoutX="388.0" layoutY="167.0" prefHeight="25.0" prefWidth="53.0" />
                         <Label layoutX="29.0" layoutY="265.0" text="Date" />
                         <Label layoutX="346.0" layoutY="265.0" text="Age" />
                         <Label layoutX="29.0" layoutY="306.0" text="Procedure Name" />
                         <Label layoutX="29.0" layoutY="369.0" text="Date" />
                         <Label layoutX="29.0" layoutY="418.0" text="Procedure Name" />
                         <Label layoutX="346.0" layoutY="369.0" text="Age" />
-                        <TextField layoutX="388.0" layoutY="261.0" prefHeight="25.0" prefWidth="53.0" />
-                        <TextField layoutX="135.0" layoutY="302.0" prefHeight="25.0" prefWidth="306.0" />
-                        <TextField layoutX="388.0" layoutY="365.0" prefHeight="25.0" prefWidth="53.0" />
-                        <TextField layoutX="137.0" layoutY="414.0" prefHeight="25.0" prefWidth="305.0" />
+                        <TextField fx:id="proc_age_next" layoutX="388.0" layoutY="261.0" prefHeight="25.0" prefWidth="53.0" />
+                        <TextField fx:id="proc_name_next" layoutX="135.0" layoutY="302.0" prefHeight="25.0" prefWidth="306.0" />
+                        <TextField fx:id="proc_age_next_next" layoutX="388.0" layoutY="365.0" prefHeight="25.0" prefWidth="53.0" />
+                        <TextField fx:id="proc_name_next_next" layoutX="137.0" layoutY="414.0" prefHeight="25.0" prefWidth="305.0" />
                         <Label layoutX="638.0" layoutY="171.0" text="Allergy" />
                         <Label layoutX="638.0" layoutY="210.0" text="Reaction Description" />
                         <Label layoutX="638.0" layoutY="265.0" text="Allergy" />
                         <Label layoutX="638.0" layoutY="306.0" text="Reaction Description" />
                         <Label layoutX="640.0" layoutY="369.0" text="Allergy" />
                         <Label layoutX="638.0" layoutY="418.0" text="Reaction Description" />
-                        <TextField layoutX="693.0" layoutY="167.0" prefHeight="25.0" prefWidth="200.0" />
-                        <TextField layoutX="763.0" layoutY="206.0" prefHeight="25.0" prefWidth="215.0" />
-                        <TextField layoutX="693.0" layoutY="261.0" prefHeight="25.0" prefWidth="200.0" />
-                        <TextField layoutX="763.0" layoutY="302.0" prefHeight="25.0" prefWidth="215.0" />
-                        <TextField layoutX="693.0" layoutY="365.0" prefHeight="25.0" prefWidth="215.0" />
-                        <TextField layoutX="763.0" layoutY="414.0" prefHeight="25.0" prefWidth="215.0" />
+                        <TextField fx:id="allergy_one" layoutX="693.0" layoutY="167.0" prefHeight="25.0" prefWidth="200.0" />
+                        <TextField fx:id="allergy_one_desc" layoutX="763.0" layoutY="206.0" prefHeight="25.0" prefWidth="215.0" />
+                        <TextField fx:id="allergy_two" layoutX="693.0" layoutY="261.0" prefHeight="25.0" prefWidth="200.0" />
+                        <TextField fx:id="allergy_two_desc" layoutX="763.0" layoutY="302.0" prefHeight="25.0" prefWidth="215.0" />
+                        <TextField fx:id="allergy_three" layoutX="693.0" layoutY="365.0" prefHeight="25.0" prefWidth="215.0" />
+                        <TextField fx:id="allergy_three_desc" layoutX="763.0" layoutY="414.0" prefHeight="25.0" prefWidth="215.0" />
                         <Separator layoutX="543.0" layoutY="174.0" orientation="VERTICAL" prefHeight="278.0" prefWidth="0.0" />
-                        <DatePicker layoutX="60.0" layoutY="26.0" prefHeight="25.0" prefWidth="108.0" />
-                        <DatePicker layoutX="63.0" layoutY="167.0" prefHeight="25.0" prefWidth="119.0" />
-                        <DatePicker layoutX="63.0" layoutY="261.0" prefHeight="25.0" prefWidth="119.0" />
-                        <DatePicker layoutX="63.0" layoutY="365.0" prefHeight="25.0" prefWidth="119.0" />
+                        <DatePicker fx:id="current_date" layoutX="60.0" layoutY="26.0" prefHeight="25.0" prefWidth="108.0" />
+                        <DatePicker fx:id="proc_date_recent" layoutX="63.0" layoutY="167.0" prefHeight="25.0" prefWidth="119.0" />
+                        <DatePicker fx:id="proc_date_next" layoutX="63.0" layoutY="261.0" prefHeight="25.0" prefWidth="119.0" />
+                        <DatePicker fx:id="proc_date_next_next" layoutX="63.0" layoutY="365.0" prefHeight="25.0" prefWidth="119.0" />
                      </children>
                      <effect>
                         <InnerShadow />
@@ -113,24 +113,24 @@
                         <Label layoutX="722.0" layoutY="33.0" text="Title" />
                         <Label layoutX="29.0" layoutY="73.0" text="ID" />
                         <Label layoutX="195.0" layoutY="73.0" text="Type" />
-                        <TextField layoutX="232.0" layoutY="29.0" prefHeight="25.0" prefWidth="100.0" />
-                        <TextField layoutX="404.0" layoutY="29.0" prefHeight="25.0" prefWidth="279.0" />
-                        <TextField layoutX="759.0" layoutY="29.0" />
-                        <TextField layoutX="59.0" layoutY="69.0" prefHeight="25.0" prefWidth="111.0" />
-                        <TextField layoutX="232.0" layoutY="69.0" prefHeight="25.0" prefWidth="307.0" />
+                        <TextField fx:id="im_time_one" layoutX="232.0" layoutY="29.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="im_givenby_one" layoutX="404.0" layoutY="29.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField fx:id="im_title_one" layoutX="759.0" layoutY="29.0" />
+                        <TextField fx:id="im_id_one" layoutX="59.0" layoutY="69.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField fx:id="im_type_one" layoutX="232.0" layoutY="69.0" prefHeight="25.0" prefWidth="307.0" />
                         <Label layoutX="28.0" layoutY="138.0" text="Date" />
-                        <DatePicker layoutX="59.0" layoutY="29.0" prefHeight="25.0" prefWidth="117.0" />
-                        <DatePicker layoutX="59.0" layoutY="134.0" prefHeight="25.0" prefWidth="117.0" />
+                        <DatePicker fx:id="im_date_one" layoutX="59.0" layoutY="29.0" prefHeight="25.0" prefWidth="117.0" />
+                        <DatePicker fx:id="im_date_two" layoutX="59.0" layoutY="134.0" prefHeight="25.0" prefWidth="117.0" />
                         <Label layoutX="194.0" layoutY="138.0" text="Time" />
                         <Label layoutX="350.0" layoutY="138.0" text="Given By" />
                         <Label layoutX="722.0" layoutY="138.0" text="Title" />
                         <Label layoutX="29.0" layoutY="176.0" text="ID" />
                         <Label layoutX="193.0" layoutY="176.0" text="Type" />
-                        <TextField layoutX="232.0" layoutY="134.0" prefHeight="25.0" prefWidth="100.0" />
-                        <TextField layoutX="404.0" layoutY="134.0" prefHeight="25.0" prefWidth="278.0" />
-                        <TextField layoutX="759.0" layoutY="134.0" />
-                        <TextField layoutX="59.0" layoutY="172.0" prefHeight="25.0" prefWidth="111.0" />
-                        <TextField layoutX="232.0" layoutY="172.0" prefHeight="25.0" prefWidth="307.0" />
+                        <TextField fx:id="im_time_two" layoutX="232.0" layoutY="134.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="im_givenby_two" layoutX="404.0" layoutY="134.0" prefHeight="25.0" prefWidth="278.0" />
+                        <TextField fx:id="im_title_two" layoutX="759.0" layoutY="134.0" />
+                        <TextField fx:id="im_id_two" layoutX="59.0" layoutY="172.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField fx:id="im_type_two" layoutX="232.0" layoutY="172.0" prefHeight="25.0" prefWidth="307.0" />
                         <Label layoutX="29.0" layoutY="246.0" text="Date" />
                         <Label layoutX="192.0" layoutY="246.0" text="Time" />
                         <Label layoutX="350.0" layoutY="246.0" text="Given By" />
@@ -143,18 +143,18 @@
                         <Label layoutX="722.0" layoutY="361.0" text="Title" />
                         <Label layoutX="29.0" layoutY="407.0" text="ID" />
                         <Label layoutX="192.0" layoutY="407.0" text="Type" />
-                        <DatePicker layoutX="59.0" layoutY="242.0" prefHeight="25.0" prefWidth="118.0" />
-                        <DatePicker layoutX="59.0" layoutY="357.0" prefHeight="25.0" prefWidth="117.0" />
-                        <TextField layoutX="232.0" layoutY="242.0" prefHeight="25.0" prefWidth="100.0" />
-                        <TextField layoutX="232.0" layoutY="357.0" prefHeight="25.0" prefWidth="100.0" />
-                        <TextField layoutX="404.0" layoutY="242.0" prefHeight="25.0" prefWidth="279.0" />
-                        <TextField layoutX="404.0" layoutY="357.0" prefHeight="25.0" prefWidth="279.0" />
-                        <TextField layoutX="759.0" layoutY="242.0" />
-                        <TextField layoutX="759.0" layoutY="357.0" />
-                        <TextField layoutX="59.0" layoutY="403.0" prefHeight="25.0" prefWidth="111.0" />
-                        <TextField layoutX="59.0" layoutY="282.0" prefHeight="25.0" prefWidth="111.0" />
-                        <TextField layoutX="232.0" layoutY="282.0" prefHeight="25.0" prefWidth="307.0" />
-                        <TextField layoutX="232.0" layoutY="403.0" prefHeight="25.0" prefWidth="307.0" />
+                        <DatePicker fx:id="im_date_three" layoutX="59.0" layoutY="242.0" prefHeight="25.0" prefWidth="118.0" />
+                        <DatePicker fx:id="im_date_four" layoutX="59.0" layoutY="357.0" prefHeight="25.0" prefWidth="117.0" />
+                        <TextField fx:id="im_time_three" layoutX="232.0" layoutY="242.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="im_time_four" layoutX="232.0" layoutY="357.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="im_givenby_three" layoutX="404.0" layoutY="242.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField fx:id="im_givenby_four" layoutX="404.0" layoutY="357.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField fx:id="im_title_three" layoutX="759.0" layoutY="242.0" />
+                        <TextField fx:id="im_title_four" layoutX="759.0" layoutY="357.0" />
+                        <TextField fx:id="im_id_four" layoutX="59.0" layoutY="403.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField fx:id="im_id_three" layoutX="59.0" layoutY="282.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField fx:id="im_type_three" layoutX="232.0" layoutY="282.0" prefHeight="25.0" prefWidth="307.0" />
+                        <TextField fx:id="im_type_four" layoutX="232.0" layoutY="403.0" prefHeight="25.0" prefWidth="307.0" />
                      </children>
                      <effect>
                         <InnerShadow />
@@ -189,30 +189,30 @@
                         <Label layoutX="565.0" layoutY="171.0" text="Refill Count" />
                         <Label layoutX="565.0" layoutY="274.0" text="Refill Count" />
                         <Label layoutX="565.0" layoutY="390.0" text="Refill Count" />
-                        <DatePicker layoutX="96.0" layoutY="34.0" />
-                        <DatePicker layoutX="96.0" layoutY="130.0" />
-                        <DatePicker layoutX="96.0" layoutY="232.0" />
-                        <DatePicker layoutX="96.0" layoutY="347.0" />
-                        <TextField layoutX="368.0" layoutY="34.0" />
-                        <TextField layoutX="368.0" layoutY="130.0" />
-                        <TextField layoutX="368.0" layoutY="232.0" />
-                        <TextField layoutX="368.0" layoutY="347.0" />
-                        <TextField layoutX="664.0" layoutY="34.0" prefHeight="25.0" prefWidth="225.0" />
-                        <TextField layoutX="664.0" layoutY="130.0" prefHeight="25.0" prefWidth="225.0" />
-                        <TextField layoutX="664.0" layoutY="232.0" prefHeight="25.0" prefWidth="225.0" />
-                        <TextField layoutX="664.0" layoutY="347.0" prefHeight="25.0" prefWidth="225.0" />
-                        <ChoiceBox layoutX="96.0" layoutY="386.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="368.0" layoutY="386.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="96.0" layoutY="270.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="368.0" layoutY="270.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="96.0" layoutY="69.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="368.0" layoutY="69.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="96.0" layoutY="167.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="368.0" layoutY="167.0" prefWidth="150.0" />
-                        <Label layoutX="664.0" layoutY="73.0" text="Refills Remaining #" />
-                        <Label layoutX="664.0" layoutY="171.0" text="Refills Remaining #" />
-                        <Label layoutX="664.0" layoutY="274.0" text="Refills Remaining #" />
-                        <Label layoutX="664.0" layoutY="390.0" text="Refills Remaining #" />
+                        <DatePicker fx:id="presc_order_date_one" layoutX="96.0" layoutY="34.0" />
+                        <DatePicker fx:id="presc_order_date_two" layoutX="96.0" layoutY="130.0" />
+                        <DatePicker fx:id="presc_order_date_three" layoutX="96.0" layoutY="232.0" />
+                        <DatePicker fx:id="presc_order_date_four" layoutX="96.0" layoutY="347.0" />
+                        <TextField fx:id="presc_order_time_one" layoutX="368.0" layoutY="34.0" />
+                        <TextField fx:id="presc_order_time_two" layoutX="368.0" layoutY="130.0" />
+                        <TextField fx:id="presc_order_time_three" layoutX="368.0" layoutY="232.0" />
+                        <TextField fx:id="presc_order_time_four" layoutX="368.0" layoutY="347.0" />
+                        <TextField fx:id="presc_order_physician_one" layoutX="664.0" layoutY="34.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField fx:id="presc_order_physician_two" layoutX="664.0" layoutY="130.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField fx:id="presc_order_physician_three" layoutX="664.0" layoutY="232.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField fx:id="presc_order_physician_four" layoutX="664.0" layoutY="347.0" prefHeight="25.0" prefWidth="225.0" />
+                        <ChoiceBox fx:id="presc_id_four" layoutX="96.0" layoutY="386.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="presc_name_four" layoutX="368.0" layoutY="386.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="presc_id_three" layoutX="96.0" layoutY="270.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="presc_name_three" layoutX="368.0" layoutY="270.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="presc_id_one" layoutX="96.0" layoutY="69.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="presc_name_one" layoutX="368.0" layoutY="69.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="presc_id_two" layoutX="96.0" layoutY="167.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="presc_name_two" layoutX="368.0" layoutY="167.0" prefWidth="150.0" />
+                        <Label fx:id="presc_refills_one" layoutX="664.0" layoutY="73.0" text="Refills Remaining #" />
+                        <Label fx:id="presc_refills_two" layoutX="664.0" layoutY="171.0" text="Refills Remaining #" />
+                        <Label fx:id="presc_refills_three" layoutX="664.0" layoutY="274.0" text="Refills Remaining #" />
+                        <Label fx:id="presc_refills_four" layoutX="664.0" layoutY="390.0" text="Refills Remaining #" />
                      </children>
                      <effect>
                         <InnerShadow />
@@ -241,34 +241,34 @@
                         <Label layoutX="295.0" layoutY="377.0" text="Description" />
                         <Label layoutX="565.0" layoutY="229.0" text="Status" />
                         <Label layoutX="565.0" layoutY="377.0" text="Status" />
-                        <DatePicker layoutX="96.0" layoutY="34.0" prefHeight="25.0" prefWidth="150.0" />
-                        <DatePicker layoutX="96.0" layoutY="181.0" />
-                        <DatePicker layoutX="96.0" layoutY="336.0" />
-                        <TextField layoutX="368.0" layoutY="34.0" />
-                        <TextField layoutX="368.0" layoutY="181.0" />
-                        <TextField layoutX="368.0" layoutY="336.0" />
-                        <TextField layoutX="664.0" layoutY="34.0" prefHeight="25.0" prefWidth="225.0" />
-                        <TextField layoutX="664.0" layoutY="181.0" prefHeight="25.0" prefWidth="225.0" />
-                        <TextField layoutX="664.0" layoutY="336.0" prefHeight="25.0" prefWidth="225.0" />
-                        <ChoiceBox layoutX="96.0" layoutY="373.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="368.0" layoutY="373.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="96.0" layoutY="225.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="368.0" layoutY="225.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="96.0" layoutY="69.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="368.0" layoutY="69.0" prefWidth="150.0" />
+                        <DatePicker fx:id="app_date_one" layoutX="96.0" layoutY="34.0" prefHeight="25.0" prefWidth="150.0" />
+                        <DatePicker fx:id="app_date_two" layoutX="96.0" layoutY="181.0" />
+                        <DatePicker fx:id="app_date_three" layoutX="96.0" layoutY="336.0" />
+                        <TextField fx:id="app_time_one" layoutX="368.0" layoutY="34.0" />
+                        <TextField fx:id="app_time_two" layoutX="368.0" layoutY="181.0" />
+                        <TextField fx:id="app_time_three" layoutX="368.0" layoutY="336.0" />
+                        <TextField fx:id="app_physician_one" layoutX="664.0" layoutY="34.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField fx:id="app_physician_two" layoutX="664.0" layoutY="181.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField fx:id="app_physician_three" layoutX="664.0" layoutY="336.0" prefHeight="25.0" prefWidth="225.0" />
+                        <ChoiceBox fx:id="app_code_three" layoutX="96.0" layoutY="373.0" prefWidth="150.0" value="Select One"/>
+                        <ChoiceBox fx:id="app_desc_three" layoutX="368.0" layoutY="373.0" prefWidth="150.0" value="Select One" />
+                        <ChoiceBox fx:id="app_code_two" layoutX="96.0" layoutY="225.0" prefWidth="150.0" value="Select One" />
+                        <ChoiceBox fx:id="app_desc_two" layoutX="368.0" layoutY="225.0" prefWidth="150.0" value="Select One" />
+                        <ChoiceBox fx:id="app_code_one" layoutX="96.0" layoutY="69.0" prefWidth="150.0" value="Select One" />
+                        <ChoiceBox fx:id="app_desc_one" layoutX="368.0" layoutY="69.0" prefWidth="150.0" value="Select One" />
                         <Label layoutX="664.0" layoutY="73.0" />
                         <Label layoutX="664.0" layoutY="399.0" />
-                        <ChoiceBox layoutX="664.0" layoutY="69.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="app_status_one" layoutX="664.0" layoutY="69.0" prefWidth="150.0" value="Select One" />
                         <Label layoutX="25.0" layoutY="118.0" text="Medical Practice" />
-                        <TextField layoutX="131.0" layoutY="114.0" prefHeight="25.0" prefWidth="431.0" />
+                        <TextField fx:id="app_medical_practice_one" layoutX="131.0" layoutY="114.0" prefHeight="25.0" prefWidth="431.0" />
                         <Label layoutX="25.0" layoutY="422.0" text="Medical Practice" />
-                        <ChoiceBox layoutX="664.0" layoutY="373.0" prefWidth="150.0" />
-                        <TextField layoutX="131.0" layoutY="418.0" prefHeight="25.0" prefWidth="431.0" />
+                        <ChoiceBox fx:id="app_status_three" layoutX="664.0" layoutY="373.0" prefWidth="150.0" value="Select One" />
+                        <TextField fx:id="app_medical_practice_three" layoutX="131.0" layoutY="418.0" prefHeight="25.0" prefWidth="431.0" />
                         <Separator layoutX="25.0" layoutY="313.0" prefHeight="4.0" prefWidth="937.0" />
                         <Label layoutX="25.0" layoutY="274.0" text="Medical Practice" />
-                        <ChoiceBox layoutX="664.0" layoutY="225.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="app_status_two" layoutX="664.0" layoutY="225.0" prefWidth="150.0" value="Select One" />
                         <Separator layoutX="25.0" layoutY="154.0" prefHeight="4.0" prefWidth="937.0" />
-                        <TextField layoutX="131.0" layoutY="270.0" prefHeight="25.0" prefWidth="431.0" />
+                        <TextField fx:id="app_medical_practice_two" layoutX="131.0" layoutY="270.0" prefHeight="25.0" prefWidth="431.0" />
                      </children>
                      <effect>
                         <InnerShadow />
@@ -285,21 +285,21 @@
                         <Label layoutX="350.0" layoutY="33.0" text="Checked By" />
                         <Label layoutX="29.0" layoutY="73.0" text="HR" />
                         <Label layoutX="195.0" layoutY="73.0" text="BP" />
-                        <TextField layoutX="232.0" layoutY="29.0" prefHeight="25.0" prefWidth="100.0" />
-                        <TextField layoutX="421.0" layoutY="29.0" prefHeight="25.0" prefWidth="279.0" />
-                        <TextField layoutX="59.0" layoutY="69.0" prefHeight="25.0" prefWidth="111.0" />
-                        <TextField layoutX="232.0" layoutY="69.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="vs_time_one" layoutX="232.0" layoutY="29.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="vs_checkedby_one" layoutX="421.0" layoutY="29.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField fx:id="hr_one" layoutX="59.0" layoutY="69.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField fx:id="bp_one" layoutX="232.0" layoutY="69.0" prefHeight="25.0" prefWidth="100.0" />
                         <Label layoutX="28.0" layoutY="138.0" text="Date" />
-                        <DatePicker layoutX="59.0" layoutY="29.0" prefHeight="25.0" prefWidth="117.0" />
-                        <DatePicker layoutX="59.0" layoutY="134.0" prefHeight="25.0" prefWidth="117.0" />
+                        <DatePicker fx:id="vs_date_one" layoutX="59.0" layoutY="29.0" prefHeight="25.0" prefWidth="117.0" />
+                        <DatePicker fx:id="vs_date_two" layoutX="59.0" layoutY="134.0" prefHeight="25.0" prefWidth="117.0" />
                         <Label layoutX="194.0" layoutY="138.0" text="Time" />
                         <Label layoutX="350.0" layoutY="138.0" text="Checked By" />
                         <Label layoutX="29.0" layoutY="176.0" text="HR" />
                         <Label layoutX="193.0" layoutY="176.0" text="BP" />
-                        <TextField layoutX="232.0" layoutY="134.0" prefHeight="25.0" prefWidth="100.0" />
-                        <TextField layoutX="421.0" layoutY="134.0" prefHeight="25.0" prefWidth="279.0" />
-                        <TextField layoutX="59.0" layoutY="172.0" prefHeight="25.0" prefWidth="111.0" />
-                        <TextField layoutX="232.0" layoutY="172.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="vs_time_two" layoutX="232.0" layoutY="134.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="vs_checkedby_two" layoutX="421.0" layoutY="134.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField fx:id="hr_two" layoutX="59.0" layoutY="172.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField fx:id="bp_two" layoutX="232.0" layoutY="172.0" prefHeight="25.0" prefWidth="100.0" />
                         <Label layoutX="29.0" layoutY="246.0" text="Date" />
                         <Label layoutX="192.0" layoutY="246.0" text="Time" />
                         <Label layoutX="350.0" layoutY="246.0" text="Checked By" />
@@ -310,32 +310,32 @@
                         <Label layoutX="350.0" layoutY="361.0" text="Checked By" />
                         <Label layoutX="29.0" layoutY="407.0" text="HR" />
                         <Label layoutX="192.0" layoutY="407.0" text="BP" />
-                        <DatePicker layoutX="59.0" layoutY="242.0" prefHeight="25.0" prefWidth="118.0" />
-                        <DatePicker layoutX="59.0" layoutY="357.0" prefHeight="25.0" prefWidth="117.0" />
-                        <TextField layoutX="232.0" layoutY="242.0" prefHeight="25.0" prefWidth="100.0" />
-                        <TextField layoutX="232.0" layoutY="357.0" prefHeight="25.0" prefWidth="100.0" />
-                        <TextField layoutX="421.0" layoutY="242.0" prefHeight="25.0" prefWidth="279.0" />
-                        <TextField layoutX="421.0" layoutY="357.0" prefHeight="25.0" prefWidth="279.0" />
-                        <TextField layoutX="59.0" layoutY="403.0" prefHeight="25.0" prefWidth="111.0" />
-                        <TextField layoutX="59.0" layoutY="282.0" prefHeight="25.0" prefWidth="111.0" />
-                        <TextField layoutX="232.0" layoutY="282.0" prefHeight="25.0" prefWidth="100.0" />
-                        <TextField layoutX="232.0" layoutY="403.0" prefHeight="25.0" prefWidth="100.0" />
+                        <DatePicker fx:id="vs_date_three" layoutX="59.0" layoutY="242.0" prefHeight="25.0" prefWidth="118.0" />
+                        <DatePicker fx:id="vs_date_four" layoutX="59.0" layoutY="357.0" prefHeight="25.0" prefWidth="117.0" />
+                        <TextField fx:id="vs_time_three" layoutX="232.0" layoutY="242.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="vs_time_four" layoutX="232.0" layoutY="357.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="vs_checkedby_three" layoutX="421.0" layoutY="242.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField fx:id="vs_checkedby_four" layoutX="421.0" layoutY="357.0" prefHeight="25.0" prefWidth="279.0" />
+                        <TextField fx:id="hr_four" layoutX="59.0" layoutY="403.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField fx:id="hr_three" layoutX="59.0" layoutY="282.0" prefHeight="25.0" prefWidth="111.0" />
+                        <TextField fx:id="bp_three" layoutX="232.0" layoutY="282.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField fx:id="bp_four" layoutX="232.0" layoutY="403.0" prefHeight="25.0" prefWidth="100.0" />
                         <Label layoutX="350.0" layoutY="73.0" text="O2" />
-                        <TextField layoutX="381.0" layoutY="69.0" prefHeight="25.0" prefWidth="50.0" />
+                        <TextField fx:id="o2_one" layoutX="381.0" layoutY="69.0" prefHeight="25.0" prefWidth="50.0" />
                         <Label layoutX="454.0" layoutY="73.0" text="BPM" />
-                        <TextField layoutX="496.0" layoutY="69.0" prefHeight="25.0" prefWidth="50.0" />
+                        <TextField fx:id="bpm_one" layoutX="496.0" layoutY="69.0" prefHeight="25.0" prefWidth="50.0" />
                         <Label layoutX="350.0" layoutY="176.0" text="O2" />
-                        <TextField layoutX="381.0" layoutY="172.0" prefHeight="25.0" prefWidth="50.0" />
+                        <TextField fx:id="o2_two" layoutX="381.0" layoutY="172.0" prefHeight="25.0" prefWidth="50.0" />
                         <Label layoutX="454.0" layoutY="176.0" text="BPM" />
-                        <TextField layoutX="496.0" layoutY="172.0" prefHeight="25.0" prefWidth="50.0" />
+                        <TextField fx:id="bpm_two" layoutX="496.0" layoutY="172.0" prefHeight="25.0" prefWidth="50.0" />
                         <Label layoutX="350.0" layoutY="286.0" text="O2" />
-                        <TextField layoutX="381.0" layoutY="282.0" prefHeight="25.0" prefWidth="50.0" />
+                        <TextField fx:id="o2_three" layoutX="381.0" layoutY="282.0" prefHeight="25.0" prefWidth="50.0" />
                         <Label layoutX="454.0" layoutY="286.0" text="BPM" />
-                        <TextField layoutX="496.0" layoutY="282.0" prefHeight="25.0" prefWidth="50.0" />
+                        <TextField fx:id="bpm_three" layoutX="496.0" layoutY="282.0" prefHeight="25.0" prefWidth="50.0" />
                         <Label layoutX="350.0" layoutY="407.0" text="O2" />
-                        <TextField layoutX="381.0" layoutY="403.0" prefHeight="25.0" prefWidth="50.0" />
+                        <TextField fx:id="o2_four" layoutX="381.0" layoutY="403.0" prefHeight="25.0" prefWidth="50.0" />
                         <Label layoutX="454.0" layoutY="407.0" text="BPM" />
-                        <TextField layoutX="496.0" layoutY="403.0" prefHeight="25.0" prefWidth="50.0" />
+                        <TextField fx:id="bpm_four" layoutX="496.0" layoutY="403.0" prefHeight="25.0" prefWidth="50.0" />
                      </children>
                      <effect>
                         <InnerShadow />
@@ -371,31 +371,31 @@
                         <Label layoutX="565.0" layoutY="171.0" text="Test Result" />
                         <Label layoutX="565.0" layoutY="274.0" text="Test Result" />
                         <Label layoutX="565.0" layoutY="390.0" text="Test Result" />
-                        <DatePicker layoutX="96.0" layoutY="34.0" />
-                        <DatePicker layoutX="96.0" layoutY="130.0" />
-                        <DatePicker layoutX="96.0" layoutY="232.0" />
-                        <DatePicker layoutX="96.0" layoutY="347.0" />
-                        <TextField layoutX="368.0" layoutY="34.0" />
-                        <TextField layoutX="368.0" layoutY="130.0" />
-                        <TextField layoutX="368.0" layoutY="232.0" />
-                        <TextField layoutX="368.0" layoutY="347.0" />
-                        <TextField layoutX="664.0" layoutY="34.0" prefHeight="25.0" prefWidth="225.0" />
-                        <TextField layoutX="664.0" layoutY="130.0" prefHeight="25.0" prefWidth="225.0" />
-                        <TextField layoutX="664.0" layoutY="232.0" prefHeight="25.0" prefWidth="225.0" />
-                        <TextField layoutX="664.0" layoutY="347.0" prefHeight="25.0" prefWidth="225.0" />
-                        <ChoiceBox layoutX="96.0" layoutY="386.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="368.0" layoutY="386.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="96.0" layoutY="270.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="368.0" layoutY="270.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="96.0" layoutY="69.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="368.0" layoutY="69.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="96.0" layoutY="167.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="368.0" layoutY="167.0" prefWidth="150.0" />
+                        <DatePicker fx:id="tL_date_one" layoutX="96.0" layoutY="34.0" />
+                        <DatePicker fx:id="tL_date_two" layoutX="96.0" layoutY="130.0" />
+                        <DatePicker fx:id="tL_date_three" layoutX="96.0" layoutY="232.0" />
+                        <DatePicker fx:id="tL_date_four" layoutX="96.0" layoutY="347.0" />
+                        <TextField fx:id="tL_time_one" layoutX="368.0" layoutY="34.0" />
+                        <TextField fx:id="tL_time_two" layoutX="368.0" layoutY="130.0" />
+                        <TextField fx:id="tL_time_three" layoutX="368.0" layoutY="232.0" />
+                        <TextField fx:id="tL_time_four" layoutX="368.0" layoutY="347.0" />
+                        <TextField fx:id="tL_physician_one" layoutX="664.0" layoutY="34.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField fx:id="tL_physician_two" layoutX="664.0" layoutY="130.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField fx:id="tL_physician_three" layoutX="664.0" layoutY="232.0" prefHeight="25.0" prefWidth="225.0" />
+                        <TextField fx:id="tL_physician_four" layoutX="664.0" layoutY="347.0" prefHeight="25.0" prefWidth="225.0" />
+                        <ChoiceBox fx:id="test_id_four" layoutX="96.0" layoutY="386.0" prefWidth="150.0" value="Select One" />
+                        <ChoiceBox fx:id="test_name_four" layoutX="368.0" layoutY="386.0" prefWidth="150.0" value="Select One" />
+                        <ChoiceBox fx:id="test_id_three" layoutX="96.0" layoutY="270.0" prefWidth="150.0" value="Select One" />
+                        <ChoiceBox fx:id="test_name_three" layoutX="368.0" layoutY="270.0" prefWidth="150.0" value="Select One" />
+                        <ChoiceBox fx:id="test_id_one" layoutX="96.0" layoutY="69.0" prefWidth="150.0" value="Select One" />
+                        <ChoiceBox fx:id="test_name_one" layoutX="368.0" layoutY="69.0" prefWidth="150.0" value="Select One" />
+                        <ChoiceBox fx:id="test_id_two" layoutX="96.0" layoutY="167.0" prefWidth="150.0" value="Select One" />
+                        <ChoiceBox fx:id="test_name_two" layoutX="368.0" layoutY="167.0" prefWidth="150.0" value="Select One" />
                         <Label layoutX="664.0" layoutY="73.0" />
-                        <TextField layoutX="664.0" layoutY="69.0" />
-                        <TextField layoutX="664.0" layoutY="167.0" />
-                        <TextField layoutX="664.0" layoutY="270.0" />
-                        <TextField layoutX="664.0" layoutY="386.0" />
+                        <TextField fx:id="test_result_one" layoutX="664.0" layoutY="69.0" />
+                        <TextField fx:id="test_result_two" layoutX="664.0" layoutY="167.0" />
+                        <TextField fx:id="test_result_three" layoutX="664.0" layoutY="270.0" />
+                        <TextField fx:id="test_result_four" layoutX="664.0" layoutY="386.0" />
                      </children>
                      <effect>
                         <InnerShadow />
@@ -405,7 +405,7 @@
             </TitledPane>
         </panes>
       </Accordion>
-      <Button layoutX="981.0" layoutY="746.0" mnemonicParsing="false" text="Save" />
-      <Button layoutX="823.0" layoutY="746.0" mnemonicParsing="false" text="Return to Dashboard" />
+      <Button fx:id="save_all" layoutX="981.0" layoutY="746.0" mnemonicParsing="false" onAction="#saveAll" text="Save" />
+      <Button fx:id="return_to_dashboard" layoutX="823.0" layoutY="746.0" mnemonicParsing="false" onAction="#returnToDashboard" text="Return to Dashboard" />
    </children>
 </AnchorPane>

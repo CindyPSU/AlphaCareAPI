@@ -3,6 +3,7 @@ package MedicalRecordModel;
 
 import UserModel.Patient;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,10 +13,10 @@ import java.util.Date;
  */
 public class PrescriptionHistory {
     private Patient patientID;
-    private Date rXorderDate;
+    private LocalDate rXorderDate;
     private Time rXorderTime;
     private String physicianName;
-    private int rXID;
+    private String rXID;
     private String rXName;
     private int refillCount;
     
@@ -31,8 +32,8 @@ public class PrescriptionHistory {
      * 
      * This is the constructor for the PrescriptionHistory Class.
      */
-    public PrescriptionHistory(Patient linkPatientID, Date rxDate, Time rxTime, String docName,
-            int rxID, String rxName, int rxCount){
+    public PrescriptionHistory(Patient linkPatientID, LocalDate rxDate, Time rxTime, String docName,
+            String rxID, String rxName, int rxCount){
         patientID = linkPatientID;
         rXorderDate = rxDate;
         rXorderTime = rxTime;
@@ -46,7 +47,7 @@ public class PrescriptionHistory {
      * Returns the RX order submission date.
      * @return A RX order date.
      */
-    public Date getRXOrderDate(){
+    public LocalDate getRXOrderDate(){
         return getrXorderDate();
     }
     
@@ -70,7 +71,7 @@ public class PrescriptionHistory {
      * Returns the prescription ID for the RX.
      * @return A prescription ID.
      */
-    public int getRXID(){
+    public String getRXID(){
         return getrXID();
     }
     
@@ -89,6 +90,12 @@ public class PrescriptionHistory {
     public int getRefillCount(){
         return refillCount;
     }
+    
+    public String getRefillCountString(){
+        String p_refill;
+        p_refill = Integer.toString(refillCount);
+        return p_refill;
+    }
     /**
      * @return the patientID
      */
@@ -106,14 +113,14 @@ public class PrescriptionHistory {
     /**
      * @return the rXorderDate
      */
-    public Date getrXorderDate() {
+    public LocalDate getrXorderDate() {
         return rXorderDate;
     }
 
     /**
      * @param rXorderDate the rXorderDate to set
      */
-    public void setrXorderDate(Date rXorderDate) {
+    public void setrXorderDate(LocalDate rXorderDate) {
         this.rXorderDate = rXorderDate;
     }
 
@@ -141,14 +148,14 @@ public class PrescriptionHistory {
     /**
      * @return the rXID
      */
-    public int getrXID() {
+    public String getrXID() {
         return rXID;
     }
 
     /**
      * @param rXID the rXID to set
      */
-    public void setrXID(int rXID) {
+    public void setrXID(String rXID) {
         this.rXID = rXID;
     }
 

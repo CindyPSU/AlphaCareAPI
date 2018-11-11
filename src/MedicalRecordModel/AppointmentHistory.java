@@ -3,6 +3,7 @@ package MedicalRecordModel;
 
 import UserModel.*;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -14,7 +15,7 @@ public class AppointmentHistory {
     
     private String patientID;
     private int appointmentID;
-    private Date appointmentDate;
+    private LocalDate appointmentDate;
     private Time appointmentTime;
     private String physicianName;
     private String appointmentCode;
@@ -34,7 +35,7 @@ public class AppointmentHistory {
      * 
      * This is the constructor for the AppointmentHistory Class.
      */
-    public AppointmentHistory(String linkPatientID, int appID, Date appDate, Time appTime, 
+    public AppointmentHistory(String linkPatientID, int appID, LocalDate appDate, Time appTime, 
             String docName, String appCode, String appCodeDesc, AppointmentStatus status, Practice practice) {
         patientID = linkPatientID;
         appointmentID = appID;
@@ -60,7 +61,7 @@ public class AppointmentHistory {
      * Returns the patient's appointment date.
      * @return A patient appointment date.
      */
-    public Date getAppointmentDate(){
+    public LocalDate getAppointmentDate(){
         return appointmentDate;
     } 
     
@@ -119,7 +120,7 @@ public class AppointmentHistory {
     /**
      * @param appointmentDate the appointmentDate to set
      */
-    public void setAppointmentDate(Date appointmentDate) {
+    public void setAppointmentDate(LocalDate appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 
@@ -170,6 +171,12 @@ public class AppointmentHistory {
      */
     public Practice getPractice() {
         return practice;
+    }
+    
+    public String getPracticeString(){
+        String app_practice;
+        app_practice = practice.toString();
+        return app_practice;
     }
 
     /**

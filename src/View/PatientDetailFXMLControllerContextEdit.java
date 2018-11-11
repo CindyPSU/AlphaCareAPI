@@ -8,7 +8,6 @@ package View;
 import UserModel.Address;
 import UserModel.Patient;
 import java.text.SimpleDateFormat;
-import java.time.ZoneId;
 
 /**
  *
@@ -43,7 +42,7 @@ public class PatientDetailFXMLControllerContextEdit implements PatientDetailFXML
         controller.state.setText(address.getState());
         controller.zipCode.setText(address.getZipCode());
         SimpleDateFormat format = new SimpleDateFormat();
-        controller.birthday.setValue(profile.getBirthdate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        controller.birthday.setValue(profile.getBirthdate());
         controller.emailAddress.setText(profile.getEmail());
     }
     

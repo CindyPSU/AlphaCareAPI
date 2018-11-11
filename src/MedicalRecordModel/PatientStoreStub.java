@@ -5,8 +5,10 @@
  */
 package MedicalRecordModel;
 
+import DBModel.SQLite;
 import UserModel.Address;
 import UserModel.Patient;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +34,7 @@ public class PatientStoreStub implements EntityStore<Patient> {
                 "McFly", 
                 "CK", 
                 "Marty", 
-                new Date(), 
+                LocalDate.now(), 
                 "5556778", 
                 addressOne, 
                 "bttf@gmail.com"
@@ -49,7 +51,7 @@ public class PatientStoreStub implements EntityStore<Patient> {
                 "Rosendale", 
                 "K", 
                 "Jeff", 
-                new Date(), 
+                LocalDate.now(), 
                 "5552132", 
                 addressTwo, 
                 "jeff.is.the.man@gmail.com"
@@ -66,7 +68,7 @@ public class PatientStoreStub implements EntityStore<Patient> {
                 "Buffet", 
                 "A", 
                 "", 
-                new Date(), 
+                LocalDate.now(), 
                 "5551111", 
                 addressThree, 
                 "bttf@gmail.com"
@@ -75,7 +77,8 @@ public class PatientStoreStub implements EntityStore<Patient> {
 
     @Override
     public List<Patient> load() {
-        return PatientStoreStub.savedPatients;
+        return SQLite.loadPatients();
+        // return PatientStoreStub.savedPatients;
     }
 
     @Override
@@ -88,6 +91,27 @@ public class PatientStoreStub implements EntityStore<Patient> {
         }
         Patient matchingProfile = filtered.get(0);
         matchingProfile = profile;
-    }    
+    }
+    
+    public static void save(Patient profile)
+    {
+        boolean foundPatient = false;
+        for(Patient p: savedPatients)
+        {
+            if(p == profile)
+            {
+                foundPatient = true;
+                break;
+            }
+        }
+        if(!foundPatient)
+        {
+            savedPatients.add(profile);
+        }
+        SQLite.savePatientProfile(profile);
+    }
+    
+    
+    
 
 }

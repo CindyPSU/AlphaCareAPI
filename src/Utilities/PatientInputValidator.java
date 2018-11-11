@@ -52,7 +52,7 @@ public class PatientInputValidator {
         validateLastName();
         validateMiddleInitial();
         validatePreferredName();
-        Date birthdayValue = validatedBirthday();
+        LocalDate birthdayValue = validatedBirthday();
         validatePhoneNumber();
         validateAddress();
         validateEmail();
@@ -95,7 +95,7 @@ public class PatientInputValidator {
         }
     }
     
-    private Date validatedBirthday() throws PatientInputException {
+    private LocalDate validatedBirthday() throws PatientInputException {
         if (birthday == null) {
             throw new PatientInputException(PatientInputException.ERROR_CODE_INVALID_BIRTHDATE);
         }
@@ -104,7 +104,7 @@ public class PatientInputValidator {
             throw new PatientInputException(PatientInputException.ERROR_CODE_INVALID_BIRTHDATE);
         }
         
-        return Date.from(birthday.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        return LocalDate.from(birthday.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
     
     private void validateMiddleInitial() throws PatientInputException {

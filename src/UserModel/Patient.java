@@ -2,6 +2,7 @@
 package UserModel;
 
 import MedicalRecordModel.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 /**
@@ -13,7 +14,7 @@ public class Patient extends User {
     public static ArrayList<Patient> patientProfiles = new ArrayList<Patient>();
     
     private String identifier;
-    private Date birthdate;
+    private LocalDate birthdate;
     private String phoneNumber;
     private Address address;
     private String email;
@@ -34,6 +35,12 @@ public class Patient extends User {
     }
     
     /**
+     * Empty constructor
+     */
+    public Patient(){
+        
+    }
+    /**
      * 
      * @param initPatientID
      * @param pFirstName
@@ -48,12 +55,12 @@ public class Patient extends User {
      * This is the constructor for the PatientProfile Class.
      */
     public Patient(String initPatientID, String pFirstName, String pLastName, String pMiddleInitial, 
-            String pPreferredName, Date pDOB, String pPhoneNumber, Address pAddress, String pEmail){
+            String pPreferredName, LocalDate pDOB, String pPhoneNumber, Address pAddress, String pEmail){
         identifier = initPatientID;
         this.firstName = pFirstName;
         this.lastName = pLastName;
         this.middleInitial = pMiddleInitial;
-        this.preferredName = preferredName;
+        this.preferredName = pPreferredName;
         birthdate = pDOB;
         phoneNumber = pPhoneNumber;
         address = pAddress;
@@ -72,7 +79,7 @@ public class Patient extends User {
      * Returns the patient date of birth.
      * @return A patient date of birth.
      */
-    public Date getBirthdate(){
+    public LocalDate getBirthdate(){
         return birthdate;
     }
     
@@ -132,7 +139,7 @@ public class Patient extends User {
     /**
      * @param birthdate the birthdate to set
      */
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 

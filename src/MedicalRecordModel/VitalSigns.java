@@ -3,6 +3,7 @@ package MedicalRecordModel;
 
 import UserModel.Patient;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,8 +14,9 @@ import java.util.Date;
 public class VitalSigns {
     private Patient patientID;
     private int vitalSignsID;
-    private Date vitalSignsDate;
+    private LocalDate vitalSignsDate;
     private Time vitalSignsTime;
+    private String checkedBy;
     private String heartRate;
     private String bloodPressure;
     private String oxygenSat;
@@ -33,7 +35,7 @@ public class VitalSigns {
      * 
      * This is the constructor for the VitalSigns Class.
      */
-    public VitalSigns(Patient linkPatientID, int vsID, Date vsDate, Time vsTime, 
+    public VitalSigns(Patient linkPatientID, int vsID, LocalDate vsDate, Time vsTime, 
             String hRate, String bPressure, String oSat, String bpm){
         patientID = linkPatientID;
         vitalSignsID = vsID;
@@ -56,7 +58,7 @@ public class VitalSigns {
      * Returns the patient's vital signs check date.
      * @return A patient vital signs date.
      */
-    public Date getVitalSignsDate(){
+    public LocalDate getVitalSignsDate(){
         return vitalSignsDate;
     } 
     
@@ -124,7 +126,7 @@ public class VitalSigns {
     /**
      * @param vitalSignsDate the vitalSignsDate to set
      */
-    public void setVitalSignsDate(Date vitalSignsDate) {
+    public void setVitalSignsDate(LocalDate vitalSignsDate) {
         this.vitalSignsDate = vitalSignsDate;
     }
 
@@ -173,5 +175,19 @@ public class VitalSigns {
         ArrayList<VitalSigns> vitalSignsData = new ArrayList<VitalSigns>();
         System.out.println("Vital Signs Data History will come from the DB.");
         return vitalSignsData;
+    }
+
+    /**
+     * @return the checkedBy
+     */
+    public String getCheckedBy() {
+        return checkedBy;
+    }
+
+    /**
+     * @param checkedBy the checkedBy to set
+     */
+    public void setCheckedBy(String checkedBy) {
+        this.checkedBy = checkedBy;
     }
 }

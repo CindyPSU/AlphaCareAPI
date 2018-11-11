@@ -44,6 +44,7 @@ public class PatientDetailFXMLController implements Initializable {
     
     private PatientDetailFXMLControllerContext context;
     private PatientDetailFXMLControllerDelegate delegate;
+    private CompleteMedicalRecordFXMLController medicalRecordController;
     
     private boolean hasInitialized = false;
     
@@ -123,5 +124,19 @@ public class PatientDetailFXMLController implements Initializable {
                 emailAddress.getText()
         );
         return validator.validated();
+    }
+
+    /**
+     * @return the medicalRecordController
+     */
+    public CompleteMedicalRecordFXMLController getMedicalRecordController() {
+        return medicalRecordController;
+    }
+
+    /**
+     * @param medicalRecordController the medicalRecordController to set
+     */
+    public void setMedicalRecordController(CompleteMedicalRecordFXMLController medicalRecordController) {
+        this.medicalRecordController = medicalRecordController;
     }
 }
