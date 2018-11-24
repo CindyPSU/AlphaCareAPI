@@ -1,20 +1,30 @@
-
 package View;
 
 import MedicalRecordModel.AppointmentHistory;
+import MedicalRecordModel.Appt.ApptCategories;
 import MedicalRecordModel.ImmunizationHistory;
 import MedicalRecordModel.MedicalHistory;
+import MedicalRecordModel.Appt.ApptCategory;
+import MedicalRecordModel.Appt.ApptOptions;
+import MedicalRecordModel.Appt.ApptStatusOptions;
 import MedicalRecordModel.PatientStoreStub;
 import MedicalRecordModel.PrescriptionHistory;
 import MedicalRecordModel.RX.RXCategories;
 import MedicalRecordModel.RX.RXCategory;
 import MedicalRecordModel.RX.RXOptions;
+import MedicalRecordModel.TestLab.TestCategories;
+import MedicalRecordModel.TestLab.TestCategory;
+import MedicalRecordModel.TestLab.TestOptions;
 import MedicalRecordModel.TestLabResults;
 import MedicalRecordModel.VitalSigns;
 import UserModel.Patient;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,12 +32,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
@@ -39,7 +56,7 @@ import javafx.util.StringConverter;
 public class CompleteMedicalRecordFXMLController implements Initializable {
 
     @FXML
-    private Label patientID;
+    private TextField patientID;
     @FXML
     private TextField patient_first_name;
     @FXML
@@ -59,294 +76,52 @@ public class CompleteMedicalRecordFXMLController implements Initializable {
     @FXML
     private Label patient_contact;
     @FXML
-    private TextField current_notes;
-    @FXML
-    private TextField current_med_condition;
-    @FXML
-    private TextField past_med_condition;
-    @FXML
-    private TextField past_notes;
-    @FXML
-    private TextField proc_name_recent;
-    @FXML
-    private TextField proc_age_recent;
-    @FXML
-    private TextField proc_age_next;
-    @FXML
-    private TextField proc_name_next;
-    @FXML
-    private TextField proc_age_next_next;
-    @FXML
-    private TextField proc_name_next_next;
-    @FXML
-    private TextField allergy_one;
-    @FXML
-    private TextField allergy_one_desc;
-    @FXML
-    private TextField allergy_two;
-    @FXML
-    private TextField allergy_two_desc;
-    @FXML
-    private TextField allergy_three;
-    @FXML
-    private TextField allergy_three_desc;
-    @FXML
-    private DatePicker current_date;
-    @FXML
-    private DatePicker proc_date_recent;
-    @FXML
-    private DatePicker proc_date_next;
-    @FXML
-    private DatePicker proc_date_next_next;
-    @FXML
-    private TextField im_time_one;
-    @FXML
-    private TextField im_givenby_one;
-    @FXML
-    private TextField im_title_one;
-    @FXML
-    private TextField im_id_one;
-    @FXML
-    private TextField im_type_one;
-    @FXML
-    private DatePicker im_date_one;
-    @FXML
-    private DatePicker im_date_two;
-    @FXML
-    private TextField im_time_two;
-    @FXML
-    private TextField im_givenby_two;
-    @FXML
-    private TextField im_title_two;
-    @FXML
-    private TextField im_id_two;
-    @FXML
-    private TextField im_type_two;
-    @FXML
-    private DatePicker im_date_three;
-    @FXML
-    private DatePicker im_date_four;
-    @FXML
-    private TextField im_time_three;
-    @FXML
-    private TextField im_time_four;
-    @FXML
-    private TextField im_givenby_three;
-    @FXML
-    private TextField im_givenby_fourt;
-    @FXML
-    private TextField im_title_three;
-    @FXML
-    private TextField im_title_four;
-    @FXML
-    private TextField im_id_four;
-    @FXML
-    private TextField im_id_three;
-    @FXML
-    private TextField im_type_three;
-    @FXML
-    private TextField im_type_four;
-    @FXML
-    private DatePicker presc_order_date_one;
-    @FXML
-    private DatePicker presc_order_date_two;
-    @FXML
-    private DatePicker presc_order_date_three;
-    @FXML
-    private DatePicker presc_order_date_four;
-    @FXML
-    private TextField presc_order_time_one;
-    @FXML
-    private TextField presc_order_time_two;
-    @FXML
-    private TextField presc_order_time_three;
-    @FXML
-    private TextField presc_order_time_four;
-    @FXML
-    private TextField presc_order_physician_one;
-    @FXML
-    private TextField presc_order_physician_two;
-    @FXML
-    private TextField presc_order_physician_three;
-    @FXML
-    private TextField presc_order_physician_four;
-    @FXML
-    private ChoiceBox<RXCategory> presc_id_four;
-    @FXML
-    private ChoiceBox<RXOptions> presc_name_four;
-    @FXML
-    private ChoiceBox<RXCategory> presc_id_three;
-    @FXML
-    private ChoiceBox<RXOptions> presc_name_three;
-    @FXML
-    private ChoiceBox<RXCategory> presc_id_one;
-    @FXML
-    private ChoiceBox<RXOptions> presc_name_one;
-    @FXML
-    private ChoiceBox<RXCategory> presc_id_two;
-    @FXML
-    private ChoiceBox<RXOptions> presc_name_two;
-    @FXML
-    private Label presc_refills_one;
-    @FXML
-    private Label presc_refills_two;
-    @FXML
-    private Label presc_refills_three;
-    @FXML
-    private Label presc_refills_four;
-    @FXML
-    private DatePicker app_date_one;
-    @FXML
-    private DatePicker app_date_two;
-    @FXML
-    private DatePicker app_date_three;
-    @FXML
-    private TextField app_time_one;
-    @FXML
-    private TextField app_time_two;
-    @FXML
-    private TextField app_time_three;
-    @FXML
-    private TextField app_physician_one;
-    @FXML
-    private TextField app_physician_two;
-    @FXML
-    private TextField app_physician_three;
-    @FXML
-    private ChoiceBox<?> app_code_three;
-    @FXML
-    private ChoiceBox<?> app_desc_three;
-    @FXML
-    private ChoiceBox<?> app_code_two;
-    @FXML
-    private ChoiceBox<?> app_desc_two;
-    @FXML
-    private ChoiceBox<?> app_code_one;
-    @FXML
-    private ChoiceBox<?> app_desc_one;
-    @FXML
-    private ChoiceBox<?> app_status_one;
-    @FXML
-    private TextField app_medical_practice_one;
-    @FXML
-    private ChoiceBox<?> app_status_three;
-    @FXML
-    private TextField app_medical_practice_three;
-    @FXML
-    private ChoiceBox<?> app_status_two;
-    @FXML
-    private TextField app_medical_practice_two;
-    @FXML
-    private TextField vs_time_one;
-    @FXML
-    private TextField vs_checkedby_one;
-    @FXML
-    private TextField hr_one;
-    @FXML
-    private TextField bp_one;
-    @FXML
-    private DatePicker vs_date_one;
-    @FXML
-    private DatePicker vs_date_two;
-    @FXML
-    private TextField vs_time_two;
-    @FXML
-    private TextField vs_checkedby_two;
-    @FXML
-    private TextField hr_two;
-    @FXML
-    private TextField bp_two;
-    @FXML
-    private DatePicker vs_date_three;
-    @FXML
-    private DatePicker vs_date_four;
-    @FXML
-    private TextField vs_time_three;
-    @FXML
-    private TextField vs_time_four;
-    @FXML
-    private TextField vs_checkedby_three;
-    @FXML
-    private TextField vs_checkedby_four;
-    @FXML
-    private TextField hr_four;
-    @FXML
-    private TextField hr_three;
-    @FXML
-    private TextField bp_three;
-    @FXML
-    private TextField bp_four;
-    @FXML
-    private TextField o2_one;
-    @FXML
-    private TextField bpm_one;
-    @FXML
-    private TextField o2_two;
-    @FXML
-    private TextField bpm_two;
-    @FXML
-    private TextField o2_three;
-    @FXML
-    private TextField bpm_three;
-    @FXML
-    private TextField o2_four;
-    @FXML
-    private TextField bpm_four;
-    @FXML
-    private DatePicker tL_date_one;
-    @FXML
-    private DatePicker tL_date_two;
-    @FXML
-    private DatePicker tL_date_three;
-    @FXML
-    private DatePicker tL_date_four;
-    @FXML
-    private TextField tL_time_one;
-    @FXML
-    private TextField tL_time_two;
-    @FXML
-    private TextField tL_time_three;
-    @FXML
-    private TextField tL_time_four;
-    @FXML
-    private TextField tL_physician_one;
-    @FXML
-    private TextField tL_physician_two;
-    @FXML
-    private TextField tL_physician_three;
-    @FXML
-    private TextField tL_physician_four;
-    @FXML
-    private ChoiceBox<?> test_id_four;
-    @FXML
-    private ChoiceBox<?> test_name_four;
-    @FXML
-    private ChoiceBox<?> test_id_three;
-    @FXML
-    private ChoiceBox<?> test_name_three;
-    @FXML
-    private ChoiceBox<?> test_id_one;
-    @FXML
-    private ChoiceBox<?> test_name_one;
-    @FXML
-    private ChoiceBox<?> test_id_two;
-    @FXML
-    private ChoiceBox<?> test_name_two;
-    @FXML
-    private TextField test_result_one;
-    @FXML
-    private TextField test_result_two;
-    @FXML
-    private TextField test_result_three;
-    @FXML
-    private TextField test_result_four;
-    @FXML
     private Button save_all;
     @FXML
     private Button return_to_dashboard;
-    private RXCategories rxCategories = new RXCategories();
+
     private Stage stage;
 
+    @FXML
+    private VBox appointmentHistories1;    
+    private ArrayList<AppointmentHistoryFXMLController> appointmentHistoryControllers;
+    private int appointmentRows = 5;
+    
+    @FXML
+    private VBox immunizationHistories1;
+    private ArrayList<ImmunizationHistoryFXMLController> immunizationHistoryControllers;
+    private int immunizationHistoryRows = 8;
+
+    @FXML
+    private VBox medicalHistories1;
+    private ArrayList<MedicalHistoryFXMLController> medicalHistoryControllers;
+    private int medicalHistoryRows = 5;
+
+    @FXML
+    private VBox prescriptionHistories1;
+    private ArrayList<PrescriptionHistoryFXMLController> prescriptionHistoryControllers;
+    private int prescriptionHistoryRows = 5;
+
+    @FXML
+    private VBox labResults1;
+    private ArrayList<TestLabResultsFXMLController> testLabResultsControllers;
+    private int testLabResultsRows = 5;
+
+    @FXML
+    private VBox vitalSigns1;
+    private ArrayList<VitalSignsFXMLController> vitalSignsControllers;
+    private int vitalSignsRows = 5;
+    
+    @FXML
+    private TitledPane patientInfoPane;
+    
+    @FXML
+    private Accordion accordion;
+    
+    private DashboardFXMLController dashboardController;
+    
+    
+    
     /**
      * Initializes the controller class.
      * @param url
@@ -354,30 +129,95 @@ public class CompleteMedicalRecordFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setupRXChoiceBoxes(this.presc_id_one, this.presc_name_one);
-        setupRXChoiceBoxes(this.presc_id_two, this.presc_name_two);
-        setupRXChoiceBoxes(this.presc_id_three, this.presc_name_three);
-        setupRXChoiceBoxes(this.presc_id_four, this.presc_name_four);
-    }  
-    
-    private void setupRXChoiceBoxes(ChoiceBox<RXCategory> rxIDChoiceBox, ChoiceBox<RXOptions> rxNameChoiceBox){
-        rxIDChoiceBox.setItems(rxCategories.getRxCategory()); //= new ChoiceBox<RXCategory>(rxCategories.getRxCategory());
-        ChangeListener<RXCategory> changeListener = new ChangeListener<RXCategory>() {
-
-            @Override
-            public void changed(ObservableValue<? extends RXCategory> observable, RXCategory oldValue, RXCategory newValue) {
-                rxNameChoiceBox.setItems(newValue.getRxOptions());
+        
+        try
+        {
+            // Initialize Appointment History Rows
+            appointmentHistoryControllers = new ArrayList<>();
+            for(int i = 0; i < appointmentRows; i++)
+            {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AppointmentHistoryFXML.fxml"));
+                Parent root = loader.load();
+                AppointmentHistoryFXMLController controller = loader.<AppointmentHistoryFXMLController>getController();
+                appointmentHistoryControllers.add(controller);
+                appointmentHistories1.getChildren().add(root);
             }
-        };
-        // Selected Item Changed.
-        rxIDChoiceBox.getSelectionModel().selectedItemProperty().addListener(changeListener);
-    }
 
+            // Initialize Immunization History Rows
+            immunizationHistoryControllers = new ArrayList<>();
+            for(int i = 0; i < immunizationHistoryRows; i++)
+            {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("ImmunizationHistoryFXML.fxml"));
+                Parent root = loader.load();
+                ImmunizationHistoryFXMLController controller = loader.<ImmunizationHistoryFXMLController>getController();
+                immunizationHistoryControllers.add(controller);
+                immunizationHistories1.getChildren().add(root);
+            }
+
+            // Initialize Medical History Rows
+            medicalHistoryControllers = new ArrayList<>();
+            for(int i = 0; i < medicalHistoryRows; i++)
+            {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("MedicalHistoryFXML.fxml"));
+                Parent root = loader.load();
+                MedicalHistoryFXMLController controller = loader.<MedicalHistoryFXMLController>getController();
+                medicalHistoryControllers.add(controller);
+                medicalHistories1.getChildren().add(root);
+            }
+
+            // Initialize Prescription History Rows
+            prescriptionHistoryControllers = new ArrayList<>();
+            for(int i = 0; i < prescriptionHistoryRows; i++)
+            {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("PrescriptionHistoryFXML.fxml"));
+                Parent root = loader.load();
+                PrescriptionHistoryFXMLController controller = loader.<PrescriptionHistoryFXMLController>getController();
+                prescriptionHistoryControllers.add(controller);
+                prescriptionHistories1.getChildren().add(root);
+            }
+
+            // Initialize Test Lab Results Rows
+            testLabResultsControllers = new ArrayList<>();
+            for(int i = 0; i < testLabResultsRows; i++)
+            {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("TestLabResultsFXML.fxml"));
+                Parent root = loader.load();
+                TestLabResultsFXMLController controller = loader.<TestLabResultsFXMLController>getController();
+                testLabResultsControllers.add(controller);
+                labResults1.getChildren().add(root);
+            }
+
+            // Initialize Vital Signs Rows
+            vitalSignsControllers = new ArrayList<>();
+            for(int i = 0; i < vitalSignsRows; i++)
+            {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("VitalSignsFXML.fxml"));
+                Parent root = loader.load();
+                VitalSignsFXMLController controller = loader.<VitalSignsFXMLController>getController();
+                vitalSignsControllers.add(controller);
+                vitalSigns1.getChildren().add(root);
+            }
+
+            // Make the patient info pane expand by default
+            accordion.setExpandedPane(patientInfoPane);
+            
+        } catch (IOException error) {
+            error.printStackTrace();
+        }
+    }  
+        
     @FXML
     private void saveAll(ActionEvent event) {
+        /*
         if(this.profile == null)
         {
           this.profile = new Patient();
+        }
+        */
+        // save patient profile
+        if(this.profile.getIdentifier() == null)
+        {
+            this.profile.setIdentifier(this.patientID.getText());
         }
         this.profile.setFirstName(this.patient_first_name.getText());
         this.profile.setLastName(this.patient_last_name.getText());
@@ -387,11 +227,47 @@ public class CompleteMedicalRecordFXMLController implements Initializable {
         this.profile.setAddress(this.patient_home_address.getText());
         this.profile.setPhoneNumber(this.patient_phone_number.getText());
         this.profile.setEmail(this.patient_email.getText());
-        // NOTE TO SELF: To complete the medical record mapping to the patient profile
-        // add the remaining medical record fields here to save
-        // finishing adding in all record fields to save   
-        // MedicalHx, ImmunizationHx, RXHx, AppHx, VitalSigns, T&LResults
+        
+        
+        // Save Appointment History Data
+        for(int ahCounter = 0; ahCounter < appointmentHistoryControllers.size(); ahCounter++)
+        {
+          appointmentHistoryControllers.get(ahCounter).save();
+        }
+
+        // Save Immunization History Data
+        for(int counter = 0; counter < immunizationHistoryControllers.size(); counter++)
+        {
+          immunizationHistoryControllers.get(counter).save();
+        }
+
+        // Save Medical History Data
+        for(int counter = 0; counter < medicalHistoryControllers.size(); counter++)
+        {
+          medicalHistoryControllers.get(counter).save();
+        }
+        
+        // Save Prescription History Data
+        for(int counter = 0; counter < prescriptionHistoryControllers.size(); counter++)
+        {
+          prescriptionHistoryControllers.get(counter).save();
+        }
+
+        // Save Lab Results Data
+        for(int counter = 0; counter < testLabResultsControllers.size(); counter++)
+        {
+          testLabResultsControllers.get(counter).save();
+        }
+        
+        // Save Vital Signs Data
+        for(int counter = 0; counter < vitalSignsControllers.size(); counter++)
+        {
+          vitalSignsControllers.get(counter).save();
+        }
+
+
         PatientStoreStub.save(this.profile);
+        this.dashboardController.refreshAppointments();
     }
 
     @FXML
@@ -402,6 +278,12 @@ public class CompleteMedicalRecordFXMLController implements Initializable {
     public void loadPatient(){
         // Load Patient Profile Data
         this.patientID.setText(profile.getIdentifier());
+        
+        if(this.profile.getIdentifier() != null)
+        {
+            this.patientID.setDisable(true);
+        }
+
         this.patient_dob.setValue(profile.getBirthdate());
         this.patient_first_name.setText(profile.getFirstName());
         this.patient_last_name.setText(profile.getLastName());
@@ -411,215 +293,144 @@ public class CompleteMedicalRecordFXMLController implements Initializable {
         this.patient_phone_number.setText(profile.getPhoneNumber());
         this.patient_email.setText(profile.getEmail());
         
-        // Load Medical History Data
-        this.current_date.setValue(LocalDate.now());
-        this.current_notes.setText("Current Medical Notes");
-        this.past_notes.setText("Past Medical Notes");
-        if(medicalHistory != null)
-        {
-        this.current_med_condition.setText(medicalHistory.getCurrentMedicalCondition());
-        this.past_med_condition.setText(medicalHistory.getPastMedicalCondition());
-        
-        // Load Procedure History Data
-        this.proc_date_recent.setValue(medicalHistory.getProcedureDate());
-        this.proc_age_recent.setText(medicalHistory.getProcedureAgeString()); 
-        this.proc_name_recent.setText(medicalHistory.getProcedureName());
-        
-        this.proc_date_next.setValue(medicalHistory.getProcedureDate());
-        this.proc_age_next.setText(medicalHistory.getProcedureAgeString()); 
-        this.proc_name_next.setText(medicalHistory.getProcedureName());
-        
-        this.proc_date_next_next.setValue(medicalHistory.getProcedureDate());
-        this.proc_age_next_next.setText(medicalHistory.getProcedureAgeString()); 
-        this.proc_name_next_next.setText(medicalHistory.getProcedureName());
-        
-        // Load Allergy Data
-        this.allergy_one.setText(medicalHistory.getAllergyName());
-        this.allergy_one_desc.setText(medicalHistory.getAllergyDescription());
-        
-        this.allergy_two.setText(medicalHistory.getAllergyName());
-        this.allergy_two_desc.setText(medicalHistory.getAllergyDescription());
-        
-        this.allergy_three.setText(medicalHistory.getAllergyName());
-        this.allergy_three_desc.setText(medicalHistory.getAllergyDescription());
-        }
+                
+        // Load Appointment History Data
+        loadAppointmentHistories();
         
         // Load Immunization History Data
-        if(immunizationHistory != null)
+        loadImmunizationHistories();
+        
+        // Load Medical Histories
+        loadMedicalHistories();
+        
+        // Load Prescription Histories
+        loadPrescriptionHistories();
+        
+        this.loadTestLabResults();
+        this.loadVitalSigns();
+        
+    }
+    
+    private void loadAppointmentHistories()
+    {
+        for(int ahCounter = 0; ahCounter < appointmentHistoryControllers.size(); ahCounter++)
         {
-        this.im_date_one.setValue(immunizationHistory.getImmunizeDate());
-        this.im_time_one.setText(immunizationHistory.getImmunizeTime().toString());
-        this.im_givenby_one.setText(immunizationHistory.getGivenByName());
-        this.im_title_one.setText(immunizationHistory.getGivenByTitle());
-        this.im_id_one.setText(immunizationHistory.getImmunizationIDString()); 
-        this.im_type_one.setText(immunizationHistory.getImmunizationName());
-        
-        this.im_date_two.setValue(immunizationHistory.getImmunizeDate());
-        this.im_time_two.setText(immunizationHistory.getImmunizeTime().toString());
-        this.im_givenby_two.setText(immunizationHistory.getGivenByName());
-        this.im_title_two.setText(immunizationHistory.getGivenByTitle());
-        this.im_id_two.setText(immunizationHistory.getImmunizationIDString()); 
-        this.im_type_two.setText(immunizationHistory.getImmunizationName());
-        
-        this.im_date_three.setValue(immunizationHistory.getImmunizeDate());
-        this.im_time_three.setText(immunizationHistory.getImmunizeTime().toString());
-        this.im_givenby_three.setText(immunizationHistory.getGivenByName());
-        this.im_title_three.setText(immunizationHistory.getGivenByTitle());
-        this.im_id_three.setText(immunizationHistory.getImmunizationIDString()); 
-        this.im_type_three.setText(immunizationHistory.getImmunizationName());
-        
-        this.im_date_four.setValue(immunizationHistory.getImmunizeDate());
-        this.im_time_four.setText(immunizationHistory.getImmunizeTime().toString());
-        this.im_givenby_fourt.setText(immunizationHistory.getGivenByName());
-        this.im_title_four.setText(immunizationHistory.getGivenByTitle());
-        this.im_id_four.setText(immunizationHistory.getImmunizationIDString());
-        this.im_type_four.setText(immunizationHistory.getImmunizationName());
-        }
-        
-        // Repeat this syntax for all multiple row medical record sections
-        // Load Prescription History Data
-        if(this.profile.prescriptions != null)
-        {
-            if(this.profile.prescriptions.size() >= 1)
-            {
-                loadPrescriptionHistory(this.profile.prescriptions.get(0), presc_id_one, presc_name_one, presc_order_date_one, presc_order_time_one, presc_order_physician_one, presc_refills_one);
-            }
-            if(this.profile.prescriptions.size() >= 2)
-            {
-                loadPrescriptionHistory(this.profile.prescriptions.get(1), presc_id_two, presc_name_two, presc_order_date_two, presc_order_time_two, presc_order_physician_two, presc_refills_two);
-            }
-            if(this.profile.prescriptions.size() >= 3)
-            {
-                loadPrescriptionHistory(this.profile.prescriptions.get(2), presc_id_three, presc_name_three, presc_order_date_three, presc_order_time_three, presc_order_physician_three, presc_refills_three);
-            }
-            if(this.profile.prescriptions.size() >= 4)
-            {
-                loadPrescriptionHistory(this.profile.prescriptions.get(3), presc_id_four, presc_name_four, presc_order_date_four, presc_order_time_four, presc_order_physician_four, presc_refills_four);
-            }        
-        }
-        
-        // Load Appointment History Data
-        if(appointmentHistory != null)
-        {
-        this.app_date_one.setValue(appointmentHistory.getAppointmentDate());
-        this.app_time_one.setText(appointmentHistory.getAppointmentTime().toString());
-        this.app_physician_one.setText(appointmentHistory.getPhysicianName());
-        //this.app_code_one.setText(appointmentHistory.getAppointmentCode());
-        //this.app_desc_one.setText(appointmentHistory.getAppCodeDescription());
-        //this.app_status_one.setText(appointmentHistory.getStatus()); 
-        this.app_medical_practice_one.setText(appointmentHistory.getPracticeString());
-        
-        this.app_date_two.setValue(appointmentHistory.getAppointmentDate());
-        this.app_time_two.setText(appointmentHistory.getAppointmentTime().toString());
-        this.app_physician_two.setText(appointmentHistory.getPhysicianName());
-        //this.app_code_two.setText(appointmentHistory.getAppointmentCode());
-        //this.app_desc_two.setText(appointmentHistory.getAppCodeDescription());
-        //this.app_status_two.setText(appointmentHistory.getStatus()); 
-        this.app_medical_practice_two.setText(appointmentHistory.getPracticeString());
-        
-        this.app_date_three.setValue(appointmentHistory.getAppointmentDate());
-        this.app_time_three.setText(appointmentHistory.getAppointmentTime().toString());
-        this.app_physician_three.setText(appointmentHistory.getPhysicianName());
-        //this.app_code_three.setText(appointmentHistory.getAppointmentCode());
-        //this.app_desc_three.setText(appointmentHistory.getAppCodeDescription());
-        //this.app_status_three.setText(appointmentHistory.getStatus()); 
-        this.app_medical_practice_three.setText(appointmentHistory.getPracticeString());
-        }
-        
-        // Load Vital Signs Data
-        if(vitalSigns != null)
-        {
-        this.vs_date_one.setValue(vitalSigns.getVitalSignsDate());
-        this.vs_time_one.setText(vitalSigns.getVitalSignsTime().toString());
-        this.vs_checkedby_one.setText(vitalSigns.getCheckedBy());
-        this.hr_one.setText(vitalSigns.getHeartRate());
-        this.bp_one.setText(vitalSigns.getBloodPressure());
-        this.o2_one.setText(vitalSigns.getOxygenSat());
-        this.bpm_one.setText(vitalSigns.getBreathsPerMinute());
-        
-        this.vs_date_two.setValue(vitalSigns.getVitalSignsDate());
-        this.vs_time_two.setText(vitalSigns.getVitalSignsTime().toString());
-        this.vs_checkedby_two.setText(vitalSigns.getCheckedBy());
-        this.hr_two.setText(vitalSigns.getHeartRate());
-        this.bp_two.setText(vitalSigns.getBloodPressure());
-        this.o2_two.setText(vitalSigns.getOxygenSat());
-        this.bpm_two.setText(vitalSigns.getBreathsPerMinute());
-        
-        this.vs_date_three.setValue(vitalSigns.getVitalSignsDate());
-        this.vs_time_three.setText(vitalSigns.getVitalSignsTime().toString());
-        this.vs_checkedby_three.setText(vitalSigns.getCheckedBy());
-        this.hr_three.setText(vitalSigns.getHeartRate());
-        this.bp_three.setText(vitalSigns.getBloodPressure());
-        this.o2_three.setText(vitalSigns.getOxygenSat());
-        this.bpm_three.setText(vitalSigns.getBreathsPerMinute());
-        
-        this.vs_date_four.setValue(vitalSigns.getVitalSignsDate());
-        this.vs_time_four.setText(vitalSigns.getVitalSignsTime().toString());
-        this.vs_checkedby_four.setText(vitalSigns.getCheckedBy());
-        this.hr_four.setText(vitalSigns.getHeartRate());
-        this.bp_four.setText(vitalSigns.getBloodPressure());
-        this.o2_four.setText(vitalSigns.getOxygenSat());
-        this.bpm_four.setText(vitalSigns.getBreathsPerMinute());
-        }
-        
-        // Load Test & Lab Results Data
-        if(testLabResults != null)
-        {
-        this.tL_date_one.setValue(testLabResults.getTestOrderDate());
-        this.tL_time_one.setText(testLabResults.getTestOrderTime().toString());
-        this.tL_physician_one.setText(testLabResults.getPhysicianName());
-        //this.test_id_one.setText(testLabResults.getTestID());
-        //this.test_name_one.setText(testLabResults.getTestName());
-        this.test_result_one.setText(testLabResults.getTestResult()); 
-        
-        this.tL_date_two.setValue(testLabResults.getTestOrderDate());
-        this.tL_time_two.setText(testLabResults.getTestOrderTime().toString());
-        this.tL_physician_two.setText(testLabResults.getPhysicianName());
-        //this.test_id_two.setText(testLabResults.getTestID());
-        //this.test_name_two.setText(testLabResults.getTestName());
-        this.test_result_two.setText(testLabResults.getTestResult());
-        
-        this.tL_date_three.setValue(testLabResults.getTestOrderDate());
-        this.tL_time_three.setText(testLabResults.getTestOrderTime().toString());
-        this.tL_physician_three.setText(testLabResults.getPhysicianName());
-        //this.test_id_three.setText(testLabResults.getTestID());
-        //this.test_name_three.setText(testLabResults.getTestName());
-        this.test_result_three.setText(testLabResults.getTestResult());
-        
-        this.tL_date_four.setValue(testLabResults.getTestOrderDate());
-        this.tL_time_four.setText(testLabResults.getTestOrderTime().toString());
-        this.tL_physician_four.setText(testLabResults.getPhysicianName());
-        //this.test_id_four.setText(testLabResults.getTestID());
-        //this.test_name_four.setText(testLabResults.getTestName());
-        this.test_result_four.setText(testLabResults.getTestResult());
+          // Ensure the profile is initialized with the appointment history objects
+          while(this.profile.appointments.size() < (ahCounter + 1))
+          {
+              AppointmentHistory ahEntry = new AppointmentHistory();
+              ahEntry.setPatient(this.profile);
+              this.profile.appointments.add(ahEntry);
+          }
+
+          // Get the controller for the row
+          AppointmentHistoryFXMLController ahController = appointmentHistoryControllers.get(ahCounter);
+
+          // Load the appointment history entry into the controller (which will load up the view)
+          ahController.load(this.profile.appointments.get(ahCounter));
         }
     }
     
-    // Repeat this syntax for all multiple row medical record sections
-    // loadPrescriptionHistory(prescriptionHistory1, presc_id_one, presc_name_one, presc_order_date_one, presc_order_time_one, presc_order_physician_one, presc_refills_one);
-    private void loadPrescriptionHistory(PrescriptionHistory prescriptionHistory, ChoiceBox<RXCategory> rxIDChoiceBox, ChoiceBox<RXOptions> rxNameChoiceBox, 
-            DatePicker dpOrderDate, TextField txtOrderTime, TextField txtPhysician, Label txtRefills)
+    private void loadImmunizationHistories()
     {
-        // Sets text fields
-        dpOrderDate.setValue(prescriptionHistory.getRXOrderDate());
-        txtOrderTime.setText(prescriptionHistory.getRXOrderTime().toString());
-        txtPhysician.setText(prescriptionHistory.getPhysicianName());
-        txtRefills.setText(prescriptionHistory.getRefillCountString()); 
-        
-        // Set the choicebox options
-        RXCategory category = this.rxCategories.find(prescriptionHistory.getRXID());
-        if(category != null)
+        for(int counter = 0; counter < immunizationHistoryControllers.size(); counter++)
         {
-            // RX ID
-            rxIDChoiceBox.setValue(category);
-            RXOptions option = category.findOption(prescriptionHistory.getrXName());
-            if(option != null)
-            {
-                // RX Name
-                rxNameChoiceBox.setValue(option);
-            }
-        } 
+          // Ensure the profile is initialized with the objects
+          while(this.profile.immunizations.size() < (counter + 1))
+          {
+              ImmunizationHistory entry = new ImmunizationHistory();
+              entry.setPatient(this.profile);
+              this.profile.immunizations.add(entry);
+          }
+
+          // Get the controller for the row
+          ImmunizationHistoryFXMLController controller = immunizationHistoryControllers.get(counter);
+
+          // Load the entry into the controller (which will load up the view)
+          controller.load(this.profile.immunizations.get(counter));
+        }           
     }
+
+    private void loadMedicalHistories()
+    {
+        for(int counter = 0; counter < medicalHistoryControllers.size(); counter++)
+        {
+          // Ensure the profile is initialized with the objects
+          while(this.profile.medicalData.size() < (counter + 1))
+          {
+              MedicalHistory entry = new MedicalHistory();
+              entry.setPatient(this.profile);
+              this.profile.medicalData.add(entry);
+          }
+
+          // Get the controller for the row
+          MedicalHistoryFXMLController controller = medicalHistoryControllers.get(counter);
+
+          // Load the entry into the controller (which will load up the view)
+          controller.load(this.profile.medicalData.get(counter));
+        }           
+    }
+
+    private void loadPrescriptionHistories()
+    {
+        for(int counter = 0; counter < prescriptionHistoryControllers.size(); counter++)
+        {
+          // Ensure the profile is initialized with the objects
+          while(this.profile.prescriptions.size() < (counter + 1))
+          {
+              PrescriptionHistory entry = new PrescriptionHistory();
+              entry.setPatient(this.profile);
+              this.profile.prescriptions.add(entry);
+          }
+
+          // Get the controller for the row
+          PrescriptionHistoryFXMLController controller = prescriptionHistoryControllers.get(counter);
+
+          // Load the entry into the controller (which will load up the view)
+          controller.load(this.profile.prescriptions.get(counter));
+        }           
+    }
+
+    private void loadTestLabResults()
+    {
+        for(int counter = 0; counter < this.testLabResultsControllers.size(); counter++)
+        {
+          // Ensure the profile is initialized with the objects
+          while(this.profile.labResults.size() < (counter + 1))
+          {
+              TestLabResults entry = new TestLabResults();
+              entry.setPatient(this.profile);
+              this.profile.labResults.add(entry);
+          }
+
+          // Get the controller for the row
+          TestLabResultsFXMLController controller = testLabResultsControllers.get(counter);
+
+          // Load the entry into the controller (which will load up the view)
+          controller.load(this.profile.labResults.get(counter));
+        }           
+    }
+
+    private void loadVitalSigns()
+    {
+        for(int counter = 0; counter < this.vitalSignsControllers.size(); counter++)
+        {
+          // Ensure the profile is initialized with the objects
+          while(this.profile.vitalSignsData.size() < (counter + 1))
+          {
+              VitalSigns entry = new VitalSigns();
+              entry.setPatient(this.profile);
+              this.profile.vitalSignsData.add(entry);
+          }
+
+          // Get the controller for the row
+          VitalSignsFXMLController controller = vitalSignsControllers.get(counter);
+
+          // Load the entry into the controller (which will load up the view)
+          controller.load(this.profile.vitalSignsData.get(counter));
+        }           
+    }
+    
     
     
     private Patient profile;
@@ -631,36 +442,6 @@ public class CompleteMedicalRecordFXMLController implements Initializable {
         loadPatient();
     }
     
-    MedicalHistory medicalHistory;
-    public MedicalHistory getMedicalHistory(){
-        return medicalHistory;
-    }
-    
-    ImmunizationHistory immunizationHistory;
-    public ImmunizationHistory getImmunizationHistory(){
-        return immunizationHistory;
-    }
-    
-    PrescriptionHistory prescriptionHistory;
-    public PrescriptionHistory getPrescriptionHistory(){
-        return prescriptionHistory;
-    }
-    
-    AppointmentHistory appointmentHistory;
-    public AppointmentHistory getAppointmentHistory(){
-        return appointmentHistory;
-    }
-    
-    VitalSigns vitalSigns;
-    public VitalSigns getVitalSigns(){
-        return vitalSigns;
-    }
-    
-    TestLabResults testLabResults;
-    public TestLabResults getTestLabResults(){
-        return testLabResults;
-    }
-
     /**
      * @return the stage
      */
@@ -673,5 +454,19 @@ public class CompleteMedicalRecordFXMLController implements Initializable {
      */
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    /**
+     * @return the dashboardController
+     */
+    public DashboardFXMLController getDashboardController() {
+        return dashboardController;
+    }
+
+    /**
+     * @param dashboardController the dashboardController to set
+     */
+    public void setDashboardController(DashboardFXMLController dashboardController) {
+        this.dashboardController = dashboardController;
     }
 }

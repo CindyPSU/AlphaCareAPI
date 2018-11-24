@@ -4,25 +4,27 @@ package MedicalRecordModel;
 import UserModel.Patient;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
 
 /**
  *
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
-public class PrescriptionHistory {
-    private Patient patientID;
+public class PrescriptionHistory extends DatabaseObjectModel {
+    private Patient patient;
     private LocalDate rXorderDate;
     private Time rXorderTime;
     private String physicianName;
     private String rXID;
     private String rXName;
-    private int refillCount;
+    private int refillCount = -1;
     
     /**
      * 
-     * @param linkPatientID
+     * @param linkPatient
      * @param rxDate
      * @param rxTime
      * @param docName
@@ -32,15 +34,19 @@ public class PrescriptionHistory {
      * 
      * This is the constructor for the PrescriptionHistory Class.
      */
-    public PrescriptionHistory(Patient linkPatientID, LocalDate rxDate, Time rxTime, String docName,
+    public PrescriptionHistory(Patient linkPatient, LocalDate rxDate, Time rxTime, String docName,
             String rxID, String rxName, int rxCount){
-        patientID = linkPatientID;
+        patient = linkPatient;
         rXorderDate = rxDate;
         rXorderTime = rxTime;
         physicianName = docName;
         rXID = rxID;
         rXName = rxName;
         refillCount = rxCount;
+    }
+
+    public PrescriptionHistory()
+    {
     }
     
     /**
@@ -97,17 +103,17 @@ public class PrescriptionHistory {
         return p_refill;
     }
     /**
-     * @return the patientID
+     * @return the patient
      */
-    public Patient getPatientID() {
-        return patientID;
+    public Patient getPatient() {
+        return patient;
     }
 
     /**
-     * @param patientID the patientID to set
+     * @param patient the patient to set
      */
-    public void setPatientID(Patient patientID) {
-        this.patientID = patientID;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     /**
@@ -191,4 +197,40 @@ public class PrescriptionHistory {
         System.out.println("Prescription History will come from the DB.");
         return prescriptions;
     }
+
+    /**
+     * Checks to see if the model has all the required data filled out
+     * @return boolean True if the model does have all the required data filled out, false if anything is missing 
+     */
+    @Override
+    public boolean hasAllData()
+    {
+        if(this.patient == null) { return false; }
+        if(this.rXorderDate == null) { return false; }
+        if(this.rXorderTime == null) { return false; }
+        if((this.physicianName == null) || (this.physicianName.isEmpty())) { return false; }
+        //if((this.rXID  == null) || (this.rXID.isEmpty())) { return false; }
+        if((this.rXName == null) || (this.rXName.isEmpty())) { return false; }
+        if(this.refillCount  == -1) { return false; }
+        return true;
+    }
+    
+    /**
+     * Maps values from the model to the fields in the database
+     * @return A Hashtable of fields and mapped values
+     */
+    @Override
+    public Hashtable getMappedData()
+    {
+      Hashtable h = new Hashtable();
+      h.put("patientID", getPatient().getIdentifier());
+      h.put("rXorderDate", getRXOrderDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+      h.put("rXorderTime", getRXOrderTime().toString());
+      h.put("physicianName", getPhysicianName());
+      h.put("rXID", getRXID());
+      h.put("rXName", getRXName());
+      h.put("refillCount", getRefillCount());
+      return h;
+    }
+   
 }

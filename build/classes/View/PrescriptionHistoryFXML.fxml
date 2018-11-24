@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.geometry.Insets?>
+
+<GridPane id="GridPane" hgap="3.0" prefHeight="80.0" styleClass="mainFxmlClass" vgap="3.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PrescriptionHistoryFXMLController">
+    <stylesheets>
+        <URL value="@appointmenthistoryfxml.css" />
+    </stylesheets>
+    <columnConstraints>
+        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" />
+        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" />
+        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" />
+        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" />
+        <ColumnConstraints hgrow="ALWAYS" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <Label text="Order Date" />
+        <DatePicker fx:id="presc_order_date" GridPane.columnIndex="1" />
+        <Label text="Order Time" GridPane.columnIndex="2" />
+        <TextField fx:id="presc_order_time" GridPane.columnIndex="3" />
+        <Label text="Physician Name" GridPane.columnIndex="4" />
+        <TextField fx:id="presc_order_physician" GridPane.columnIndex="5" />
+
+        <Label text="RX ID" GridPane.rowIndex="1" />
+        <ChoiceBox fx:id="presc_id" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+        <Label text="RX Name" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+        <ChoiceBox fx:id="presc_name" GridPane.rowIndex="1" GridPane.columnIndex="3" />
+        <Label text="Refill Count" GridPane.rowIndex="1" GridPane.columnIndex="4" />
+        <TextField fx:id="presc_refills" GridPane.rowIndex="1" GridPane.columnIndex="5" />
+    </children>
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+    </padding>
+</GridPane>

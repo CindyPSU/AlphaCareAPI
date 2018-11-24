@@ -4,25 +4,27 @@ package MedicalRecordModel;
 import UserModel.Patient;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
 
 /**
  *
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
-public class TestLabResults {
-    private Patient patientID;
+public class TestLabResults extends DatabaseObjectModel  {
+    private Patient patient;
     private LocalDate testOrderDate;
     private Time testOrderTime;
     private String physicianName;
-    private int testID;
+    private String testID;
     private String testName;
     private String testResult;
     
     /**
      * 
-     * @param linkPatientID
+     * @param linkPatient
      * @param testDate
      * @param testTime
      * @param docName
@@ -32,17 +34,21 @@ public class TestLabResults {
      * 
      * This is the constructor for the TestLabResults Class.
      */
-    public TestLabResults(Patient linkPatientID, LocalDate testDate, Time testTime, String docName,
+    public TestLabResults(Patient linkPatient, LocalDate testDate, Time testTime, String docName,
             int enterTestID, String testType, String testRelease){
-        patientID = linkPatientID;
+        patient = linkPatient;
         testOrderDate = testDate;
         testOrderTime = testTime;
         physicianName = docName;
-        testID = enterTestID;
+        ID = enterTestID;
         testName = testType;
         testResult = testRelease;
     }
-    
+
+    public TestLabResults()
+    {
+    }
+
     /**
      * Returns the test order date.
      * @return A test order date.
@@ -66,12 +72,12 @@ public class TestLabResults {
     public String getPhysicianName(){
         return physicianName;
     }
-    
+
     /**
-     * Returns the ID for the test.
+     * Returns the test ID.
      * @return A test ID.
      */
-    public int getTestID(){
+    public String getTestID(){
         return testID;
     }
     
@@ -92,17 +98,17 @@ public class TestLabResults {
     }       
 
     /**
-     * @return the patientID
+     * @return the patient
      */
-    public Patient getPatientID() {
-        return patientID;
+    public Patient getPatient() {
+        return patient;
     }
 
     /**
-     * @param patientID the patientID to set
+     * @param patient the patient to set
      */
-    public void setPatientID(Patient patientID) {
-        this.patientID = patientID;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     /**
@@ -127,17 +133,17 @@ public class TestLabResults {
     }
 
     /**
-     * @param testID the testID to set
-     */
-    public void setTestID(int testID) {
-        this.testID = testID;
-    }
-
-    /**
      * @param testName the testName to set
      */
     public void setTestName(String testName) {
         this.testName = testName;
+    }
+
+    /**
+     * @param testID the testIDto set
+     */
+    public void setTestID(String testID) {
+        this.testID = testID;
     }
 
     /**
@@ -158,4 +164,40 @@ public class TestLabResults {
         System.out.println("Test/Lab Results History will come from the DB.");
         return labResults;
     }
+
+    /**
+     * Checks to see if the model has all the required data filled out
+     * @return boolean True if the model does have all the required data filled out, false if anything is missing 
+     */
+    @Override
+    public boolean hasAllData()
+    {
+        if(this.patient == null) { return false; }
+        if(this.testOrderDate == null) { return false; }
+        if(this.testOrderTime == null) { return false; }
+        if((this.physicianName == null) || (this.physicianName.isEmpty())) { return false; }
+        if((this.testID == null) || (this.testID.isEmpty())) { return false; }
+        if((this.testName == null) || (this.testName.isEmpty())) { return false; }
+        if((this.testResult == null) || (this.testResult.isEmpty())) { return false; }
+        return true;
+    }
+    
+    /**
+     * Maps values from the model to the fields in the database
+     * @return A Hashtable of fields and mapped values
+     */
+    @Override
+    public Hashtable getMappedData()
+    {
+      Hashtable h = new Hashtable();
+      h.put("patientID", getPatient().getIdentifier());
+      h.put("testOrderDate", getTestOrderDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+      h.put("testOrderTime", getTestOrderTime().toString());
+      h.put("physicianName", getPhysicianName());
+      h.put("testID", getTestID());
+      h.put("testName", getTestName());
+      h.put("testResult", getTestResult());
+      return h;
+    }
+
 }

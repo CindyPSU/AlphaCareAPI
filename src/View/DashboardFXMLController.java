@@ -88,7 +88,7 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
     }
     
     public void displayCreateNewPatientView() {
-        showDetail(null);
+        showDetail(new Patient());
     }
     
     public void displayAppointmentCalendar(){
@@ -111,11 +111,15 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
             CompleteMedicalRecordFXMLController controller = loader.<CompleteMedicalRecordFXMLController>getController();
             if(profile != null)
             {
+                profile.refreshData();
                 controller.setProfile(profile);
             }
             //controller.setContext(context);
             //controller.setDelegate(this);
             //controller.load();
+            
+            controller.setDashboardController(this);
+            
             Stage stage = new Stage();
             controller.setStage(stage);
             stage.setScene(new Scene(root));
@@ -136,6 +140,11 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
     
     public void load() {
         store = new AppointmentStoreStub();
+        appointments = store.load();
+        tableView.getItems().setAll(appointments);
+    }
+
+    public void refreshAppointments() {
         appointments = store.load();
         tableView.getItems().setAll(appointments);
     }

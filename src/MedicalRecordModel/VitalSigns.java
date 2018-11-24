@@ -4,16 +4,17 @@ package MedicalRecordModel;
 import UserModel.Patient;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
 
 /**
  *
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
-public class VitalSigns {
-    private Patient patientID;
-    private int vitalSignsID;
+public class VitalSigns extends DatabaseObjectModel {
+    private Patient patient;
     private LocalDate vitalSignsDate;
     private Time vitalSignsTime;
     private String checkedBy;
@@ -24,7 +25,7 @@ public class VitalSigns {
     
     /**
      * 
-     * @param linkPatientID
+     * @param linkPatient
      * @param vsID
      * @param vsDate
      * @param vsTime
@@ -35,10 +36,10 @@ public class VitalSigns {
      * 
      * This is the constructor for the VitalSigns Class.
      */
-    public VitalSigns(Patient linkPatientID, int vsID, LocalDate vsDate, Time vsTime, 
+    public VitalSigns(Patient linkPatient, int vsID, LocalDate vsDate, Time vsTime, 
             String hRate, String bPressure, String oSat, String bpm){
-        patientID = linkPatientID;
-        vitalSignsID = vsID;
+        patient = linkPatient;
+        ID = vsID;
         vitalSignsDate = vsDate;
         vitalSignsTime = vsTime;
         heartRate = hRate;
@@ -47,13 +48,11 @@ public class VitalSigns {
         breathsPerMinute = bpm;
     }
     
-    /**
-     * Return vital signs ID.
-     * @return A vital signs ID.
-     */
-    public int getVitalSignsID(){
-        return vitalSignsID;
+    public VitalSigns()
+    {
+        
     }
+    
     /**
      * Returns the patient's vital signs check date.
      * @return A patient vital signs date.
@@ -103,24 +102,17 @@ public class VitalSigns {
     }
 
     /**
-     * @return the patientID
+     * @return the patient
      */
-    public Patient getPatientID() {
-        return patientID;
+    public Patient getPatient() {
+        return patient;
     }
 
     /**
-     * @param patientID the patientID to set
+     * @param patient the patient to set
      */
-    public void setPatientID(Patient patientID) {
-        this.patientID = patientID;
-    }
-
-    /**
-     * @param vitalSignsID the vitalSignsID to set
-     */
-    public void setVitalSignsID(int vitalSignsID) {
-        this.vitalSignsID = vitalSignsID;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     /**
@@ -190,4 +182,44 @@ public class VitalSigns {
     public void setCheckedBy(String checkedBy) {
         this.checkedBy = checkedBy;
     }
+
+    /**
+     * Checks to see if the model has all the required data filled out
+     * @return boolean True if the model does have all the required data filled out, false if anything is missing 
+     */
+    @Override
+    public boolean hasAllData()
+    {
+        if(this.patient == null) { return false; }
+        if(this.vitalSignsDate == null) { return false; }
+        if(this.vitalSignsTime == null) { return false; }
+
+        if((this.checkedBy == null) || (this.checkedBy.isEmpty())) { return false; }
+        if((this.heartRate == null) || (this.heartRate.isEmpty())) { return false; }
+        if((this.bloodPressure == null) || (this.bloodPressure.isEmpty())) { return false; }
+        if((this.oxygenSat == null) || (this.oxygenSat.isEmpty())) { return false; }
+        if((this.breathsPerMinute == null) || (this.breathsPerMinute.isEmpty())) { return false; }
+
+        return true;
+    }
+    
+    /**
+     * Maps values from the model to the fields in the database
+     * @return A Hashtable of fields and mapped values
+     */
+    @Override
+    public Hashtable getMappedData()
+    {
+      Hashtable h = new Hashtable();
+      h.put("patientID", getPatient().getIdentifier());
+      h.put("vitalSignsDate", getVitalSignsDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+      h.put("vitalSignsTime", getVitalSignsTime().toString());
+      h.put("checkedBy", getCheckedBy());
+      h.put("heartRate", getHeartRate());
+      h.put("bloodPressure", getBloodPressure());
+      h.put("oxygenSat", getOxygenSat());
+      h.put("breathsPerMinute", getBreathsPerMinute());
+      return h;
+    }
+    
 }

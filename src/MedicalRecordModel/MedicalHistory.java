@@ -3,24 +3,27 @@ package MedicalRecordModel;
 
 import UserModel.Patient;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
 
 /**
  *
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
-public class MedicalHistory {
-    private Patient patientID;
-    private int medicalHistoryID;
+public class MedicalHistory extends DatabaseObjectModel {
+    private Patient patient;
     private LocalDate procedureDate;
     private String procedureName;
-    private int procedureAge;
+    private int procedureAge = -1;
     private String allergyName;
     private String allergyDescription;
-    private String currentMedicalCondition;
-    private String pastMedicalCondition;
     
+    public MedicalHistory()
+    {
+    }
+
     /**
      * 
      * @param linkPatientID
@@ -36,25 +39,16 @@ public class MedicalHistory {
      * This is the constructor for the MedicalHistory Class.
      */
     public MedicalHistory(Patient linkPatientID, int medHID, LocalDate pDate, String pName, int pAge,
-            String allName, String allDesc, String currentMed, String pastMed){
-        patientID = linkPatientID;
-        medicalHistoryID = medHID;
+            String allName, String allDesc){
+        patient = linkPatientID;
+        ID = medHID;
         procedureDate = pDate;
         procedureName = pName;
         procedureAge = pAge;
         allergyName = allName;
         allergyDescription = allDesc;
-        currentMedicalCondition = currentMed;
-        pastMedicalCondition = pastMed;
     }
     
-    /**
-     * Returns med history ID.
-     * @return med history ID.
-     */
-    public int getMedicalHistoryID(){
-        return medicalHistoryID;
-    }
     /**
      * Returns the procedure date.
      * @return An procedure date.
@@ -102,40 +96,17 @@ public class MedicalHistory {
     }
         
     /**
-     * Returns the patient's current medical condition information.
-     * @return A current medical condition.
-     */
-    public String getCurrentMedicalCondition(){
-        return currentMedicalCondition;
-    }
-     
-    /**
-     * Returns the patient's past medical condition information.
-     * @return A past medical condition.
-     */
-    public String getPastMedicalCondition(){
-        return pastMedicalCondition;
-    }  
-
-    /**
      * @return the patientID
      */
-    public Patient getPatientID() {
-        return patientID;
+    public Patient getPatient() {
+        return patient;
     }
 
     /**
      * @param patientID the patientID to set
      */
-    public void setPatientID(Patient patientID) {
-        this.patientID = patientID;
-    }
-
-    /**
-     * @param medicalHistoryID the medicalHistoryID to set
-     */
-    public void setMedicalHistoryID(int medicalHistoryID) {
-        this.medicalHistoryID = medicalHistoryID;
+    public void setPatient(Patient patientID) {
+        this.patient = patientID;
     }
 
     /**
@@ -174,20 +145,6 @@ public class MedicalHistory {
     }
 
     /**
-     * @param currentMedicalCondition the currentMedicalCondition to set
-     */
-    public void setCurrentMedicalCondition(String currentMedicalCondition) {
-        this.currentMedicalCondition = currentMedicalCondition;
-    }
-
-    /**
-     * @param pastMedicalCondition the pastMedicalCondition to set
-     */
-    public void setPastMedicalCondition(String pastMedicalCondition) {
-        this.pastMedicalCondition = pastMedicalCondition;
-    }
-    
-    /**
      * Returns the patient's complete medical history that matches the patientID provided.
      * The patient ID is the same as the patient SSN.
      * @param patientID
@@ -198,4 +155,39 @@ public class MedicalHistory {
         System.out.println("Medical History will come from the DB.");
         return medicalData;
     }
+
+    /**
+     * Checks to see if the model has all the required data filled out
+     * @return boolean True if the model does have all the required data filled out, false if anything is missing 
+     */
+    @Override
+    public boolean hasAllData()
+    {
+        if(this.patient == null) { return false; }
+
+        if((this.allergyDescription == null) || (this.allergyDescription.isEmpty())) { return false; }
+        if((this.allergyName == null) || (this.allergyName.isEmpty())) { return false; }
+        if(this.procedureAge == -1) { return false; }
+        if(this.procedureDate == null) { return false; }
+        if((this.procedureName  == null) || (this.procedureName.isEmpty())) { return false; }
+        return true;
+    }
+    
+    /**
+     * Maps values from the model to the fields in the database
+     * @return A Hashtable of fields and mapped values
+     */
+    @Override
+    public Hashtable getMappedData()
+    {
+      Hashtable h = new Hashtable();
+      h.put("patientID", getPatient().getIdentifier());
+      h.put("allergyDescription", getAllergyDescription());
+      h.put("allergyName", getAllergyName());
+      h.put("procedureDate", getProcedureDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+      h.put("procedureAge", getProcedureAge());
+      h.put("procedureName", getProcedureName());
+      return h;
+    }
+
 }

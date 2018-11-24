@@ -1,6 +1,8 @@
 
 package UserModel;
 
+import DBModel.SQLite;
+import DBModel.SQLite_PatientProfile;
 import MedicalRecordModel.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,12 +21,12 @@ public class Patient extends User {
     private String address;
     private String email;
     
-    public ArrayList<AppointmentHistory> appointments;
-    public ArrayList<ImmunizationHistory> immunizations;
-    public ArrayList<MedicalHistory> medicalData;
-    public ArrayList<PrescriptionHistory> prescriptions;
-    public ArrayList<TestLabResults> labResults;
-    public ArrayList<VitalSigns> vitalSignsData;
+    public ArrayList<AppointmentHistory> appointments = new ArrayList<>();
+    public ArrayList<ImmunizationHistory> immunizations = new ArrayList<>();
+    public ArrayList<MedicalHistory> medicalData = new ArrayList<>();
+    public ArrayList<PrescriptionHistory> prescriptions = new ArrayList<>();
+    public ArrayList<TestLabResults> labResults = new ArrayList<>();
+    public ArrayList<VitalSigns> vitalSignsData = new ArrayList<>();
     /**
      * 
      * @param initPatientID 
@@ -66,6 +68,12 @@ public class Patient extends User {
         address = pAddress;
         email = pEmail;
     }
+    
+    public void refreshData()
+    {
+        SQLite_PatientProfile.populatePatientData(this);
+    }
+    
     
     /**
      * Returns the Patient ID that will be linked to the patient profile.

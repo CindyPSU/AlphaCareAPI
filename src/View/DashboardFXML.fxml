@@ -27,10 +27,10 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="417.0" prefWidth="175.0">
                <children>
-                  <Button layoutX="41.0" layoutY="51.0" mnemonicParsing="false" onMouseClicked="#displayPatientSearchView" prefHeight="25.0" prefWidth="138.0" text="Patient Search" />
-                  <Button layoutX="41.0" layoutY="104.0" mnemonicParsing="false" onMouseClicked="#displayCreateNewPatientView" prefHeight="25.0" prefWidth="138.0" text="Create New Patient" />
-                  <Button layoutX="41.0" layoutY="155.0" mnemonicParsing="false" onMouseClicked="#displayAppointmentCalendar" text="Schedule Appointment" />
-                  <Button layoutX="41.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#displayInternalMessageView" prefHeight="25.0" prefWidth="138.0" text="Send Message" />
+                  <Button layoutX="41.0" layoutY="51.0" mnemonicParsing="false" onMouseClicked="#displayPatientSearchView" prefHeight="25.0" prefWidth="160.0" text="Patient Search" />
+                  <Button layoutX="41.0" layoutY="104.0" mnemonicParsing="false" onMouseClicked="#displayCreateNewPatientView" prefHeight="25.0" prefWidth="160.0" text="Create New Patient" />
+                  <!-- <Button layoutX="41.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#displayAppointmentCalendar" text="Schedule Appointment" /> -->
+                  <Button layoutX="41.0" layoutY="155.0" mnemonicParsing="false" onMouseClicked="#displayInternalMessageView" prefHeight="25.0" prefWidth="160.0" text="Send Message" />
                   <Button layoutX="83.0" layoutY="460.0" mnemonicParsing="false" onMouseClicked="#displayLoginView" text="Logout" />
                </children>
             </AnchorPane>

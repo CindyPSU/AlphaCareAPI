@@ -4,20 +4,22 @@ package MedicalRecordModel;
 import UserModel.Patient;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
 
 /**
  *
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
-public class ImmunizationHistory {
-    private Patient patientID;
+public class ImmunizationHistory extends DatabaseObjectModel {
+    private Patient patient;
     private LocalDate immunizeDate;
     private Time immunizeTime;
     private String givenByName;
     private String givenByTitle;
-    private int immunizeID;
+    private String immunizeID;
     private String immunizeName;
  
     /**
@@ -32,31 +34,20 @@ public class ImmunizationHistory {
      * 
      * This is the constructor for the ImmunizationHistory Class.
      */
-    public ImmunizationHistory(Patient linkPatientID, LocalDate iDate, Time iTime, String givenName,
-            String givenTitle, int iID, String iName){
-        patientID = linkPatientID;
+    public ImmunizationHistory(Patient linkPatient, LocalDate iDate, Time iTime, String givenName,
+            String givenTitle, int ID, String iID, String iName){
+        patient = linkPatient;
         immunizeDate = iDate;
         immunizeTime = iTime;
         givenByName = givenName;
         givenByTitle = givenTitle;
+        ID = ID;
         immunizeID = iID;
         immunizeName = iName;
     }
-    
-    /**
-     * Returns the immunization date.
-     * @return An immunization date.
-     */
-    public LocalDate getImmunizationDate(){
-        return getImmunizeDate();
-    }
-    
-    /**
-     * Returns the immunization time.
-     * @return An immunization time.
-     */
-    public Date getImmunizationTime(){
-        return getImmunizeTime();
+
+    public ImmunizationHistory()
+    {
     }
     
     /**
@@ -66,6 +57,13 @@ public class ImmunizationHistory {
     public String getGivenByName(){
         return givenByName;
     }
+
+    /**
+     * @param givenByName the givenByName to set
+     */
+    public void setGivenByName(String givenByName) {
+        this.givenByName = givenByName;
+    }
     
     /**
      * Returns the title of the medical personnel who administered the immunization.
@@ -74,45 +72,31 @@ public class ImmunizationHistory {
     public String getGivenByTitle(){
         return givenByTitle;
     }
-    
-    /**
-     * Returns the immunization ID.
-     * @return An immunization ID.
-     */
-    public int getImmunizationID(){
-        return getImmunizeID();
-    }
-    
-    public String getImmunizationIDString(){
-        String imm_id;
-        imm_id = Integer.toString(immunizeID);
-        return imm_id;
-    }
-    
-    /**
-     * Returns the immunization name that is linked to the ID.
-     * @return An immunization name.
-     */
-    public String getImmunizationName(){
-        return getImmunizeName();
-    }      
 
     /**
-     * @return the patientID
+     * @param givenByTitle the givenByTitle to set
      */
-    public Patient getPatientID() {
-        return patientID;
+    public void setGivenByTitle(String givenByTitle) {
+        this.givenByTitle = givenByTitle;
     }
 
     /**
-     * @param patientID the patientID to set
+     * @return the patient
      */
-    public void setPatientID(Patient patientID) {
-        this.patientID = patientID;
+    public Patient getPatient() {
+        return patient;
     }
 
     /**
-     * @return the immunizeDate
+     * @param patient the patient to set
+     */
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    /**
+     * Returns the immunization date.
+     * @return An immunization date.
      */
     public LocalDate getImmunizeDate() {
         return immunizeDate;
@@ -126,7 +110,8 @@ public class ImmunizationHistory {
     }
 
     /**
-     * @return the immunizeTime
+     * Returns the immunization time.
+     * @return An immunization time.
      */
     public Time getImmunizeTime() {
         return immunizeTime;
@@ -138,37 +123,10 @@ public class ImmunizationHistory {
     public void setImmunizeTime(Time immunizeTime) {
         this.immunizeTime = immunizeTime;
     }
-
+    
     /**
-     * @param givenByName the givenByName to set
-     */
-    public void setGivenByName(String givenByName) {
-        this.givenByName = givenByName;
-    }
-
-    /**
-     * @param givenByTitle the givenByTitle to set
-     */
-    public void setGivenByTitle(String givenByTitle) {
-        this.givenByTitle = givenByTitle;
-    }
-
-    /**
-     * @return the immunizeID
-     */
-    public int getImmunizeID() {
-        return immunizeID;
-    }
-
-    /**
-     * @param immunizeID the immunizeID to set
-     */
-    public void setImmunizeID(int immunizeID) {
-        this.immunizeID = immunizeID;
-    }
-
-    /**
-     * @return the immunizeName
+     * Returns the immunization name that is linked to the ID.
+     * @return An immunization name.
      */
     public String getImmunizeName() {
         return immunizeName;
@@ -182,14 +140,69 @@ public class ImmunizationHistory {
     }
     
     /**
+     * Returns the immunization ID
+     * @return An immunization ID.
+     */
+    public String getImmunizationID(){
+        return immunizeID;
+    }
+
+    /**
+     * @param immunizeID the immunizeIDto set
+     */
+    public void setImmunizationID(String immunizeID) {
+        this.immunizeID = immunizeID;
+    }
+
+
+
+    
+    /**
      * Returns the patient's complete immunization history that matches the patientID provided.
      * The patient ID is the same as the patient SSN.
      * @param patientID
      * @return An ArrayList of ImmunizationHistory objects.
      */
     public static ArrayList<ImmunizationHistory> getImmunizations(String patientID){
-        ArrayList<ImmunizationHistory> immunizations = new ArrayList<ImmunizationHistory>();
+        ArrayList<ImmunizationHistory> immunizations = new ArrayList<>();
         System.out.println("Immunization History will come from the DB.");
         return immunizations;
     }
+    
+        /**
+     * Checks to see if the model has all the required data filled out
+     * @return boolean True if the model does have all the required data filled out, false if anything is missing 
+     */
+    @Override
+    public boolean hasAllData()
+    {
+        if(this.patient == null) { return false; }
+        if(this.immunizeDate == null) { return false; }
+        if(this.immunizeTime == null) { return false; }
+
+        if((this.givenByName == null) || (this.givenByName.isEmpty())) { return false; }
+        if((this.givenByTitle == null) || (this.givenByTitle.isEmpty())) { return false; }
+        if((this.immunizeName == null) || (this.immunizeName.isEmpty())) { return false; }
+        if((this.immunizeID == null) || (this.immunizeID.isEmpty())) { return false; }
+        return true;
+    }
+    
+    /**
+     * Maps values from the model to the fields in the database
+     * @return A Hashtable of fields and mapped values
+     */
+    @Override
+    public Hashtable getMappedData()
+    {
+      Hashtable h = new Hashtable();
+      h.put("patientID", getPatient().getIdentifier());
+      h.put("immunizeDate", getImmunizeDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+      h.put("immunizeTime", getImmunizeTime().toString());
+      h.put("immunizeID", getImmunizationID());
+      h.put("immunizeName", getImmunizeName());
+      h.put("givenByName", getGivenByName());
+      h.put("givenByTitle", getGivenByTitle());
+      return h;
+    }
+
 }

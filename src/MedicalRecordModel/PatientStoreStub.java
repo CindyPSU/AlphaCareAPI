@@ -6,6 +6,7 @@
 package MedicalRecordModel;
 
 import DBModel.SQLite;
+import DBModel.SQLite_PatientProfile;
 import UserModel.Address;
 import UserModel.Patient;
 import java.time.LocalDate;
@@ -77,7 +78,8 @@ public class PatientStoreStub implements EntityStore<Patient> {
 
     @Override
     public List<Patient> load() {
-        return SQLite.loadPatients();
+        List<Patient> results = SQLite_PatientProfile.loadPatients();
+        return results;
         // return PatientStoreStub.savedPatients;
     }
 
@@ -108,7 +110,7 @@ public class PatientStoreStub implements EntityStore<Patient> {
         {
             savedPatients.add(profile);
         }
-        SQLite.savePatientProfile(profile);
+        SQLite_PatientProfile.save(profile);
     }
     
     
