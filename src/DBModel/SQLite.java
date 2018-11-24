@@ -1,7 +1,8 @@
 
 package DBModel;
 
-import UserModel.Patient;
+import MedicalRecordModel.*;
+import UserModel.*;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -12,6 +13,8 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.List;
 
 /**
@@ -20,304 +23,131 @@ import java.util.List;
  */
 public class SQLite {
     private static String fileName = "alphacare.db";
-    private static Connection conn;
+    private static Connection _conn;
+    public static boolean initializeStartingData = false;
     
-    /**
-     * Looks up a patient profile record based on the ID.
-     * @param patientID 
-     */
-    public static void getPatientProfile(String patientID){
-        
-    }
-    
-    /**
-     * Saves the patient's profile to the database.
-     * @param profile 
-     */
-    public static void savePatientProfile(Patient profile){
-        initializeDatabase();
-        // code for inserting patient profile into the database
-        try (
-            Statement stmt = conn.createStatement()) {
-
-            String sqlSearch = "SELECT * FROM PatientProfile WHERE patientID='" + profile.getIdentifier() + "'";
-            ResultSet rs = stmt.executeQuery(sqlSearch);
-            
-            String sqlUpdateOrInsert = null;
-            boolean updated = false;
-            while(rs.next())
-            {
-                updated = true;
-                sqlUpdateOrInsert = "UPDATE PatientProfile SET "
-                    + "patientFirstName='" + profile.getFirstName() + "', "
-                    + "patientLastName='" + profile.getLastName() + "',"
-                        + "patientMiddleInitial='" + profile.getMiddleInitial()+ "', "
-                        + "patientPreferredName='" + profile.getPreferredName()+ "', "
-                        + "patientDOB='" + profile.getBirthdate().format(DateTimeFormatter.ISO_LOCAL_DATE)+"',"
-                        + "patientPhoneNumber='" + profile.getPhoneNumber() + "', "
-                        + "patientAddress='" + profile.getAddress() + "', "
-                        + "patientEmailAddress='" + profile.getEmail() + "'"
-                        + ""
-                    + " WHERE patientID='" + profile.getIdentifier() + "'";
-            }
-            
-            if(!updated)
-            {
-                sqlUpdateOrInsert = "INSERT INTO PatientProfile (patientID, patientFirstName, patientLastName, patientMiddleInitial, "
-                    + "patientPreferredName, patientDOB, patientPhoneNumber, patientAddress, patientEmailAddress) VALUES ("
-                    + "'" + profile.getIdentifier() + "', "
-                    + "'" + profile.getFirstName() + "', "
-                    + "'" + profile.getLastName() + "', "
-                    + "'" + profile.getMiddleInitial()+ "', "
-                    + "'" + profile.getPreferredName()+ "', "
-                    + "'" + profile.getBirthdate().format(DateTimeFormatter.ISO_LOCAL_DATE) + "', "
-                    + "'" +  profile.getPhoneNumber() + "', "
-                    + "'" + profile.getAddress() + "', "
-                    + "'" + profile.getEmail() + "'"
-                    + ")";
-            }
-            
-            // create a new table
-            stmt.execute(sqlUpdateOrInsert);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    
-    /**
-     * Saves the patient's profile to the database.
-     * @param profile 
-     */
-    public static List<Patient>  loadPatients(){
-
-        ArrayList<Patient> results = new ArrayList<Patient>();
-        
-        initializeDatabase();
-        // code for inserting patient profile into the database
-        try (
-            Statement stmt = conn.createStatement()) {
-
-            String sqlSearch = "SELECT * FROM PatientProfile";
-            ResultSet rs = stmt.executeQuery(sqlSearch);
-
-            while(rs.next())
-            {
-                Patient p = new Patient();
-                p.setIdentifier(rs.getString("patientID"));
-                p.setFirstName(rs.getString("patientFirstName"));
-                p.setLastName(rs.getString("patientLastName"));
-                p.setMiddleInitial(rs.getString("patientMiddleInitial"));
-                p.setPreferredName(rs.getString("patientPreferredName"));
-                p.setAddress(rs.getString("patientAddress"));
-                p.setPhoneNumber(rs.getString("patientPhoneNumber"));
-                p.setEmail(rs.getString("patientEmailAddress"));
-                p.setBirthdate(LocalDate.parse(rs.getString("patientDOB")));
-                results.add(p);
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        return results;
-    }
-    
-    /**
-     * Keeps the connection to the database open.
-     * @return 
-     */
-    private static Connection initializeDatabase(){
-        if(conn != null){
-            return conn;
-        }
-
-        // Check to see if the file exists
-        //File f = new File(fileName);
-        //if(f.exists() && !f.isDirectory()) { 
-            // Define the connection string
+    public static Connection getConnection()
+    {
+        if(_conn == null){
             String url = "jdbc:sqlite:" + fileName;
-            // Try to connect to the database
             try  {
-                Connection conn = DriverManager.getConnection(url);
-                if (conn != null) {
-                   //DatabaseMetaData meta = conn.getMetaData();
-                   initializePatientProfileTable(conn); 
-                   initializeAppointmentHistoryTable(conn);
-                   initializeImmunizationHistoryTable(conn);
-                   initializeMedicalHistoryTable(conn);
-                   initializePrescriptionHistoryTable(conn);
-                   initializeTestLabResultsTable(conn);
-                   initializeVitalSignsTable(conn);
-                   SQLite.conn = conn;
-                   return conn;
+                
+                // If we're creating a new DB file, set a flag to indicate we should populate starting/testing data
+                if(new File(fileName).exists() == false)
+                {
+                  initializeStartingData = true;
                 }
+                
+                // Connect/initialize the DB
+                _conn = DriverManager.getConnection(url);
+
+                // Initialize tables                
+                if (_conn != null) {
+                   SQLite_PatientProfile.initializeTable();
+                   SQLite_AppointmentHistory.initializeTable();
+                   SQLite_ImmunizationHistory.initializeTable();
+                   SQLite_MedicalHistory.initializeTable();
+                   SQLite_PrescriptionHistory.initializeTable();
+                   SQLite_TestLabResults.initializeTable();
+                   SQLite_VitalSigns.initializeTable();
+                }
+                
+                // Only run the initialization once
+                initializeStartingData = false;
+
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
-        //}
-        return null;
+        }
+        return _conn;
     }
     
     /**
-     * Sets up the Patient Profile table in the database if it does not already
-     * exist.
-     * @param conn 
+     * Gets the last insert ID
+     * @param profile 
      */
-    private static void initializePatientProfileTable(Connection conn){
-        String sql = "CREATE TABLE IF NOT EXISTS PatientProfile (\n"
-                +"patientID text PRIMARY KEY, \n"
-                +"patientFirstName text, \n"
-                +"patientLastName text, \n"
-                +"patientMiddleInitial text, \n"
-                +"patientPreferredName text, \n"
-                +"patientDOB text, \n" // Date format YYYY-MM-DD HH:MM:SS.SSS
-                +"patientPhoneNumber text, \n"
-                +"patientAddress text, \n"
-                +"patientEmailAddress text);";
-        try (
-            Statement stmt = conn.createStatement()) {
-            // create a new table
-            stmt.execute(sql);
+    public static int getLastInsertID(){
+        try (Statement stmt = getConnection().createStatement()) {
+            String sqlSearch = "select last_insert_rowid();";
+            ResultSet rs = stmt.executeQuery(sqlSearch);
+            rs.next();
+            return rs.getInt(1);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return 0;
     }
     
-    /**
-     * Sets up the Appointment History table in the database if it does not already
-     * exist.
-     * @param conn 
-     */
-    private static void initializeAppointmentHistoryTable(Connection conn){
-        String sql = "CREATE TABLE IF NOT EXISTS AppointmentHistory (\n"
-                +"patientID text, \n"
-                +"appointmentDate text, \n" // Date format YYYY-MM-DD HH:MM:SS.SSS
-                +"appointmentTime text, \n" // Date format YYYY-MM-DD HH:MM:SS.SSS
-                +"physicianName text, \n"
-                +"appointmentCode text, \n"
-                +"appCodeDescription text);";
-        try (
-            Statement stmt = conn.createStatement()) {
-            // create a new table
-            stmt.execute(sql);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
     
     /**
-     * Sets up the Immunization History table in the database if it does not already
-     * exist.
-     * @param conn 
+     * Converts a Hashtable of field-to-value entries into an INSERT query
+     * @param tableName the name of the table
+     * @param h the Hashtable with the fields/values
      */
-    private static void initializeImmunizationHistoryTable(Connection conn){
-        String sql = "CREATE TABLE IF NOT EXISTS ImmunizationHistory (\n"
-                +"patientID text, \n"
-                +"immunizeDate text, \n" // Date format YYYY-MM-DD HH:MM:SS.SSS
-                +"immunizeTime text, \n" // Date format YYYY-MM-DD HH:MM:SS.SSS
-                +"givenByName text, \n"
-                +"givenByTitle text, \n"
-                +"immunizeID text, \n"
-                +"immunizeName text);";
-        try (
-            Statement stmt = conn.createStatement()) {
-            // create a new table
-            stmt.execute(sql);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+    public static String getInsertSQL(String tableName, Hashtable h)
+    {
+        String sql = "INSERT INTO " + tableName + " (STRFIELDS) VALUES (STRVALUES)";
+        
+        String sqlFields = "";
+        String sqlValues = "";
+        
+        Enumeration keys = h.keys(); 
+        while (keys.hasMoreElements()) { 
+            String field = (String)keys.nextElement(); 
+            Object value = h.get(field);
+            
+            // Create a comma-separated list of fields
+            sqlFields = sqlFields + (sqlFields.length() == 0 ? "" : ", ") + field;
+            
+            // Create a comma-separated list of values
+            if(value instanceof String)
+            {
+                sqlValues = sqlValues + (sqlValues.length() == 0 ? "'" : ", '") + value + "'";
+            }
+            else
+            {
+                sqlValues = sqlValues + (sqlValues.length() == 0 ? "" : ", ") + value;
+            }
         }
-    }
-    
-    /**
-     * Sets up the Medical History table in the database if it does not already
-     * exist.
-     * @param conn 
-     */
-    private static void initializeMedicalHistoryTable(Connection conn){
-        String sql = "CREATE TABLE IF NOT EXISTS MedicalHistory (\n"
-                +"patientID text, \n"
-                +"procedureDate text, \n" // Date format YYYY-MM-DD HH:MM:SS.SSS
-                +"procedureName text, \n" 
-                +"procedureAge integer, \n"
-                +"allergyName text, \n"
-                +"allergyDescription text, \n"
-                +"currentMedicalCondition text, \n"
-                +"pastMedicalCondition text);";
-        try (
-            Statement stmt = conn.createStatement()) {
-            // create a new table
-            stmt.execute(sql);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    
-    /**
-     * Sets up the Prescription History table in the database if it does not already
-     * exist.
-     * @param conn 
-     */
-    private static void initializePrescriptionHistoryTable(Connection conn){
-        String sql = "CREATE TABLE IF NOT EXISTS PrescriptionHistory (\n"
-                +"patientID text, \n"
-                +"rXorderDate text, \n" // Date format YYYY-MM-DD HH:MM:SS.SSS
-                +"rXorderTime text, \n" // Date format YYYY-MM-DD HH:MM:SS.SSS
-                +"physicianName text, \n"
-                +"rXID text, \n"
-                +"rXName text, \n"
-                +"refillCount integer);";
-        try (
-            Statement stmt = conn.createStatement()) {
-            // create a new table
-            stmt.execute(sql);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    
-    /**
-     * Sets up the Test Lab Results table in the database if it does not already
-     * exist.
-     * @param conn 
-     */
-    private static void initializeTestLabResultsTable(Connection conn){
-        String sql = "CREATE TABLE IF NOT EXISTS TestLabResults (\n"
-                +"patientID text, \n"
-                +"testOrderDate text, \n" // Date format YYYY-MM-DD HH:MM:SS.SSS
-                +"testOrderTime text, \n" // Date format YYYY-MM-DD HH:MM:SS.SSS
-                +"physicianName text, \n"
-                +"testID text, \n"
-                +"testName text, \n"
-                +"testResult text);";
-        try (
-            Statement stmt = conn.createStatement()) {
-            // create a new table
-            stmt.execute(sql);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+        
+        sql = sql.replace("STRFIELDS", sqlFields).replace("STRVALUES", sqlValues);
+        return sql;
     }
 
     /**
-     * Sets up the Vital Signs table in the database if it does not already
-     * exist.
-     * @param conn 
+     * Converts a Hashtable of field-to-value entries into an UPDATE query
+     * @param tableName the name of the table
+     * @param h the Hashtable with the fields/values
+     * @param where the string that comes after the WHERE clause
      */
-    private static void initializeVitalSignsTable(Connection conn){
-        String sql = "CREATE TABLE IF NOT EXISTS TestLabResults (\n"
-                +"patientID text, \n"
-                +"vitalSignsDate text, \n" // Date format YYYY-MM-DD HH:MM:SS.SSS
-                +"vitalSignsTime text, \n" // Date format YYYY-MM-DD HH:MM:SS.SSS
-                +"heartRate text, \n"
-                +"bloodPressure text, \n"
-                +"oxygenSat text, \n"
-                +"breathsPerMinute text);";
-        try (
-            Statement stmt = conn.createStatement()) {
-            // create a new table
-            stmt.execute(sql);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+    public static String getUpdateSQL(String tableName, Hashtable h, String where)
+    {
+        String sql = "UPDATE " + tableName + " SET ";
+        
+        boolean firstField = true;
+        Enumeration keys = h.keys(); 
+        while (keys.hasMoreElements()) { 
+            String field = (String)keys.nextElement(); 
+            Object value = h.get(field);
+            
+            // Create a comma-separated list of fields
+            sql = sql + (firstField ? "" : ", ") + field + " = ";
+            
+            // Create a comma-separated list of values
+            if(value instanceof String)
+            {
+                sql = sql + "'" + value + "'";
+            }
+            else
+            {
+                sql = sql + value;
+            }
+            firstField = false;
         }
+        
+        sql = sql + " WHERE " + where;
+        return sql;
     }
+     
+    
 }

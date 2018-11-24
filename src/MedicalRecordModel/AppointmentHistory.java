@@ -4,17 +4,18 @@ package MedicalRecordModel;
 import UserModel.*;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
 
 /**
  *
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
  */
-public class AppointmentHistory {
+public class AppointmentHistory extends DatabaseObjectModel {
     
-    private String patientID;
-    private int appointmentID;
+    private Patient patient;
     private LocalDate appointmentDate;
     private Time appointmentTime;
     private String physicianName;
@@ -22,6 +23,10 @@ public class AppointmentHistory {
     private String appCodeDescription;
     private AppointmentStatus status;
     private Practice practice;
+    
+    public AppointmentHistory()
+    {
+    }
     
     /**
      * 
@@ -35,10 +40,10 @@ public class AppointmentHistory {
      * 
      * This is the constructor for the AppointmentHistory Class.
      */
-    public AppointmentHistory(String linkPatientID, int appID, LocalDate appDate, Time appTime, 
+    public AppointmentHistory(Patient linkPatient, int appID, LocalDate appDate, Time appTime, 
             String docName, String appCode, String appCodeDesc, AppointmentStatus status, Practice practice) {
-        patientID = linkPatientID;
-        appointmentID = appID;
+        patient = linkPatient;
+        ID = appID;
         appointmentDate = appDate;
         appointmentTime = appTime;
         physicianName = docName;
@@ -47,15 +52,6 @@ public class AppointmentHistory {
         this.status = status;
         this.practice = practice;
     }
-    
-    /**
-     * Returns the appointment ID.
-     * @return An appointment ID.
-     */
-    public int getAppointmentID(){
-        return appointmentID;
-    }
-    
     
     /**
      * Returns the patient's appointment date.
@@ -97,24 +93,17 @@ public class AppointmentHistory {
         return appCodeDescription;
     }     
     /**
-     * @return the patientID
+     * @return the patient
      */
-    public String getPatientID() {
-        return patientID;
+    public Patient getPatient() {
+        return patient;
     }
 
     /**
-     * @param patientID the patientID to set
+     * @param patient the patient to set
      */
-    public void setPatientID(String patientID) {
-        this.patientID = patientID;
-    }
-
-    /**
-     * @param appointmentID the appointmentID to set
-     */
-    public void setAppointmentID(int appointmentID) {
-        this.appointmentID = appointmentID;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     /**
@@ -174,8 +163,11 @@ public class AppointmentHistory {
     }
     
     public String getPracticeString(){
-        String app_practice;
-        app_practice = practice.toString();
+        String app_practice = "";
+        if(practice != null)
+        {
+          app_practice = practice.toString();
+        }
         return app_practice;
     }
 
@@ -196,5 +188,42 @@ public class AppointmentHistory {
         ArrayList<AppointmentHistory> appointments = new ArrayList<AppointmentHistory>();
         System.out.println("Appointment History will come from the DB.");
         return appointments;
+    }
+    
+    /**
+     * Checks to see if the model has all the required data filled out
+     * @return boolean True if the model does have all the required data filled out, false if anything is missing 
+     */
+    @Override
+    public boolean hasAllData()
+    {
+      if((this.appCodeDescription == null) || (this.appCodeDescription.isEmpty())) { return false; }
+      if((this.appointmentCode == null) || (this.appointmentCode.isEmpty())) { return false; }
+      if(this.appointmentDate == null) { return false; }
+      if(this.appointmentTime == null) { return false; }
+      if(this.patient == null) { return false; }
+      if((this.physicianName == null) || (this.physicianName.isEmpty())) { return false; }
+      if(this.practice == null) { return false; }
+      if(this.status == null) { return false; }
+      return true;
+    }
+    
+    /**
+     * Maps values from the model to the fields in the database
+     * @return A Hashtable of fields and mapped values
+     */
+    @Override
+    public Hashtable getMappedData()
+    {
+      Hashtable h = new Hashtable();
+      h.put("patientID", getPatient().getIdentifier());
+      h.put("appointmentDate", getAppointmentDate().format(DateTimeFormatter.ISO_LOCAL_DATE));
+      h.put("appointmentTime", getAppointmentTime().toString());
+      h.put("physicianName", getPhysicianName());
+      h.put("practiceName", getPracticeString());
+      h.put("appointmentCode", getAppointmentCode());
+      h.put("appCodeDescription", getAppCodeDescription());
+      h.put("appointmentStatus", getStatus().getValue());
+      return h;
     }
 }

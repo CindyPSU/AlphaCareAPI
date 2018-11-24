@@ -5,6 +5,7 @@
  */
 package MedicalRecordModel;
 
+import DBModel.SQLite_AppointmentHistory;
 import MedicalRecordModel.AppointmentHistory;
 import UserModel.Address;
 import UserModel.AppointmentStatus;
@@ -23,7 +24,8 @@ public class AppointmentStoreStub implements EntityStore<AppointmentHistory> {
 
     @Override
     public List<AppointmentHistory> load() {
-        List<AppointmentHistory> list = new ArrayList();
+        List<AppointmentHistory> list = SQLite_AppointmentHistory.loadAllAppointments();
+        /*
         AppointmentHistory appointment = new AppointmentHistory(
                 "", 
                 0, 
@@ -42,6 +44,7 @@ public class AppointmentStoreStub implements EntityStore<AppointmentHistory> {
                 )
         );
         list.add(appointment);
+        */
         return list;
     }
 

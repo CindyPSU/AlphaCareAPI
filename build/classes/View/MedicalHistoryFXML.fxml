@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.geometry.Insets?>
+
+<GridPane id="GridPane" hgap="3.0" prefHeight="80.0" styleClass="mainFxmlClass" vgap="3.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MedicalHistoryFXMLController">
+    <stylesheets>
+        <URL value="@appointmenthistoryfxml.css" />
+    </stylesheets>
+    <columnConstraints>
+        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" />
+        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" />
+        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" />
+        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" />
+        <ColumnConstraints hgrow="ALWAYS" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+
+        <Label text="Date" />
+        <DatePicker fx:id="proc_date" GridPane.columnIndex="1"  />
+        <Label text="Procedure Name" GridPane.columnIndex="2"  />
+        <TextField fx:id="proc_name" GridPane.columnIndex="3"  />
+        <Label text="Age" GridPane.columnIndex="4"  />
+        <TextField fx:id="proc_age" GridPane.columnIndex="5" />
+        
+        <Label text="Allergy" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <TextField fx:id="allergy" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+        <Label text="Reaction Description" GridPane.rowIndex="1" GridPane.columnIndex="2" />
+        <TextField fx:id="allergy_desc" GridPane.rowIndex="1" GridPane.columnIndex="3" />
+    </children>
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+    </padding>
+</GridPane>

@@ -20,6 +20,10 @@ public class Practice {
     private ArrayList<MedicalAdministrator> medicalAdministrators;
     private ArrayList<Patient> patients;
 
+    public Practice()
+    {
+    }
+    
     public Practice(String name, Address address, ArrayList<Physician> physicians, ArrayList<Nurse> nurses, ArrayList<MedicalAdministrator> medicalAdministrators, ArrayList<Patient> patients) {
         this.name = name;
         this.address = address;
@@ -29,6 +33,11 @@ public class Practice {
         this.patients = patients;
     }
 
+    @Override
+    public String toString(){
+        return name;
+    }
+    
     /**
      * Returns the list of physicians for Practice
      * @return 
