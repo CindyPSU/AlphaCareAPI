@@ -13,4 +13,8 @@ public class StringUtilities {
     public static boolean isNullOrEmpty(String string) {
         return string == null || string.length() == 0;
     }
+    
+    public static boolean isNullOrEmptyOrNullString(String string) {
+        return isNullOrEmpty(string) || string.equals("null");
+    }
 }

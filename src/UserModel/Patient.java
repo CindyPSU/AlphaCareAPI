@@ -1,12 +1,12 @@
 
 package UserModel;
 
-import DBModel.SQLite;
 import DBModel.SQLite_PatientProfile;
 import MedicalRecordModel.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
+
 /**
  *
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
@@ -172,4 +172,23 @@ public class Patient extends User {
         this.email = email;
     }
     
+    public List<String> getRisks() {
+        // This is test data until the full test patients are created. The method
+        // can stay but the implementation should simply return the risks set
+        // on a patient.
+        ArrayList<String> risks = new ArrayList();
+        if (getFirstName().equals("Lucy")) {
+            risks.add("Ebola");
+        } else if (getFirstName().equals("Jonathan")) {
+            risks.add("Chicken Pox");
+            risks.add("Ebola");
+        } else {
+            risks.add("Flu");
+        }
+        return risks;
+    }
+    
+    public String getUserName() {
+        return "Patient";
+    }
 }

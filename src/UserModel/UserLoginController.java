@@ -14,7 +14,7 @@ import java.util.Map;
  * @author chrismorris
  * @param <T> The expected User Subtype.
  */
-public class UserLoginController<T extends User> {
+public class UserLoginController {
    
     public UserLoginController() {
         
@@ -28,15 +28,12 @@ public class UserLoginController<T extends User> {
      * @return A User instance if the credentials are valid.
      * @throws UserModel.InvalidCredentialsException
      */
-    public T login(UserLoginCredentials credentials, Class<T> type) throws InvalidCredentialsException {
+    public User login(UserLoginCredentials credentials) throws InvalidCredentialsException {
         User user = stubbedUserForCredentials(credentials);
         if (user == null) {
             throw new InvalidCredentialsException(InvalidCredentialsException.ERROR_CODE_INVALID_USERNAME_OR_PASSWORD);
         }
-        if (!type.isInstance(user)) {
-            throw new InvalidCredentialsException(InvalidCredentialsException.ERROR_CODE_INVALID_TYPE);
-        }
-        return type.cast(user);
+        return user;
     }
     
     private User stubbedUserForCredentials(UserLoginCredentials credentials) {

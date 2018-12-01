@@ -10,17 +10,25 @@ import UserModel.Patient;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -33,7 +41,10 @@ import javafx.stage.Stage;
 public class DashboardFXMLController implements Initializable, PatientDetailFXMLControllerDelegate, PatientListXMLControllerDelegate {
     
     private List<AppointmentHistory> appointments;
+    private List<Patient> atRiskPatients;
     private EntityStore<AppointmentHistory> store;
+    private EntityStore<Patient> patientStore;
+    private Map<String, Integer> risks;
     
     @FXML
     private TableView tableView;
@@ -45,6 +56,20 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
     private TableColumn<AppointmentHistory, String> tableViewColumnOffice;
     @FXML
     private TableColumn<AppointmentHistory, String> tableViewColumnStatus;
+    
+    @FXML
+    private BarChart epidemicChart;
+    @FXML
+    private NumberAxis epidemicChartYAxis;
+    @FXML
+    private CategoryAxis epidemicChartXAxis;
+    
+    @FXML
+    private TableView atRiskTableView;
+    @FXML
+    private TableColumn<Patient, String> tableViewColumnFullName;
+    @FXML
+    private TableColumn<Patient, String> tableViewColumnRisk;
     
     /**
      * @return the appointments
@@ -65,9 +90,29 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
         tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                // TODO: Open an appointment
+                Patient patient = ((AppointmentHistory)newValue).getPatient();
+                showDetail(patient);
             }
         });
+        
+        tableViewColumnFullName.setCellValueFactory((p) -> { return new SimpleStringProperty(p.getValue().getFullName()); });
+        tableViewColumnRisk.setCellValueFactory((p) -> { 
+            String risks = p
+                    .getValue()
+                    .getRisks()
+                    .stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(", "));
+            return new SimpleStringProperty(risks); 
+        });
+        atRiskTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                showDetail((Patient)newValue);
+            }
+        });
+        
+        epidemicChart.setLegendVisible(false);
         load();
     } 
     
@@ -107,17 +152,12 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("CompleteMedicalRecordFXML.fxml"));
             Parent root = loader.load();
-            //PatientDetailFXMLController controller = loader.<PatientDetailFXMLController>getController();
             CompleteMedicalRecordFXMLController controller = loader.<CompleteMedicalRecordFXMLController>getController();
             if(profile != null)
             {
                 profile.refreshData();
                 controller.setProfile(profile);
             }
-            //controller.setContext(context);
-            //controller.setDelegate(this);
-            //controller.load();
-            
             controller.setDashboardController(this);
             
             Stage stage = new Stage();
@@ -140,8 +180,51 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
     
     public void load() {
         store = new AppointmentStoreStub();
+        // For real patients, just have to swap out PatientStoreStub for another
+        // class or method that returns a List<Patient> object instance.
+        patientStore = new PatientStoreStub();
         appointments = store.load();
         tableView.getItems().setAll(appointments);
+        refreshAtRiskPatients();
+    }
+    
+    public void refreshRisks() {
+        risks = new HashMap();
+        for (Patient atRiskPatient : atRiskPatients) {
+            for (String risk : atRiskPatient.getRisks()) {
+                Integer numberOfRisks = risks.get(risk) == null ? 1 : risks.get(risk) + 1;
+                risks.put(risk, numberOfRisks);
+            }
+        }
+        XYChart.Series riskSeries = new XYChart.Series();
+        for (Map.Entry<String, Integer> entry : risks.entrySet()) {
+            XYChart.Data<String, Integer> chartData = new XYChart.Data(entry.getKey(), entry.getValue());
+            chartData.nodeProperty().addListener(new ChangeListener<Node>() {
+                @Override
+                public void changed(ObservableValue<? extends Node> observable, Node oldValue, Node newValue) {
+                    if (newValue == null) {
+                        return;
+                    }
+                    if (chartData.getYValue().intValue() > 2) {
+                        newValue.setStyle("-fx-bar-fill: red;");
+                    } else if (chartData.getYValue().intValue() > 1) {
+                        newValue.setStyle("-fx-bar-fill: yellow;");
+                    } else {
+                        newValue.setStyle("-fx-bar-fill: green;");
+                    }
+                }
+            });
+            riskSeries.getData().add(chartData);
+        }
+        epidemicChart.getData().setAll(riskSeries);
+    }
+    
+    public void refreshAtRiskPatients() {
+        atRiskPatients = patientStore.load()
+                .stream()
+                .filter(patient -> !patient.getRisks().isEmpty()).collect(Collectors.toList());
+        atRiskTableView.getItems().setAll(atRiskPatients);
+        refreshRisks();
     }
 
     public void refreshAppointments() {

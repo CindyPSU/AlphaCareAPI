@@ -12,7 +12,6 @@ package UserModel;
 public class InvalidCredentialsException extends Exception {
     
     public static final String ERROR_CODE_INVALID_USERNAME_OR_PASSWORD = "ERROR_CODE_INVALID_USERNAME_OR_PASSWORD";
-    public static final String ERROR_CODE_INVALID_TYPE = "ERROR_CODE_INVALID_TYPE";
     
     private final String errorCode;
     

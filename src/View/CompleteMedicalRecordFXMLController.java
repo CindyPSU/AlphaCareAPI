@@ -1,35 +1,17 @@
 package View;
 
 import MedicalRecordModel.AppointmentHistory;
-import MedicalRecordModel.Appt.ApptCategories;
 import MedicalRecordModel.ImmunizationHistory;
 import MedicalRecordModel.MedicalHistory;
-import MedicalRecordModel.Appt.ApptCategory;
-import MedicalRecordModel.Appt.ApptOptions;
-import MedicalRecordModel.Appt.ApptStatusOptions;
 import MedicalRecordModel.PatientStoreStub;
 import MedicalRecordModel.PrescriptionHistory;
-import MedicalRecordModel.RX.RXCategories;
-import MedicalRecordModel.RX.RXCategory;
-import MedicalRecordModel.RX.RXOptions;
-import MedicalRecordModel.TestLab.TestCategories;
-import MedicalRecordModel.TestLab.TestCategory;
-import MedicalRecordModel.TestLab.TestOptions;
 import MedicalRecordModel.TestLabResults;
 import MedicalRecordModel.VitalSigns;
 import UserModel.Patient;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,16 +19,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 
 /**
  * FXML Controller class
@@ -309,6 +287,10 @@ public class CompleteMedicalRecordFXMLController implements Initializable {
         this.loadTestLabResults();
         this.loadVitalSigns();
         
+        if (getDashboardController() == null) {
+            return_to_dashboard.setText("Logout");
+            save_all.setVisible(false);
+        }
     }
     
     private void loadAppointmentHistories()

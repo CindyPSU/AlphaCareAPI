@@ -2,9 +2,13 @@
 package UserModel;
 
 import Utilities.PKI;
+import Utilities.StringUtilities;
 import Utilities.UserDigitalSigner;
 import java.security.KeyPair;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.List;
+import org.sqlite.util.StringUtils;
 
 /**
  * An Abstract class that represents a user. 
@@ -88,9 +92,13 @@ public abstract class User {
     public String getFullName(){
         String fullName = getFirstName();
         String middleInitial = getMiddleInitial();
-        if (middleInitial != null) {
+        if (!StringUtilities.isNullOrEmptyOrNullString(middleInitial)) {
             fullName += " " + middleInitial + ".";
         }
-        return fullName + " " + getLastName();
+        String lastName = getLastName();
+        if (!StringUtilities.isNullOrEmptyOrNullString(lastName)) {
+            fullName += " " + lastName;
+        }
+        return fullName;
     }
 }
