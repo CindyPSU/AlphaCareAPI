@@ -36,15 +36,15 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="497.0" prefWidth="654.0" style="-fx-background-color: #ffffff;">
                <children>
                   <Accordion layoutX="29.0" layoutY="37.0" />
-                  <LineChart layoutX="386.0" layoutY="41.0" prefHeight="199.0" prefWidth="232.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
+                  <BarChart fx:id="epidemicChart" layoutX="386.0" layoutY="41.0" prefHeight="199.0" prefWidth="232.0">
                     <yAxis>
-                      <NumberAxis side="LEFT" />
+                      <NumberAxis fx:id="epidemicChartYAxis" side="LEFT" />
                     </yAxis>
-                  </LineChart>
-                  <TableView fx:id="atRiskTableView" layoutX="387.0" layoutY="260.0" prefHeight="199.0" prefWidth="232.0">
+                    <xAxis>
+                      <CategoryAxis fx:id="epidemicChartXAxis" side="BOTTOM" />
+                    </xAxis>
+                  </BarChart>
+                  <TableView fx:id="atRiskTableView" layoutX="370.0" layoutY="260.0" prefHeight="199.0" prefWidth="260.0">
                     <columns>
                       <TableColumn fx:id="tableViewColumnFullName" prefWidth="75.0" text="Name" />
                       <TableColumn fx:id="tableViewColumnRisk" prefWidth="75.0" text="Risks" />

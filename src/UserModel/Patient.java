@@ -173,8 +173,18 @@ public class Patient extends User {
     }
     
     public List<String> getRisks() {
+        // This is test data until the full test patients are created. The method
+        // can stay but the implementation should simply return the risks set
+        // on a patient.
         ArrayList<String> risks = new ArrayList();
-        risks.add("Flu");
+        if (getFirstName().equals("Lucy")) {
+            risks.add("Ebola");
+        } else if (getFirstName().equals("Jonathan")) {
+            risks.add("Chicken Pox");
+            risks.add("Ebola");
+        } else {
+            risks.add("Flu");
+        }
         return risks;
     }
 }
