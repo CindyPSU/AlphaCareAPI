@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -33,7 +34,9 @@ import javafx.stage.Stage;
 public class DashboardFXMLController implements Initializable, PatientDetailFXMLControllerDelegate, PatientListXMLControllerDelegate {
     
     private List<AppointmentHistory> appointments;
+    private List<Patient> atRiskPatients;
     private EntityStore<AppointmentHistory> store;
+    private EntityStore<Patient> patientStore;
     
     @FXML
     private TableView tableView;
@@ -45,6 +48,13 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
     private TableColumn<AppointmentHistory, String> tableViewColumnOffice;
     @FXML
     private TableColumn<AppointmentHistory, String> tableViewColumnStatus;
+    
+    @FXML
+    private TableView atRiskTableView;
+    @FXML
+    private TableColumn<Patient, String> tableViewColumnFullName;
+    @FXML
+    private TableColumn<Patient, String> tableViewColumnRisk;
     
     /**
      * @return the appointments
@@ -68,6 +78,18 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
                 // TODO: Open an appointment
             }
         });
+        
+        tableViewColumnFullName.setCellValueFactory((p) -> { return new SimpleStringProperty(p.getValue().getFullName()); });
+        tableViewColumnRisk.setCellValueFactory((p) -> { 
+            String risks = p
+                    .getValue()
+                    .getRisks()
+                    .stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining(", "));
+            return new SimpleStringProperty(risks); 
+        });
+        
         load();
     } 
     
@@ -107,17 +129,12 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("CompleteMedicalRecordFXML.fxml"));
             Parent root = loader.load();
-            //PatientDetailFXMLController controller = loader.<PatientDetailFXMLController>getController();
             CompleteMedicalRecordFXMLController controller = loader.<CompleteMedicalRecordFXMLController>getController();
             if(profile != null)
             {
                 profile.refreshData();
                 controller.setProfile(profile);
             }
-            //controller.setContext(context);
-            //controller.setDelegate(this);
-            //controller.load();
-            
             controller.setDashboardController(this);
             
             Stage stage = new Stage();
@@ -140,8 +157,16 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
     
     public void load() {
         store = new AppointmentStoreStub();
+        // For real patients, just have to swap out PatientStoreStub for another
+        // class or method that returns a List<Patient> object instance.
+        patientStore = new PatientStoreStub();
         appointments = store.load();
+        atRiskPatients = patientStore
+                .load()
+                .stream()
+                .filter(patient -> !patient.getRisks().isEmpty()).collect(Collectors.toList());
         tableView.getItems().setAll(appointments);
+        atRiskTableView.getItems().setAll(atRiskPatients);
     }
 
     public void refreshAppointments() {

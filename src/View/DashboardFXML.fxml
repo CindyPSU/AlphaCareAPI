@@ -44,14 +44,12 @@
                       <NumberAxis side="LEFT" />
                     </yAxis>
                   </LineChart>
-                  <BarChart layoutX="387.0" layoutY="260.0" prefHeight="199.0" prefWidth="232.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </BarChart>
+                  <TableView fx:id="atRiskTableView" layoutX="387.0" layoutY="260.0" prefHeight="199.0" prefWidth="232.0">
+                    <columns>
+                      <TableColumn fx:id="tableViewColumnFullName" prefWidth="75.0" text="Name" />
+                      <TableColumn fx:id="tableViewColumnRisk" prefWidth="75.0" text="Risks" />
+                    </columns>
+                  </TableView>
                   <Label layoutX="468.0" layoutY="19.0" text="BioSurveillance">
                      <font>
                         <Font name="Avenir Black Regular" size="15.0" />

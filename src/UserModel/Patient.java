@@ -1,12 +1,12 @@
 
 package UserModel;
 
-import DBModel.SQLite;
 import DBModel.SQLite_PatientProfile;
 import MedicalRecordModel.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
+
 /**
  *
  * @author Group 3 - Jonathan Celestin, Cynthia Hilgeman, Karin Martin, and Christopher Morris
@@ -172,4 +172,9 @@ public class Patient extends User {
         this.email = email;
     }
     
+    public List<String> getRisks() {
+        ArrayList<String> risks = new ArrayList();
+        risks.add("Flu");
+        return risks;
+    }
 }
