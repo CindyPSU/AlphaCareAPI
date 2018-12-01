@@ -187,4 +187,8 @@ public class Patient extends User {
         }
         return risks;
     }
+    
+    public String getUserName() {
+        return "Patient";
+    }
 }
