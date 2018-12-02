@@ -15,6 +15,9 @@ import javafx.scene.control.TextField;
 import UserModel.Patient;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -29,10 +32,32 @@ public class PatientDashboardFXMLController implements Initializable
     @FXML TextField welcomeTxt;
     @FXML SplitPane splitPane;
     @FXML AnchorPane rightAnchor;
-    @FXML Pane profilePane,medicalHistoryPane, immunizationPane,
+    @FXML ScrollPane profilePane,medicalHistoryPane, immunizationPane,
                 prescriptionPane, appointmentPane, vitalsPane, labResultPane;
+        @FXML
+    private TextField patientID;
+    @FXML
+    private TextField patient_first_name;
+    @FXML
+    private TextField patient_last_name;
+    @FXML
+    private TextField patient_middle_initial;
+    @FXML
+    private TextField patient_preferred_name;
+    @FXML
+    private TextField patient_home_address;
+    @FXML
+    private TextField patient_phone_number;
+    @FXML
+    private TextField patient_email;
+    @FXML
+    private DatePicker patient_dob;
+    @FXML
+    private Label patient_contact;
     
-    String patientID;
+    
+    String pID = "111223336";
+    List<Patient> patientq = SQLite_PatientProfile.loadPatients().stream().filter((p) -> p.getIdentifier().equals(pID)).collect(Collectors.toList());
     /**
      * Initializes the controller class.
      */
@@ -41,16 +66,60 @@ public class PatientDashboardFXMLController implements Initializable
     {
         // TODO
         
-      patientID = "111223336";
-        List<Patient> patientq = SQLite_PatientProfile.loadPatients().stream().filter((p) -> p.getIdentifier().equals(patientID)).collect(Collectors.toList());
+     loadPatient();
+        
         welcomeTxt.setText("Welcome, " + patientq.get(0).getFirstName() );
         splitPane.getItems().set(1, profilePane);
     }    
     
+
     
-//    public void changeDisplay(ActionEvent event) throws IOException{
-//        AnchorPane pane = FXMLLoader.load(getClass().getResource("/fxml/test.fxml")); 
-//        splitPane.getItems().set(1, pane); }
+        public void loadPatient(){
+        // Load Patient Profile Data
+        this.patientID.setText(patientq.get(0).getIdentifier());
+        
+        if(this.patientq.get(0).getIdentifier() != null)
+        {
+            this.patientID.setDisable(true);
+        }
+
+        this.patient_dob.setValue(patientq.get(0).getBirthdate());
+        this.patient_first_name.setText(patientq.get(0).getFirstName());
+        this.patient_last_name.setText(patientq.get(0).getLastName());
+        this.patient_middle_initial.setText(patientq.get(0).getMiddleInitial());
+        this.patient_preferred_name.setText(patientq.get(0).getPreferredName());
+        this.patient_home_address.setText(patientq.get(0).getAddress());
+        this.patient_phone_number.setText(patientq.get(0).getPhoneNumber());
+        this.patient_email.setText(patientq.get(0).getEmail());
+        
+                
+//        // Load Appointment History Data
+//        loadAppointmentHistories();
+//        
+//        // Load Immunization History Data
+//        loadImmunizationHistories();
+//        
+//        // Load Medical Histories
+//        loadMedicalHistories();
+//        
+//        // Load Prescription Histories
+//        loadPrescriptionHistories();
+//        
+//        this.loadTestLabResults();
+//        this.loadVitalSigns();
+//        
+//        if (getDashboardController() == null) {
+//            return_to_dashboard.setText("Logout");
+//            save_all.setVisible(false);
+//        }
+    }
+    
+    
+    
+    
+    
+    
+    
     
     @FXML 
     protected void showProfile(ActionEvent event) {
