@@ -45,7 +45,7 @@ public class LoginFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        username.setText("MedicalAdministrator");
+        username.setText("Patient");
         password.setText("IST412FTW");
     }    
     
@@ -60,7 +60,8 @@ public class LoginFXMLController implements Initializable {
                 PatientStoreStub.initiate();
                 showDashboard();
             } else if (user.getClass().equals(Patient.class)) {
-                showPatientDetail(usernameText);
+//                showPatientDetail(usernameText);
+                showPatientDashboard();
             }
         } catch (Exception ex) {
             Logger.getLogger(LoginFXMLController.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,6 +70,11 @@ public class LoginFXMLController implements Initializable {
     
     private void showDashboard() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/View/DashboardFXML.fxml"));
+        AlphaCareAPI.stage.setScene(new Scene(root));
+    }
+    
+    private void showPatientDashboard() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/View/PatientDashboardFXML.fxml"));
         AlphaCareAPI.stage.setScene(new Scene(root));
     }
     

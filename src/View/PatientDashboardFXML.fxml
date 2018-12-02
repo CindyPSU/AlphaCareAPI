@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="551.0" prefWidth="746.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PatientDashboardFXMLController">
+    <stylesheets>
+        <URL value="@patientdashboardfxml.css" />
+    </stylesheets>
+   <children>
+      <TextField fx:id="welcomeTxt" disable="true" editable="false" layoutX="564.0" layoutY="-2.0" prefHeight="62.0" prefWidth="186.0" text="Welcome, Patient">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </TextField>
+      <SplitPane dividerPositions="0.20465489566613163" layoutY="56.0" prefHeight="496.0" prefWidth="749.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="494.0" prefWidth="130.0" style="-fx-background-color: c6ffd0;">
+               <children>
+                  <Button fx:id="profileButton" layoutX="2.0" layoutY="39.0" mnemonicParsing="false" onAction="#showProfile" prefHeight="26.0" prefWidth="114.0" text="Profile" />
+                  <Button fx:id="medicalHistoryButton" layoutX="2.0" layoutY="87.0" mnemonicParsing="false" onAction="#showMedicalHistory" prefHeight="26.0" prefWidth="114.0" text="Medical History" />
+                  <Button fx:id="ImmunizationButton" layoutX="2.0" layoutY="134.0" mnemonicParsing="false" onAction="#showImmunization" prefHeight="26.0" prefWidth="114.0" text="Immunization" />
+                  <Button fx:id="prescriptionButton" layoutX="2.0" layoutY="180.0" mnemonicParsing="false" onAction="#showPrescription" prefHeight="26.0" prefWidth="114.0" text="Prescription" />
+                  <Button fx:id="appointmentButton" layoutX="2.0" layoutY="227.0" mnemonicParsing="false" onAction="#showAppointment" prefHeight="26.0" prefWidth="114.0" text="Appointment" />
+                  <Button fx:id="vitalsButton" layoutX="2.0" layoutY="269.0" mnemonicParsing="false" onAction="#showVitals" prefHeight="26.0" prefWidth="114.0" text="Vitals" />
+                  <Button fx:id="testResultButton" layoutX="2.0" layoutY="318.0" mnemonicParsing="false" onAction="#showLabResult" prefHeight="26.0" prefWidth="114.0" text="Test &amp; Lab Result" />
+               </children>
+               <effect>
+                  <InnerShadow color="#62b557" />
+               </effect>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: 8FBC8F;" />
+        </items>
+      </SplitPane>
+      <ImageView fitHeight="55.0" fitWidth="571.0">
+         <image>
+            <Image url="@../images/alphacare.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
