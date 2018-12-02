@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import UserModel.Patient;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javafx.scene.control.DatePicker;
@@ -21,6 +22,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -54,6 +56,36 @@ public class PatientDashboardFXMLController implements Initializable
     private DatePicker patient_dob;
     @FXML
     private Label patient_contact;
+    
+      @FXML
+    private VBox appointmentHistories1;    
+    private ArrayList<AppointmentHistoryFXMLController> appointmentHistoryControllers;
+    private int appointmentRows = 5;
+    
+    @FXML
+    private VBox immunizationHistories1;
+    private ArrayList<ImmunizationHistoryFXMLController> immunizationHistoryControllers;
+    private int immunizationHistoryRows = 8;
+
+    @FXML
+    private VBox medicalHistories1;
+    private ArrayList<MedicalHistoryFXMLController> medicalHistoryControllers;
+    private int medicalHistoryRows = 5;
+
+    @FXML
+    private VBox prescriptionHistories1;
+    private ArrayList<PrescriptionHistoryFXMLController> prescriptionHistoryControllers;
+    private int prescriptionHistoryRows = 5;
+
+    @FXML
+    private VBox labResults1;
+    private ArrayList<TestLabResultsFXMLController> testLabResultsControllers;
+    private int testLabResultsRows = 5;
+
+    @FXML
+    private VBox vitalSigns1;
+    private ArrayList<VitalSignsFXMLController> vitalSignsControllers;
+    private int vitalSignsRows = 5;
     
     
     String pID = "111223336";
