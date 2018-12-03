@@ -40,6 +40,7 @@
                   <Button fx:id="appointmentButton" layoutX="2.0" layoutY="227.0" mnemonicParsing="false" onAction="#showAppointment" prefHeight="26.0" prefWidth="140.0" text="Appointment" />
                   <Button fx:id="vitalsButton" layoutX="2.0" layoutY="269.0" mnemonicParsing="false" onAction="#showVitals" prefHeight="26.0" prefWidth="140.0" text="Vitals" />
                   <Button fx:id="testResultButton" layoutX="2.0" layoutY="318.0" mnemonicParsing="false" onAction="#showLabResult" prefHeight="26.0" prefWidth="140.0" text="Test &amp; Lab Result" />
+                  <Button fx:id="logoutBttn" layoutX="42.0" layoutY="446.0" mnemonicParsing="false" onAction="#displayLoginView" text="Logout" />
                </children>
                <effect>
                   <InnerShadow color="#62b557" />
