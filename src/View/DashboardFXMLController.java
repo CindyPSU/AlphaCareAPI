@@ -145,9 +145,7 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
         
     }
     
-    public void displayLoginView() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/View/LoginFXML.fxml"));
-        AlphaCareAPI.stage.setScene(new Scene(root));
+    public void displayLoginView() {
     }
     
     private void showDetail(Patient profile) {
