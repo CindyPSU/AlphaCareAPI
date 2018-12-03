@@ -153,12 +153,12 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("CompleteMedicalRecordFXML.fxml"));
             Parent root = loader.load();
             CompleteMedicalRecordFXMLController controller = loader.<CompleteMedicalRecordFXMLController>getController();
+            controller.setDashboardController(this);
             if(profile != null)
             {
                 profile.refreshData();
                 controller.setProfile(profile);
             }
-            controller.setDashboardController(this);
             
             Stage stage = new Stage();
             controller.setStage(stage);

@@ -192,7 +192,7 @@
     </center> 
     <bottom>
         <FlowPane alignment="BOTTOM_RIGHT" hgap="6.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="BOTTOM_RIGHT">
-            <Button fx:id="save_all" layoutX="981.0" layoutY="746.0" mnemonicParsing="false" onAction="#saveAll" text="Save" />
+            <Button fx:id="save_all" layoutX="681.0" layoutY="746.0" mnemonicParsing="false" onAction="#saveAll" text="Save" />
             <Button fx:id="return_to_dashboard" layoutX="823.0" layoutY="746.0" mnemonicParsing="false" onAction="#returnToDashboard" text="Return to Dashboard" />
             <padding>
                 <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
