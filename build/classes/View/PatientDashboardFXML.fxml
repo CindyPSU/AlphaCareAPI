@@ -40,6 +40,7 @@
                   <Button fx:id="appointmentButton" layoutX="2.0" layoutY="227.0" mnemonicParsing="false" onAction="#showAppointment" prefHeight="26.0" prefWidth="140.0" text="Appointment" />
                   <Button fx:id="vitalsButton" layoutX="2.0" layoutY="269.0" mnemonicParsing="false" onAction="#showVitals" prefHeight="26.0" prefWidth="140.0" text="Vitals" />
                   <Button fx:id="testResultButton" layoutX="2.0" layoutY="318.0" mnemonicParsing="false" onAction="#showLabResult" prefHeight="26.0" prefWidth="140.0" text="Test &amp; Lab Result" />
+                  <Button fx:id="logoutBttn" layoutX="40.0" layoutY="427.0" mnemonicParsing="false" onAction="#displayLoginView" text="Logout" />
                </children>
                <effect>
                   <InnerShadow color="#62b557" />
@@ -49,12 +50,12 @@
                <children>
                   <ScrollPane fx:id="profilePane" prefHeight="494.0" prefWidth="592.0">
                      <content>
-                        <VBox style="-fx-background-color: #ffff66;">
+                        <VBox layoutY="100.0" style="-fx-background-color: #ffb366;">
                            <effect>
                               <InnerShadow />
                            </effect>
                            <children>
-                              <GridPane id="GridPane" hgap="3.0" vgap="3.0" BorderPane.alignment="CENTER">
+                              <GridPane id="GridPane" hgap="3.0" layoutY="100.0" vgap="3.0" BorderPane.alignment="CENTER">
                                  <columnConstraints>
                                     <ColumnConstraints fillWidth="false" hgrow="NEVER" minWidth="-Infinity" />
                                     <ColumnConstraints hgrow="ALWAYS" />
@@ -63,7 +64,7 @@
                                     <ColumnConstraints fillWidth="false" hgrow="NEVER" minWidth="-Infinity" />
                                     <ColumnConstraints hgrow="ALWAYS" />
                                     <ColumnConstraints fillWidth="false" hgrow="NEVER" minWidth="-Infinity" />
-                                    <ColumnConstraints hgrow="ALWAYS" />
+                                    <ColumnConstraints />
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints />
@@ -72,6 +73,9 @@
                                     <RowConstraints />
                                     <RowConstraints />
                                     <RowConstraints />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
                                     <RowConstraints />
                                  </rowConstraints>
                                  <children>
@@ -79,21 +83,21 @@
                                     <TextField fx:id="patientID" text="Label" GridPane.columnIndex="1" />
                                     <Label text="First Name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                                     <TextField fx:id="patient_first_name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label text="Middle Initial" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <TextField fx:id="patient_middle_initial" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                    <Label text="Last Name" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                                    <TextField fx:id="patient_last_name" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                                    <Label text="Preferred Name" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-                                    <TextField fx:id="patient_preferred_name" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-                                    <Label text="Date of Birth" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                                    <DatePicker fx:id="patient_dob" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label text="Home Address" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                                    <TextField fx:id="patient_home_address" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="3" />
-                                    <Label text="Phone Number" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                                    <TextField fx:id="patient_phone_number" GridPane.columnIndex="1" GridPane.columnSpan="1" GridPane.rowIndex="4" />
-                                    <Label text="Email" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-                                    <TextField fx:id="patient_email" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5" />
-                                    <Label fx:id="patient_contact" text="**If any of your personal information is incorrect, please contact Records Management at (406) 558 - 9778." GridPane.columnIndex="0" GridPane.columnSpan="8" GridPane.rowIndex="6">
+                                    <Label text="Middle Initial" GridPane.rowIndex="2" />
+                                    <TextField fx:id="patient_middle_initial" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="Last Name" GridPane.rowIndex="3" />
+                                    <TextField fx:id="patient_last_name" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label text="Preferred Name" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <TextField fx:id="patient_preferred_name" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <Label text="Date of Birth" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                                    <DatePicker fx:id="patient_dob" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label text="Home Address" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                                    <TextField fx:id="patient_home_address" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="5" />
+                                    <Label text="Phone Number" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                                    <TextField fx:id="patient_phone_number" GridPane.columnIndex="1" GridPane.columnSpan="1" GridPane.rowIndex="6" />
+                                    <Label text="Email" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                                    <TextField fx:id="patient_email" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="7" />
+                                    <Label fx:id="patient_contact" text="**If any of your personal information is incorrect, please contact Records Management at (406) 558 - 9778." GridPane.columnIndex="0" GridPane.columnSpan="8" GridPane.rowIndex="9">
                                        <font>
                                           <Font name="System Italic" size="12.0" />
                                        </font>

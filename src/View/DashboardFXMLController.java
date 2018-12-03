@@ -7,6 +7,7 @@ package View;
 
 import MedicalRecordModel.*;
 import UserModel.Patient;
+import alphacareapi.AlphaCareAPI;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -144,8 +145,9 @@ public class DashboardFXMLController implements Initializable, PatientDetailFXML
         
     }
     
-    public void displayLoginView(){
-        
+    public void displayLoginView() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/View/LoginFXML.fxml"));
+        AlphaCareAPI.stage.setScene(new Scene(root));
     }
     
     private void showDetail(Patient profile) {
