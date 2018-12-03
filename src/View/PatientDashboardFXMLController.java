@@ -13,9 +13,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import UserModel.Patient;
+import alphacareapi.AlphaCareAPI;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -192,6 +197,10 @@ public class PatientDashboardFXMLController implements Initializable
     }
     
 
-    
+    @FXML
+    public void displayLoginView() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/View/LoginFXML.fxml"));
+        AlphaCareAPI.stage.setScene(new Scene(root));
+    }
     
 }
