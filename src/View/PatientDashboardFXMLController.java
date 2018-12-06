@@ -9,6 +9,7 @@ import DBModel.SQLite_PatientProfile;
 import MedicalRecordModel.AppointmentHistory;
 import MedicalRecordModel.ImmunizationHistory;
 import MedicalRecordModel.MedicalHistory;
+import MedicalRecordModel.PatientStoreStub;
 import MedicalRecordModel.PrescriptionHistory;
 import MedicalRecordModel.TestLabResults;
 import MedicalRecordModel.VitalSigns;
@@ -92,9 +93,10 @@ public class PatientDashboardFXMLController implements Initializable
     private ArrayList<VitalSignsFXMLController> vitalSignsControllers;
     private int vitalSignsRows = 5;
     
+     private Patient profile;
     
     String pID = "111223336";
-    List<Patient> patientq = SQLite_PatientProfile.loadPatients().stream().filter((p) -> p.getIdentifier().equals(pID)).collect(Collectors.toList());
+    List<Patient> patientq = SQLite_PatientProfile.loadPatients().stream().filter((p) -> p.getIdentifier().equals(pID)).collect(Collectors.toList());;
     
     /**
      * Initializes the controller class.
@@ -103,7 +105,10 @@ public class PatientDashboardFXMLController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
+        
+        
      welcomeTxt.setText("Welcome, " + patientq.get(0).getFirstName() );
+     profile = patientq.get(0);
      splitPane.getItems().set(1, profilePane);
      
        try
@@ -189,22 +194,22 @@ public class PatientDashboardFXMLController implements Initializable
 
     
         public void loadPatient(){
-        // Load Patient Profile Data
-        this.patientID.setText(patientq.get(0).getIdentifier());
+       // Load Patient Profile Data
+        this.patientID.setText(profile.getIdentifier());
         
-        if(this.patientq.get(0).getIdentifier() != null)
+        if(this.profile.getIdentifier() != null)
         {
             this.patientID.setDisable(true);
         }
 
-        this.patient_dob.setValue(patientq.get(0).getBirthdate());
-        this.patient_first_name.setText(patientq.get(0).getFirstName());
-        this.patient_last_name.setText(patientq.get(0).getLastName());
-        this.patient_middle_initial.setText(patientq.get(0).getMiddleInitial());
-        this.patient_preferred_name.setText(patientq.get(0).getPreferredName());
-        this.patient_home_address.setText(patientq.get(0).getAddress());
-        this.patient_phone_number.setText(patientq.get(0).getPhoneNumber());
-        this.patient_email.setText(patientq.get(0).getEmail());
+        this.patient_dob.setValue(profile.getBirthdate());
+        this.patient_first_name.setText(profile.getFirstName());
+        this.patient_last_name.setText(profile.getLastName());
+        this.patient_middle_initial.setText(profile.getMiddleInitial());
+        this.patient_preferred_name.setText(profile.getPreferredName());
+        this.patient_home_address.setText(profile.getAddress());
+        this.patient_phone_number.setText(profile.getPhoneNumber());
+        this.patient_email.setText(profile.getEmail());
         
                 
         // Load Appointment History Data
@@ -229,25 +234,22 @@ public class PatientDashboardFXMLController implements Initializable
      private void loadMedicalHistories()
     {
         
-        for(int counter = 0; counter < medicalHistoryControllers.size(); counter++)
+    for(int counter = 0; counter < medicalHistoryControllers.size(); counter++)
         {
           // Ensure the profile is initialized with the objects
-          while(this.patientq.get(0).medicalData.size() < (counter + 1))
+          while(this.profile.medicalData.size() < (counter + 1))
           {
-              
               MedicalHistory entry = new MedicalHistory();
-              entry.setPatient(this.patientq.get(0));
-              this.patientq.get(0).medicalData.add(entry);
+              entry.setPatient(this.profile);
+              this.profile.medicalData.add(entry);
           }
 
           // Get the controller for the row
           MedicalHistoryFXMLController controller = medicalHistoryControllers.get(counter);
 
           // Load the entry into the controller (which will load up the view)
-          controller.load(this.patientq.get(0).medicalData.get(counter));
-            
-            
-        }           
+          controller.load(this.profile.medicalData.get(counter));
+        }            
     }
     
      
@@ -256,19 +258,19 @@ public class PatientDashboardFXMLController implements Initializable
         for(int counter = 0; counter < immunizationHistoryControllers.size(); counter++)
         {
           // Ensure the profile is initialized with the objects
-          while(this.patientq.get(0).immunizations.size() < (counter + 1))
+          while(this.profile.immunizations.size() < (counter + 1))
           {
               ImmunizationHistory entry = new ImmunizationHistory();
-              entry.setPatient(this.patientq.get(0));
-              this.patientq.get(0).immunizations.add(entry);
+              entry.setPatient(this.profile);
+              this.profile.immunizations.add(entry);
           }
 
           // Get the controller for the row
           ImmunizationHistoryFXMLController controller = immunizationHistoryControllers.get(counter);
 
           // Load the entry into the controller (which will load up the view)
-          controller.load(this.patientq.get(0).immunizations.get(counter));
-        }           
+          controller.load(this.profile.immunizations.get(counter));
+        }             
     }
     
     
@@ -277,81 +279,81 @@ public class PatientDashboardFXMLController implements Initializable
         for(int counter = 0; counter < prescriptionHistoryControllers.size(); counter++)
         {
           // Ensure the profile is initialized with the objects
-          while(this.patientq.get(0).prescriptions.size() < (counter + 1))
+          while(this.profile.prescriptions.size() < (counter + 1))
           {
               PrescriptionHistory entry = new PrescriptionHistory();
-              entry.setPatient(this.patientq.get(0));
-              this.patientq.get(0).prescriptions.add(entry);
+              entry.setPatient(this.profile);
+              this.profile.prescriptions.add(entry);
           }
 
           // Get the controller for the row
           PrescriptionHistoryFXMLController controller = prescriptionHistoryControllers.get(counter);
 
           // Load the entry into the controller (which will load up the view)
-          controller.load(this.patientq.get(0).prescriptions.get(counter));
-        }           
+          controller.load(this.profile.prescriptions.get(counter));
+        }              
     }
       
       
           private void loadAppointmentHistories()
     {
-        for(int ahCounter = 0; ahCounter < appointmentHistoryControllers.size(); ahCounter++)
+         for(int ahCounter = 0; ahCounter < appointmentHistoryControllers.size(); ahCounter++)
         {
           // Ensure the profile is initialized with the appointment history objects
-          while(this.patientq.get(0).appointments.size() < (ahCounter + 1))
+          while(this.profile.appointments.size() < (ahCounter + 1))
           {
               AppointmentHistory ahEntry = new AppointmentHistory();
-              ahEntry.setPatient(this.patientq.get(0));
-              this.patientq.get(0).appointments.add(ahEntry);
+              ahEntry.setPatient(this.profile);
+              this.profile.appointments.add(ahEntry);
           }
 
           // Get the controller for the row
           AppointmentHistoryFXMLController ahController = appointmentHistoryControllers.get(ahCounter);
 
           // Load the appointment history entry into the controller (which will load up the view)
-          ahController.load(this.patientq.get(0).appointments.get(ahCounter));
+          ahController.load(this.profile.appointments.get(ahCounter));
         }
     }
           
           
            private void loadVitalSigns()
     {
-        for(int counter = 0; counter < this.vitalSignsControllers.size(); counter++)
+          for(int counter = 0; counter < this.vitalSignsControllers.size(); counter++)
         {
           // Ensure the profile is initialized with the objects
-          while(this.patientq.get(0).vitalSignsData.size() < (counter + 1))
+          while(this.profile.vitalSignsData.size() < (counter + 1))
           {
               VitalSigns entry = new VitalSigns();
-              entry.setPatient(this.patientq.get(0));
-              this.patientq.get(0).vitalSignsData.add(entry);
+              entry.setPatient(this.profile);
+              this.profile.vitalSignsData.add(entry);
           }
 
           // Get the controller for the row
           VitalSignsFXMLController controller = vitalSignsControllers.get(counter);
 
           // Load the entry into the controller (which will load up the view)
-          controller.load(this.patientq.get(0).vitalSignsData.get(counter));
-        }           
+          controller.load(this.profile.vitalSignsData.get(counter));
+        }     
     }
            
            
                private void loadTestLabResults()
     {
-        for(int counter = 0; counter < this.testLabResultsControllers.size(); counter++)
+       for(int counter = 0; counter < this.testLabResultsControllers.size(); counter++)
         {
           // Ensure the profile is initialized with the objects
-          while(this.patientq.get(0).labResults.size() < (counter + 1))
+          while(this.profile.labResults.size() < (counter + 1))
           {
               TestLabResults entry = new TestLabResults();
-              entry.setPatient(this.patientq.get(0));
-              this.patientq.get(0).labResults.add(entry);
+              entry.setPatient(this.profile);
+              this.profile.labResults.add(entry);
           }
 
           // Get the controller for the row
           TestLabResultsFXMLController controller = testLabResultsControllers.get(counter);
 
           // Load the entry into the controller (which will load up the view)
-          controller.load(this.patientq.get(0).labResults.get(counter));
+          controller.load(this.profile.labResults.get(counter));
         }           
     }
       
@@ -361,38 +363,44 @@ public class PatientDashboardFXMLController implements Initializable
     @FXML 
     protected void showProfile(ActionEvent event) {
         splitPane.getItems().set(1, profilePane);
+        setProfile(patientq.get(0));
     }
     
      @FXML 
     protected void showMedicalHistory(ActionEvent event) {
          splitPane.getItems().set(1, medicalHistoryPane);
-          loadMedicalHistories();
+         setProfile(patientq.get(0));
+         loadMedicalHistories();
     }
     
      @FXML 
     protected void showImmunization(ActionEvent event) {
         splitPane.getItems().set(1, immunizationPane);
-        
+        setProfile(patientq.get(0));
     }
     
      @FXML 
     protected void showPrescription(ActionEvent event) {
         splitPane.getItems().set(1, prescriptionPane);
+        setProfile(patientq.get(0));
     }
     
      @FXML 
     protected void showAppointment(ActionEvent event) {
         splitPane.getItems().set(1, appointmentPane);
+        setProfile(patientq.get(0));
     }
     
      @FXML 
     protected void showVitals(ActionEvent event) {
         splitPane.getItems().set(1, vitalsPane);
+        setProfile(patientq.get(0));
     }
     
      @FXML 
     protected void showLabResult(ActionEvent event) {
         splitPane.getItems().set(1, labResultPane);
+        setProfile(patientq.get(0));
     }
     
 
@@ -405,6 +413,7 @@ public class PatientDashboardFXMLController implements Initializable
     
     @FXML
     public void didPressEdit(ActionEvent event) {
+    setProfile(patientq.get(0));
     patient_first_name.setEditable(true);
     patient_last_name.setEditable(true);
     patient_middle_initial.setEditable(true);
@@ -421,8 +430,40 @@ public class PatientDashboardFXMLController implements Initializable
       @FXML
     public void didPressSave(ActionEvent event) {
     
-    
+     if(this.profile.getIdentifier() == null)
+        {
+            this.profile.setIdentifier(this.patientID.getText());
+        }
+        this.profile.setFirstName(this.patient_first_name.getText());
+        this.profile.setLastName(this.patient_last_name.getText());
+        this.profile.setBirthdate(this.patient_dob.getValue());
+        this.profile.setMiddleInitial(this.patient_middle_initial.getText());
+        this.profile.setPreferredName(this.patient_preferred_name.getText());
+        this.profile.setAddress(this.patient_home_address.getText());
+        this.profile.setPhoneNumber(this.patient_phone_number.getText());
+        this.profile.setEmail(this.patient_email.getText());
+        
     patient_first_name.setEditable(false);
+    patient_last_name.setEditable(false);
+    patient_middle_initial.setEditable(false);
+    patient_preferred_name.setEditable(false);
+    patient_home_address.setEditable(false);
+    patient_phone_number.setEditable(false);
+    patient_email.setEditable(false);
+    patient_dob.setEditable(false);
+    saveBttn.setVisible(false);
+    cancelBttn.setVisible(false);
+    editBttn.setVisible(true);
+    
+    PatientStoreStub.save(this.profile);
+        
+        
+    }
+    
+      @FXML
+    public void didPressCancel(ActionEvent event) {
+        loadPatient();
+        patient_first_name.setEditable(false);
     patient_last_name.setEditable(false);
     patient_middle_initial.setEditable(false);
     patient_preferred_name.setEditable(false);
@@ -436,19 +477,13 @@ public class PatientDashboardFXMLController implements Initializable
         
     }
     
-      @FXML
-    public void didPressCancel(ActionEvent event) {
-        patient_first_name.setEditable(false);
-    patient_last_name.setEditable(false);
-    patient_middle_initial.setEditable(false);
-    patient_preferred_name.setEditable(false);
-    patient_home_address.setEditable(false);
-    patient_phone_number.setEditable(false);
-    patient_email.setEditable(false);
-    patient_dob.setEditable(false);
-    saveBttn.setVisible(false);
-    cancelBttn.setVisible(false);
-    editBttn.setVisible(true);
-        
+    
+    
+    public Patient getProfile(){
+        return profile;
+    }
+    public void setProfile(Patient _profile){
+        this.profile = _profile;
+        loadPatient();
     }
 }
