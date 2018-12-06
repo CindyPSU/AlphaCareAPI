@@ -8,7 +8,9 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,28 +21,51 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="551.0" prefWidth="746.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PatientDashboardFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="954.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PatientDashboardFXMLController">
     <stylesheets>
         <URL value="@patientdashboardfxml.css" />
     </stylesheets>
    <children>
-      <TextField fx:id="welcomeTxt" disable="true" editable="false" layoutX="564.0" layoutY="-2.0" prefHeight="62.0" prefWidth="186.0" text="Welcome, Patient">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
-      </TextField>
-      <SplitPane fx:id="splitPane" dividerPositions="0.20465489566613163" layoutY="56.0" prefHeight="496.0" prefWidth="749.0">
+      <SplitPane fx:id="splitPane" dividerPositions="0.20465489566613163" layoutY="56.0" prefHeight="544.0" prefWidth="964.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="494.0" prefWidth="130.0" style="-fx-background-color: c6ffd0;">
                <children>
-                  <Button fx:id="profileButton" layoutX="2.0" layoutY="39.0" mnemonicParsing="false" onAction="#showProfile" prefHeight="26.0" prefWidth="140.0" text="Profile" />
-                  <Button fx:id="medicalHistoryButton" layoutX="2.0" layoutY="87.0" mnemonicParsing="false" onAction="#showMedicalHistory" prefHeight="26.0" prefWidth="140.0" text="Medical History" />
-                  <Button fx:id="ImmunizationButton" layoutX="2.0" layoutY="134.0" mnemonicParsing="false" onAction="#showImmunization" prefHeight="26.0" prefWidth="140.0" text="Immunization" />
-                  <Button fx:id="prescriptionButton" layoutX="2.0" layoutY="180.0" mnemonicParsing="false" onAction="#showPrescription" prefHeight="26.0" prefWidth="140.0" text="Prescription" />
-                  <Button fx:id="appointmentButton" layoutX="2.0" layoutY="227.0" mnemonicParsing="false" onAction="#showAppointment" prefHeight="26.0" prefWidth="140.0" text="Appointment" />
-                  <Button fx:id="vitalsButton" layoutX="2.0" layoutY="269.0" mnemonicParsing="false" onAction="#showVitals" prefHeight="26.0" prefWidth="140.0" text="Vitals" />
-                  <Button fx:id="testResultButton" layoutX="2.0" layoutY="318.0" mnemonicParsing="false" onAction="#showLabResult" prefHeight="26.0" prefWidth="140.0" text="Test &amp; Lab Result" />
-                  <Button fx:id="logoutBttn" layoutX="42.0" layoutY="446.0" mnemonicParsing="false" onAction="#displayLoginView" text="Logout" />
+                  <Button fx:id="profileButton" layoutX="25.0" layoutY="50.0" mnemonicParsing="false" onAction="#showProfile" prefHeight="26.0" prefWidth="140.0" text="Profile">
+                     <effect>
+                        <DropShadow color="#ff4d00" />
+                     </effect></Button>
+                  <Button fx:id="medicalHistoryButton" layoutX="25.0" layoutY="100.0" mnemonicParsing="false" onAction="#showMedicalHistory" prefHeight="26.0" prefWidth="140.0" text="Medical History">
+                     <effect>
+                        <DropShadow color="#ff4d00" />
+                     </effect></Button>
+                  <Button fx:id="ImmunizationButton" layoutX="25.0" layoutY="150.0" mnemonicParsing="false" onAction="#showImmunization" prefHeight="26.0" prefWidth="140.0" text="Immunization">
+                     <effect>
+                        <DropShadow color="#ff4d00" />
+                     </effect></Button>
+                  <Button fx:id="prescriptionButton" layoutX="25.0" layoutY="200.0" mnemonicParsing="false" onAction="#showPrescription" prefHeight="26.0" prefWidth="140.0" text="Prescription">
+                     <effect>
+                        <DropShadow color="#ff4d00" />
+                     </effect></Button>
+                  <Button fx:id="appointmentButton" layoutX="25.0" layoutY="250.0" mnemonicParsing="false" onAction="#showAppointment" prefHeight="26.0" prefWidth="140.0" text="Appointment">
+                     <effect>
+                        <DropShadow color="#ff4d00" />
+                     </effect></Button>
+                  <Button fx:id="vitalsButton" layoutX="25.0" layoutY="300.0" mnemonicParsing="false" onAction="#showVitals" prefHeight="26.0" prefWidth="140.0" text="Vitals">
+                     <effect>
+                        <DropShadow color="#ff4d00" />
+                     </effect></Button>
+                  <Button fx:id="testResultButton" layoutX="25.0" layoutY="350.0" mnemonicParsing="false" onAction="#showLabResult" prefHeight="26.0" prefWidth="140.0" text="Test &amp; Lab Result">
+                     <effect>
+                        <DropShadow color="#ff4d00" />
+                     </effect></Button>
+                  <Button fx:id="logoutBttn" layoutX="60.0" layoutY="450.0" mnemonicParsing="false" onAction="#displayLoginView" text="Logout">
+                     <effect>
+                        <Reflection>
+                           <input>
+                              <DropShadow color="RED" />
+                           </input>
+                        </Reflection>
+                     </effect></Button>
                </children>
                <effect>
                   <InnerShadow color="#62b557" />
@@ -48,7 +73,7 @@
             </AnchorPane>
           <AnchorPane fx:id="rightAnchor" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: 8FBC8F;">
                <children>
-                  <ScrollPane fx:id="profilePane" prefHeight="494.0" prefWidth="592.0">
+                  <ScrollPane fx:id="profilePane" fitToHeight="true" fitToWidth="true" prefHeight="542.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
                         <VBox style="-fx-background-color: #ffead8;">
                            <effect>
@@ -113,7 +138,7 @@
                            </children>
                         </VBox>
                      </content></ScrollPane>
-                  <ScrollPane fx:id="medicalHistoryPane" prefHeight="494.0" prefWidth="592.0">
+                  <ScrollPane fx:id="medicalHistoryPane" fitToHeight="true" prefHeight="542.0" prefWidth="900.0">
                      <content>
                         <VBox fx:id="medicalHistories1" style="-fx-background-color: #1E90FF;">
                                     <effect>
@@ -123,7 +148,7 @@
                                     </children>
                                 </VBox>
                      </content></ScrollPane>
-                  <ScrollPane fx:id="immunizationPane" prefHeight="496.0" prefWidth="592.0">
+                  <ScrollPane fx:id="immunizationPane" fitToHeight="true" prefHeight="542.0" prefWidth="900.0">
                      <content>
                         <VBox fx:id="immunizationHistories1" style="-fx-background-color: #ff9999;">
                                     <effect>
@@ -133,7 +158,7 @@
                                     </children>
                                 </VBox>
                      </content></ScrollPane>
-                  <ScrollPane fx:id="prescriptionPane" prefHeight="494.0" prefWidth="592.0">
+                  <ScrollPane fx:id="prescriptionPane" fitToHeight="true" prefHeight="542.0" prefWidth="900.0">
                      <content>
                        <VBox fx:id="prescriptionHistories1" style="-fx-background-color: #bb99ff;">
                                     <effect>
@@ -143,7 +168,7 @@
                                     </children>
                                 </VBox>
                      </content></ScrollPane>
-                  <ScrollPane fx:id="appointmentPane" prefHeight="494.0" prefWidth="592.0">
+                  <ScrollPane fx:id="appointmentPane" fitToHeight="true" prefHeight="542.0" prefWidth="900.0">
                      <content>
                          <VBox fx:id="appointmentHistories1" style="-fx-background-color: #6699CC;">
                                     <effect>
@@ -153,7 +178,7 @@
                                     </children>
                                 </VBox>
                      </content></ScrollPane>
-                  <ScrollPane fx:id="vitalsPane" prefHeight="494.0" prefWidth="592.0">
+                  <ScrollPane fx:id="vitalsPane" fitToHeight="true" prefHeight="542.0" prefWidth="900.0">
                      <content>
                         <VBox fx:id="vitalSigns1" style="-fx-background-color: #5dd5d5;">
                                     <effect>
@@ -163,7 +188,7 @@
                                     </children>
                                 </VBox>
                      </content></ScrollPane>
-                  <ScrollPane fx:id="labResultPane" prefHeight="496.0" prefWidth="592.0">
+                  <ScrollPane fx:id="labResultPane" fitToHeight="true" prefHeight="542.0" prefWidth="900.0">
                      <content>
                         <VBox fx:id="labResults1" style="-fx-background-color: #00b300;">
                                     <effect>
@@ -176,10 +201,23 @@
                </children></AnchorPane>
         </items>
       </SplitPane>
-      <ImageView fitHeight="55.0" fitWidth="571.0">
+      <ImageView fitHeight="55.0" fitWidth="412.0">
          <image>
             <Image url="@../images/alphacare.png" />
          </image>
       </ImageView>
+      <Label fx:id="headerLabel" alignment="CENTER" layoutX="413.0" prefHeight="55.0" prefWidth="357.0" style="-fx-background-color: #ffffff;" text="Profile" textFill="#55aa2e">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <Label fx:id="welcomeTxt" alignment="CENTER_RIGHT" layoutX="742.0" prefHeight="60.0" prefWidth="222.0" text="Welcome">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font></Label>
+      <Label fx:id="welcomeLabel" contentDisplay="CENTER" layoutX="202.0" layoutY="-2.0" prefHeight="600.0" prefWidth="762.0" style="-fx-background-color: #FFA500;" text="WELCOME TO ALPHACARE" textAlignment="CENTER" textFill="#56794e" wrapText="true">
+         <font>
+            <Font name="System Bold" size="100.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
