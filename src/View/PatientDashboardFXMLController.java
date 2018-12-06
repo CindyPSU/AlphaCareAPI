@@ -5,14 +5,8 @@
  */
 package View;
 
-import DBModel.SQLite_PatientProfile;
-import MedicalRecordModel.AppointmentHistory;
-import MedicalRecordModel.ImmunizationHistory;
-import MedicalRecordModel.MedicalHistory;
-import MedicalRecordModel.PatientStoreStub;
-import MedicalRecordModel.PrescriptionHistory;
-import MedicalRecordModel.TestLabResults;
-import MedicalRecordModel.VitalSigns;
+import DBModel.*;
+import MedicalRecordModel.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -44,7 +38,6 @@ import javafx.scene.layout.VBox;
  */
 public class PatientDashboardFXMLController implements Initializable
 {
-    @FXML TextField welcomeTxt;
     @FXML SplitPane splitPane;
     @FXML AnchorPane rightAnchor;
     @FXML ScrollPane profilePane,medicalHistoryPane, immunizationPane,
@@ -58,7 +51,7 @@ public class PatientDashboardFXMLController implements Initializable
     @FXML
     private DatePicker patient_dob;
     @FXML
-    private Label patient_contact;
+    private Label patient_contact, headerLabel, welcomeTxt, welcomeLabel;
     
     @FXML
     private Button saveBttn, editBttn, cancelBttn;
@@ -95,8 +88,8 @@ public class PatientDashboardFXMLController implements Initializable
     
      private Patient profile;
     
-    String pID = "111223336";
-    List<Patient> patientq = SQLite_PatientProfile.loadPatients().stream().filter((p) -> p.getIdentifier().equals(pID)).collect(Collectors.toList());;
+    String pID = "111223333";
+    List<Patient> patientq = SQLite_PatientProfile.loadPatients().stream().filter((p) -> p.getIdentifier().equals(pID)).collect(Collectors.toList());
     
     /**
      * Initializes the controller class.
@@ -107,7 +100,7 @@ public class PatientDashboardFXMLController implements Initializable
         // TODO
         
         
-     welcomeTxt.setText("Welcome, " + patientq.get(0).getFirstName() );
+     welcomeTxt.setText("Hello, " + patientq.get(0).getFirstName() + "   ");
      profile = patientq.get(0);
      splitPane.getItems().set(1, profilePane);
      
@@ -210,7 +203,13 @@ public class PatientDashboardFXMLController implements Initializable
         this.patient_home_address.setText(profile.getAddress());
         this.patient_phone_number.setText(profile.getPhoneNumber());
         this.patient_email.setText(profile.getEmail());
-        
+      //  SQLite_MedicalHistory.initializeTable();
+        SQLite_MedicalHistory.loadPatientData(profile);
+        SQLite_AppointmentHistory.loadPatientData(profile);
+        SQLite_ImmunizationHistory.loadPatientData(profile);
+        SQLite_PrescriptionHistory.loadPatientData(profile);
+        SQLite_TestLabResults.loadPatientData(profile);
+        SQLite_VitalSigns.loadPatientData(profile);
                 
         // Load Appointment History Data
         loadAppointmentHistories();
@@ -233,7 +232,6 @@ public class PatientDashboardFXMLController implements Initializable
     
      private void loadMedicalHistories()
     {
-        
     for(int counter = 0; counter < medicalHistoryControllers.size(); counter++)
         {
           // Ensure the profile is initialized with the objects
@@ -363,44 +361,50 @@ public class PatientDashboardFXMLController implements Initializable
     @FXML 
     protected void showProfile(ActionEvent event) {
         splitPane.getItems().set(1, profilePane);
-        setProfile(patientq.get(0));
+        headerLabel.setText("My Profile");
+        welcomeLabel.setVisible(false);
     }
     
      @FXML 
     protected void showMedicalHistory(ActionEvent event) {
          splitPane.getItems().set(1, medicalHistoryPane);
-         setProfile(patientq.get(0));
-         loadMedicalHistories();
+         headerLabel.setText("Medical History");
+         welcomeLabel.setVisible(false);
     }
     
      @FXML 
     protected void showImmunization(ActionEvent event) {
         splitPane.getItems().set(1, immunizationPane);
-        setProfile(patientq.get(0));
+        headerLabel.setText("Immunization History");
+        welcomeLabel.setVisible(false);
     }
     
      @FXML 
     protected void showPrescription(ActionEvent event) {
         splitPane.getItems().set(1, prescriptionPane);
-        setProfile(patientq.get(0));
+        headerLabel.setText("Prescription History");
+        welcomeLabel.setVisible(false);
     }
     
      @FXML 
     protected void showAppointment(ActionEvent event) {
         splitPane.getItems().set(1, appointmentPane);
-        setProfile(patientq.get(0));
+        headerLabel.setText("Appointment History");
+        welcomeLabel.setVisible(false);
     }
     
      @FXML 
     protected void showVitals(ActionEvent event) {
         splitPane.getItems().set(1, vitalsPane);
-        setProfile(patientq.get(0));
+        headerLabel.setText("Vital Signs");
+        welcomeLabel.setVisible(false);
     }
     
      @FXML 
     protected void showLabResult(ActionEvent event) {
         splitPane.getItems().set(1, labResultPane);
-        setProfile(patientq.get(0));
+        headerLabel.setText("Lab Results");
+        welcomeLabel.setVisible(false);
     }
     
 
