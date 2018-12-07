@@ -38,6 +38,15 @@ import javafx.scene.layout.VBox;
  */
 public class PatientDashboardFXMLController implements Initializable
 {
+    private String loginInfo;
+    private String patientLname;
+    private int selectedPatient;
+    public PatientDashboardFXMLController(String loginInfo){
+        this.loginInfo = loginInfo;
+        setPatientLname(loginInfo.substring(1));
+        
+    }
+    public PatientDashboardFXMLController(){}
     @FXML SplitPane splitPane;
     @FXML AnchorPane rightAnchor;
     @FXML ScrollPane profilePane,medicalHistoryPane, immunizationPane,
@@ -86,10 +95,10 @@ public class PatientDashboardFXMLController implements Initializable
     private ArrayList<VitalSignsFXMLController> vitalSignsControllers;
     private int vitalSignsRows = 5;
     
-     private Patient profile;
+    private Patient profile;
     
-    String pID = "111223333";
-    List<Patient> patientq = SQLite_PatientProfile.loadPatients().stream().filter((p) -> p.getIdentifier().equals(pID)).collect(Collectors.toList());
+//    String pID = "111223333";
+//    List<Patient> patientq = SQLite_PatientProfile.loadPatients().stream().filter((p) -> p.getIdentifier().equals(pID)).collect(Collectors.toList());
     
     /**
      * Initializes the controller class.
@@ -98,10 +107,15 @@ public class PatientDashboardFXMLController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-        
-        
-     welcomeTxt.setText("Hello, " + patientq.get(0).getFirstName() + "   ");
-     profile = patientq.get(0);
+//       for (int i = 0; i<SQLite_PatientProfile.loadPatients().size(); i++){
+//            if(SQLite_PatientProfile.loadPatients().get(i).getLastName().equalsIgnoreCase(getPatientLname())){
+//                selectedPatient = i;
+//                System.out.println(selectedPatient);
+//            }
+//        }
+     profile = SQLite_PatientProfile.loadPatients().get(10);
+     welcomeTxt.setText("Hello, " + profile.getFirstName() + "   ");
+//     profile = patientq.get(0);
      splitPane.getItems().set(1, profilePane);
      
        try
@@ -417,7 +431,7 @@ public class PatientDashboardFXMLController implements Initializable
     
     @FXML
     public void didPressEdit(ActionEvent event) {
-    setProfile(patientq.get(0));
+    setProfile(profile);
     patient_first_name.setEditable(true);
     patient_last_name.setEditable(true);
     patient_middle_initial.setEditable(true);
@@ -489,5 +503,53 @@ public class PatientDashboardFXMLController implements Initializable
     public void setProfile(Patient _profile){
         this.profile = _profile;
         loadPatient();
+    }
+
+    /**
+     * @return the selectedPatient
+     */
+    public int getSelectedPatient()
+    {
+        return selectedPatient;
+    }
+
+    /**
+     * @param selectedPatient the selectedPatient to set
+     */
+    public void setSelectedPatient(int selectedPatient)
+    {
+        this.selectedPatient = selectedPatient;
+    }
+
+    /**
+     * @return the patientLname
+     */
+    public String getPatientLname()
+    {
+        return patientLname;
+    }
+
+    /**
+     * @param patientLname the patientLname to set
+     */
+    public void setPatientLname(String patientLname)
+    {
+        this.patientLname = patientLname;
+    }
+
+    /**
+     * @return the loginInfo
+     */
+    public String getLoginInfo()
+    {
+        return loginInfo;
+    }
+
+    /**
+     * @param loginInfo the loginInfo to set
+     */
+    public void setLoginInfo(String loginInfo)
+    {
+        this.loginInfo = loginInfo;
     }
 }
