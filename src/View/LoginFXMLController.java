@@ -45,7 +45,7 @@ public class LoginFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        username.setText("Patient");
+        username.setText("MHatch");
         password.setText("IST412FTW");
     }    
     
@@ -61,6 +61,7 @@ public class LoginFXMLController implements Initializable {
                 showDashboard();
             } else if (user.getClass().equals(Patient.class)) {
 //                showPatientDetail(usernameText);
+                PatientDashboardFXMLController logthis = new PatientDashboardFXMLController(username.getText());
                 showPatientDashboard();
             }
         } catch (Exception ex) {
